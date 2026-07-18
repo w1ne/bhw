@@ -15,7 +15,10 @@ assert.doesNotMatch(page, /Gallery|#gallery|Meetup #1 in photos/);
 const recap = await readFile(new URL('../src/components/NewsRecap.astro', import.meta.url), 'utf8');
 assert.match(recap, /images\/hero.jpg/);
 assert.match(recap, /Build before the hardware arrives/);
-assert.match(recap, /linkedin.com\/company\/budapest-hardware-club/);
+assert.match(recap, /recap-presenter.jpg/);
+assert.match(recap, /recap-room.jpg/);
+assert.match(recap, /If you want to sponsor/);
+assert.doesNotMatch(recap, /Read the full recap|Teljes összefoglaló|Roland Halbaksz/);
 
 const layout = await readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8');
 assert.match(layout, /bhw-lang/);
