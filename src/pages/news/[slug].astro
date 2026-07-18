@@ -1,0 +1,20 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import Navigation from '../../components/Navigation.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news');
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={`${post.data.title} · Budapest Hardware Club`}>
+  <Navigation />
+  <main class="news-page"><section><div class="wrap"><a class="back-link" href="/news/"><span class="en">← All news</span><span class="hu">← Minden hír</span></a><article class="recap news-article"><div class="recap-copy"><span class="badge"><span class="en">{post.data.badge}</span><span class="hu">{post.data.badgeHu}</span></span><h1><span class="en">{post.data.title}</span><span class="hu">{post.data.titleHu}</span></h1><Content /></div></article></div></section></main>
+  <Footer />
+</BaseLayout>
