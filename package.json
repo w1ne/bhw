@@ -5,9 +5,11 @@
   "scripts": {
     "build": "astro build",
     "dev": "astro dev",
+    "deploy": "wrangler pages deploy dist --project-name bhw",
     "test": "node tests/site-contract.mjs"
   },
   "devDependencies": {
-    "astro": "^5.0.0"
+    "astro": "^5.0.0",
+    "wrangler": "^4.112.0"
   }
 }

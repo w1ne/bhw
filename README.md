@@ -18,13 +18,19 @@ npm run build
 
 ## Deployment
 
-Cloudflare Pages deploys this static Astro site from GitHub.
+Cloudflare Pages hosts this static Astro site.
 
-- Production branch: `main`
 - Build command: `npm run build`
 - Build output directory: `dist`
 
-Every push to `main` starts a deployment.
+Publish the current build with an authenticated Cloudflare session:
+
+```bash
+npm run build
+npm run deploy
+```
+
+The public repository contains no deployment credential. Log in locally with `npx wrangler login` before the first deploy on a new machine.
 
 ## Credits
 

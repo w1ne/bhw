@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
+const packageJson = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
+assert.equal(packageJson.scripts.deploy, 'wrangler pages deploy dist --project-name bhw');
+
 const page = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
 
 assert.match(page, /BaseLayout/);
