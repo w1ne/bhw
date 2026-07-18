@@ -13,12 +13,13 @@ for (const component of ['Navigation', 'Hero', 'WhatWeDo', 'Events', 'NewsRecap'
 assert.doesNotMatch(page, /Gallery|#gallery|Meetup #1 in photos/);
 
 const recap = await readFile(new URL('../src/components/NewsRecap.astro', import.meta.url), 'utf8');
-assert.match(recap, /images\/hero.jpg/);
 assert.match(recap, /Build before the hardware arrives/);
-assert.match(recap, /recap-presenter.jpg/);
+assert.match(recap, /recap-community-1.jpg/);
+assert.match(recap, /recap-community-2.jpg/);
 assert.match(recap, /recap-room.jpg/);
 assert.match(recap, /If you want to sponsor/);
 assert.doesNotMatch(recap, /Read the full recap|Teljes összefoglaló|Roland Halbaksz/);
+assert.doesNotMatch(recap, /recap-photos[\s\S]*?(hero.jpg|recap-presenter.jpg)/);
 
 const whatWeDo = await readFile(new URL('../src/components/WhatWeDo.astro', import.meta.url), 'utf8');
 assert.equal((whatWeDo.match(/class="card"/g) ?? []).length, 3);
