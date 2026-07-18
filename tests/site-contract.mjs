@@ -20,6 +20,13 @@ assert.match(recap, /recap-room.jpg/);
 assert.match(recap, /If you want to sponsor/);
 assert.doesNotMatch(recap, /Read the full recap|Teljes összefoglaló|Roland Halbaksz/);
 
+const whatWeDo = await readFile(new URL('../src/components/WhatWeDo.astro', import.meta.url), 'utf8');
+assert.equal((whatWeDo.match(/class="card"/g) ?? []).length, 3);
+assert.match(whatWeDo, /Firmware engineering/);
+assert.match(whatWeDo, /Product, hardware &amp; CAD/);
+assert.match(whatWeDo, /Open knowledge/);
+assert.doesNotMatch(whatWeDo, /Digital twins/);
+
 const layout = await readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8');
 assert.match(layout, /bhw-lang/);
 assert.match(layout, /data-set/);
