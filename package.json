@@ -1,0 +1,13 @@
+{
+  "name": "budapest-hardware-club",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "astro build",
+    "dev": "astro dev",
+    "test": "node tests/site-contract.mjs"
+  },
+  "devDependencies": {
+    "astro": "^5.0.0"
+  }
+}

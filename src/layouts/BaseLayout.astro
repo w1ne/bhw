@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+
+const { title = 'BHW - Budapest Hardware Club' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content="Budapest Hardware Club - for people building physical products in Budapest. Talks, demos and knowledge sharing on firmware, embedded systems and hardware." />
+    <meta property="og:title" content="Budapest Hardware Club" />
+    <meta property="og:description" content="For people building physical products in Budapest. Knowledge and lessons sharing." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bhw.hu" />
+    <meta property="og:image" content="https://bhw.hu/images/hero.jpg" />
+    <link rel="icon" href="/images/logo.png" />
+  </head>
+  <body>
+    <slot />
+    <script>
+      const root = document.documentElement;
+      const saved = localStorage.getItem('bhw-lang');
+      if (saved === 'en' || saved === 'hu') {
+        root.setAttribute('data-lang', saved);
+        root.setAttribute('lang', saved);
+      }
+      const sync = () => {
+        const language = root.getAttribute('data-lang');
+        document.querySelectorAll('.langsw button').forEach((button) => {
+          button.classList.toggle('active', button.getAttribute('data-set') === language);
+        });
+      };
+      document.querySelectorAll('.langsw button').forEach((button) => {
+        button.addEventListener('click', () => {
+          const language = button.getAttribute('data-set');
+          root.setAttribute('data-lang', language);
+          root.setAttribute('lang', language);
+          localStorage.setItem('bhw-lang', language);
+          sync();
+        });
+      });
+      sync();
+    </script>
+  </body>
+</html>
