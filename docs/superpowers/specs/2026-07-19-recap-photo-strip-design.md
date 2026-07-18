@@ -11,7 +11,11 @@ Make the Meetup #1 recap self-contained on bhw.hu by removing the LinkedIn conti
 - Format the technical lessons as readable bullet points and keep the feedback ladder as a visual sequence.
 - Thank attendees generally; do not publish the individual attendee-name shout-outs from the post.
 - Remove the English and Hungarian LinkedIn “read more” link.
-- Retain `hero.jpg` as the lead image and add two supporting Meetup #1 images in a three-photo strip below the recap text. Use the supplied Google Photos album as their source; select the two wide presenter-and-audience / room-wide group shots rather than the close-up presenter shots.
+- Use the two community-focused images explicitly selected by the organiser as the first and second images in the three-photo strip below the recap text. They replace the current `hero.jpg` and presenter-focused recap image. Keep the existing room image as the third image.
+- Selected Google Photos sources:
+  - `AF1QipObHfk1gCTz4a_wLfUMpDViwKcbwC83LoBUoLE`
+  - `AF1QipPaJORUbeVnjYhMdAvSbajdiTbWPuFtHUpHm-E`
+- Do not use a solo-presenter photo in the recap strip.
 - On narrow screens, stack the image strip so every image remains visible and usable.
 - Keep the News section as an editorial recap, not a standalone gallery or carousel.
 
