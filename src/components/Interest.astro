@@ -3,17 +3,16 @@
     <div class="sec-head centered">
       <span class="eyebrow">// <span class="en">hackathon</span><span class="hu">hackathon</span></span>
       <h2><span class="en">Agent Control Deck Hackathon</span><span class="hu">Agent Control Deck Hackathon</span></h2>
-      <p><span class="en">A hands-on hardware build challenge in teams. Everyone gets the same kit, three hours to build, live demos at the end. We'll reveal the exact brief on the day — just come ready to build.</span><span class="hu">Gyakorlati, csapatokban zajló hardveres építőverseny. Mindenki ugyanazt a készletet kapja, három óra építés, a végén élő demók. A pontos feladatot a helyszínen áruljuk el — csak jöjj építésre készen.</span></p>
+      <p><span class="en">A hands-on hardware build challenge in teams. Everyone gets the same kit, one evening to build, live demos at the end. We'll reveal the exact brief on the day — just come ready to build.</span><span class="hu">Gyakorlati, csapatokban zajló hardveres építőverseny. Mindenki ugyanazt a készletet kapja, egy este építés, a végén élő demók. A pontos feladatot a helyszínen áruljuk el — csak jöjj építésre készen.</span></p>
     </div>
 
     <div class="interest-facts">
       <span>📅 <span class="en">End of August, weekday evening</span><span class="hu">Augusztus vége, hétköznap este</span></span>
-      <span>⏱ <span class="en">3 hours of building</span><span class="hu">3 óra építés</span></span>
-      <span>👥 <span class="en">24–32 builders in teams</span><span class="hu">24–32 építő csapatokban</span></span>
+      <span>👥 <span class="en">Small teams</span><span class="hu">Kis csapatok</span></span>
       <span>🍕 <span class="en">Kits, pizza &amp; drinks included</span><span class="hu">Készletek, pizza és ital</span></span>
     </div>
 
-    <p class="interest-note"><span class="en">The date isn't locked yet. Leave your details and we'll mail you the moment it is — your date preference helps us pick it.</span><span class="hu">A dátum még nincs véglegesítve. Add meg az adataid, és szólunk, amint megvan — a preferenciád segít kiválasztani.</span></p>
+    <p class="interest-note"><span class="en">The date isn't locked yet. Leave your name and email — we'll mail you the moment it is.</span><span class="hu">A dátum még nincs véglegesítve. Add meg a neved és e-mailed — szólunk, amint megvan.</span></p>
 
     <form class="interest-form" id="interest-form" novalidate>
       <div class="if-row">
@@ -26,42 +25,6 @@
           <input type="email" name="email" required autocomplete="email" />
         </label>
       </div>
-
-      <div class="if-row">
-        <label class="if-field">
-          <span class="if-label"><span class="en">What do you build?</span><span class="hu">Mit építesz?</span></span>
-          <select name="background">
-            <option value="firmware" data-en="Firmware / embedded" data-hu="Firmware / beágyazott">Firmware / embedded</option>
-            <option value="hardware" data-en="Hardware / PCB" data-hu="Hardver / NYÁK">Hardware / PCB</option>
-            <option value="mechanical" data-en="Mechanical / CAD" data-hu="Gépész / CAD">Mechanical / CAD</option>
-            <option value="software" data-en="Software / AI" data-hu="Szoftver / AI">Software / AI</option>
-            <option value="curious" data-en="Curious beginner" data-hu="Érdeklődő kezdő">Curious beginner</option>
-          </select>
-        </label>
-        <label class="if-field">
-          <span class="if-label"><span class="en">Coming as</span><span class="hu">Így jönnék</span></span>
-          <select name="team">
-            <option value="solo" data-en="Solo — match me with a team" data-hu="Egyedül — párosítsatok csapattal">Solo — match me with a team</option>
-            <option value="team" data-en="I have a team" data-hu="Van csapatom">I have a team</option>
-            <option value="unsure" data-en="Not sure yet" data-hu="Még nem tudom">Not sure yet</option>
-          </select>
-        </label>
-      </div>
-
-      <fieldset class="if-field if-dates">
-        <legend class="if-label"><span class="en">Which evenings could work? (pick any)</span><span class="hu">Mely esték jók? (több is választható)</span></legend>
-        <div class="if-checks">
-          <label><input type="checkbox" name="dates" value="aug-week-3" /> <span class="en">Aug 18–22</span><span class="hu">Aug. 18–22.</span></label>
-          <label><input type="checkbox" name="dates" value="aug-week-4" /> <span class="en">Aug 25–29</span><span class="hu">Aug. 25–29.</span></label>
-          <label><input type="checkbox" name="dates" value="sep-week-1" /> <span class="en">Sep 1–5</span><span class="hu">Szept. 1–5.</span></label>
-          <label><input type="checkbox" name="dates" value="any" /> <span class="en">Any of them</span><span class="hu">Bármelyik</span></label>
-        </div>
-      </fieldset>
-
-      <label class="if-field">
-        <span class="if-label"><span class="en">Anything else? (optional)</span><span class="hu">Bármi más? (opcionális)</span></span>
-        <textarea name="notes" rows="2"></textarea>
-      </label>
 
       <input type="text" name="company_website" class="if-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
@@ -86,21 +49,6 @@
       return document.documentElement.getAttribute('data-lang') === 'hu' ? hu : en;
     }
 
-    // <option> can't hold the .en/.hu spans the rest of the site uses, so mirror
-    // the language toggle onto option text via data-en / data-hu.
-    var options = form.querySelectorAll('option[data-en]');
-    function syncOptionLang() {
-      var hu = document.documentElement.getAttribute('data-lang') === 'hu';
-      for (var i = 0; i < options.length; i++) {
-        options[i].textContent = options[i].getAttribute(hu ? 'data-hu' : 'data-en');
-      }
-    }
-    syncOptionLang();
-    new MutationObserver(syncOptionLang).observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-lang']
-    });
-
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.reportValidity()) return;
@@ -109,10 +57,6 @@
       var payload = {
         name: (fd.get('name') || '').trim(),
         email: (fd.get('email') || '').trim(),
-        background: fd.get('background') || '',
-        team: fd.get('team') || '',
-        dates: fd.getAll('dates'),
-        notes: (fd.get('notes') || '').trim(),
         company_website: fd.get('company_website') || ''
       };
 
@@ -127,7 +71,6 @@
       })
         .then(function (r) {
           if (!r.ok) throw new Error('http ' + r.status);
-          form.querySelector('.if-row').scrollIntoView({ behavior: 'smooth', block: 'center' });
           form.reset();
           msg.className = 'if-msg ok';
           msg.textContent = t(

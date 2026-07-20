@@ -42,7 +42,7 @@ assert.match(banner, /href="#interest"/);
 const interest = await readFile(new URL('../src/components/Interest.astro', import.meta.url), 'utf8');
 assert.match(interest, /id="interest"/);
 assert.match(interest, /fetch\('\/api\/interest'/);
-for (const field of ['name="name"', 'name="email"', 'name="dates"']) {
+for (const field of ['name="name"', 'name="email"']) {
   assert.match(interest, new RegExp(field));
 }
 
