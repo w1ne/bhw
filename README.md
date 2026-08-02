@@ -38,10 +38,20 @@ npm run deploy
 
 The public repository contains no deployment credential. Log in locally with `npx wrangler login` before the first deploy on a new machine.
 
-## Hackathon interest form
+## Hackathon
 
-`functions/api/interest.js` backs the signup form on the homepage. It needs two
-bindings on the Pages project (both already configured for production and preview):
+The hackathon is live on Luma: <https://luma.com/buneo4d8> (Tue 8 September,
+18:00–21:30, Puzl CowOrKing). `src/components/Hackathon.astro` and the top
+banner both link straight there — registration happens on Luma, not on this
+site. Editing the date, venue or capacity means editing that component; the
+contract test pins the date and venue so they cannot silently drift.
+
+### Retired interest list
+
+The old homepage form is gone. `functions/api/interest.js` keeps only the
+token-gated CSV export so the addresses it already collected can be pulled and
+mailed about the event; it no longer accepts submissions. It still needs two
+bindings on the Pages project:
 
 - `INTEREST` — KV namespace holding one entry per signup, keyed by lowercased email
 - `INTEREST_TOKEN` — secret guarding the CSV export
@@ -53,6 +63,8 @@ curl "https://bhw.hu/api/interest?token=$INTEREST_TOKEN" -o interest.csv
 ```
 
 Without the token the endpoint returns 404, so the list is not discoverable.
+Once the list has been exported and mailed, delete the function and the KV
+namespace.
 
 ## Credits
 
