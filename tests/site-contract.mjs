@@ -7,11 +7,12 @@ assert.equal(packageJson.scripts.deploy, 'wrangler pages deploy dist --project-n
 const page = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
 
 assert.match(page, /BaseLayout/);
-for (const component of ['Navigation', 'HackathonBanner', 'Hero', 'Hackathon', 'WhatWeDo', 'Events', 'NewsRecap', 'Join', 'Footer']) {
+for (const component of ['Navigation', 'Hero', 'WhatWeDo', 'Events', 'NewsRecap', 'Jobs', 'Join', 'Footer']) {
   assert.match(page, new RegExp(component));
 }
 assert.doesNotMatch(page, /Gallery|#gallery|Meetup #1 in photos/);
 assert.doesNotMatch(page, /Interest/);
+assert.doesNotMatch(page, /Hackathon/);
 
 const recap = await readFile(new URL('../src/components/NewsRecap.astro', import.meta.url), 'utf8');
 assert.match(recap, /getEntry\('news', 'meetup-1-build-before-the-hardware-arrives'\)/);
@@ -35,24 +36,29 @@ const newsArticle = await readFile(new URL('../src/pages/news/[slug].astro', imp
 assert.match(newsArticle, /getStaticPaths/);
 assert.match(newsArticle, /render\(post\)/);
 
-// The hackathon is live on Luma: banner and section both send people straight
-// to the event page. The old interest form is gone and must stay gone.
-const LUMA_EVENT = 'https://luma.com/buneo4d8';
-
-const banner = await readFile(new URL('../src/components/HackathonBanner.astro', import.meta.url), 'utf8');
-assert.match(banner, new RegExp(`href="${LUMA_EVENT}"`));
-
-const hackathon = await readFile(new URL('../src/components/Hackathon.astro', import.meta.url), 'utf8');
-assert.match(hackathon, /id="hackathon"/);
-assert.match(hackathon, new RegExp(`href="${LUMA_EVENT}"`));
-assert.match(hackathon, /8 September/);
-assert.match(hackathon, /Puzl CowOrKing/);
-assert.doesNotMatch(hackathon, /<form|<input|\/api\/interest/);
-
+// The hackathon is over: its banner, section, nav entry and Join mention are
+// gone for good, and the old interest form stays gone.
+await assert.rejects(access(new URL('../src/components/Hackathon.astro', import.meta.url)));
+await assert.rejects(access(new URL('../src/components/HackathonBanner.astro', import.meta.url)));
 await assert.rejects(access(new URL('../src/components/Interest.astro', import.meta.url)));
 
 const nav = await readFile(new URL('../src/components/Navigation.astro', import.meta.url), 'utf8');
-assert.match(nav, /href="\/#hackathon"/);
+assert.match(nav, /href="\/#jobs"/);
+assert.match(nav, /Jobs/);
+assert.doesNotMatch(nav, /hackathon/i);
+
+const join = await readFile(new URL('../src/components/Join.astro', import.meta.url), 'utf8');
+assert.doesNotMatch(join, /hackathon/i);
+
+// Jobs board: static catalog in public/jobs.json, rendered by Jobs.astro.
+const jobs = await readFile(new URL('../src/components/Jobs.astro', import.meta.url), 'utf8');
+assert.match(jobs, /id="jobs"/);
+assert.match(jobs, /EXPIRY_DAYS = 45/);
+assert.match(jobs, /fetch\('\/jobs\.json'\)/);
+assert.match(jobs, /mailto:hello@bhw\.hu/);
+
+const jobsData = JSON.parse(await readFile(new URL('../public/jobs.json', import.meta.url), 'utf8'));
+assert.ok(Array.isArray(jobsData));
 
 // The signup endpoint is read-only now: export what was collected, accept nothing new.
 const fn = await readFile(new URL('../functions/api/interest.js', import.meta.url), 'utf8');

@@ -38,13 +38,30 @@ npm run deploy
 
 The public repository contains no deployment credential. Log in locally with `npx wrangler login` before the first deploy on a new machine.
 
-## Hackathon
+## Jobs
 
-The hackathon is live on Luma: <https://luma.com/buneo4d8> (Tue 8 September,
-18:00–21:30, Puzl CowOrKing). `src/components/Hackathon.astro` and the top
-banner both link straight there — registration happens on Luma, not on this
-site. Editing the date, venue or capacity means editing that component; the
-contract test pins the date and venue so they cannot silently drift.
+Listings are static data in `public/jobs.json`, rendered client-side by
+`src/components/Jobs.astro` (newest first, hidden after 45 days). The
+**Post a job** button opens a prefilled email to hello@bhw.hu — review the
+submission, then append an entry:
+
+```json
+{
+  "title": "Senior Firmware Engineer",
+  "company": "Acme Kft.",
+  "location": "Budapest",
+  "remote": false,
+  "salary": "HUF 1.2M-1.6M / month",
+  "tags": ["firmware", "Zephyr", "Rust"],
+  "url": "https://example.com/jobs/123",
+  "email": "",
+  "posted": "2026-09-15"
+}
+```
+
+`title`, `company` and `posted` (YYYY-MM-DD) are required; `url` is preferred
+for the Apply button, `email` is the fallback. The contract test pins the
+45-day expiry and the posting mailto.
 
 ### Retired interest list
 

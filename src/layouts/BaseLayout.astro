@@ -41,6 +41,7 @@ const { title = 'BHW - Budapest Hardware Club' } = Astro.props;
           root.setAttribute('lang', language);
           localStorage.setItem('bhw-lang', language);
           sync();
+          document.dispatchEvent(new CustomEvent('bhw-lang-change'));
         });
       });
       sync();

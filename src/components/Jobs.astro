@@ -1,0 +1,93 @@
+<section id="jobs">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">// <span class="en">jobs</span><span class="hu">állások</span></span>
+      <h2><span class="en">Open roles</span><span class="hu">Nyitott pozíciók</span></h2>
+      <p><span class="en">Curated hardware and embedded roles from the club - posted by real teams and reviewed before publishing.</span><span class="hu">Válogatott hardveres és beágyazott pozíciók a klubtól - valódi csapatoktól, publikálás előtt átnézve.</span></p>
+    </div>
+    <div id="job-list" class="job-list" aria-live="polite"></div>
+    <a class="next-cta jobs-cta" href="mailto:hello@bhw.hu?subject=Job%20posting%20-%20BHW&body=Company%20%7C%20Role%20%7C%20Location%20%7C%20Salary%20range%0A%0AWhat%20you%20build%20%2F%20tech%20stack%3A%0A%0AApply%3A%20%3Clink%20or%20email%3E">
+      <div>
+        <span class="eyebrow">// <span class="en">post a job</span><span class="hu">állást hirdetek</span></span>
+        <strong><span class="en">Hiring hardware people?</span><span class="hu">Hardveres embereket keresel?</span></strong>
+        <p><span class="en">Posting is free for the community. Send the role and we review it before it goes live.</span><span class="hu">A hirdetés ingyenes a közösségnek. Küldd el a pozíciót, és publikálás előtt átnézzük.</span></p>
+      </div>
+      <span class="btn primary"><span class="en">Post a job</span><span class="hu">Állást hirdetek</span></span>
+    </a>
+  </div>
+</section>
+
+<script>
+  const EXPIRY_DAYS = 45;
+  let jobs = [];
+  const lang = () => document.documentElement.getAttribute('data-lang') || 'en';
+  const daysAgo = (iso) => {
+    const d = new Date(iso + 'T00:00:00');
+    return isNaN(d.getTime()) ? NaN : Math.floor((Date.now() - d.getTime()) / 86400000);
+  };
+  const relAge = (n) => {
+    if (n <= 0) return lang() === 'hu' ? 'ma' : 'today';
+    return lang() === 'hu' ? n + ' napja' : n + 'd ago';
+  };
+  const el = (tag, cls, text) => {
+    const node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text != null) node.textContent = text;
+    return node;
+  };
+  const renderJobs = () => {
+    const box = document.getElementById('job-list');
+    if (!box) return;
+    box.innerHTML = '';
+    const live = jobs
+      .filter((j) => {
+        const age = daysAgo(j && j.posted);
+        return j && j.title && j.company && age >= 0 && age <= EXPIRY_DAYS;
+      })
+      .sort((a, b) => (b.posted || '').localeCompare(a.posted || ''));
+    if (!live.length) {
+      const empty = el('div', 'jobs-empty');
+      empty.innerHTML = '<span class="en">No open roles right now - post the first one below.</span><span class="hu">Jelenleg nincs nyitott pozíció - hirdesd meg te az elsőt lent.</span>';
+      box.appendChild(empty);
+      return;
+    }
+    live.forEach((j) => {
+      const card = el('div', 'job');
+      const info = el('div', 'info');
+      info.appendChild(el('h3', null, j.title));
+      const where = [];
+      if (j.location) where.push(j.location);
+      if (j.remote) where.push(lang() === 'hu' ? 'Távmunka' : 'Remote');
+      info.appendChild(el('div', 'co', j.company + (where.length ? ' · ' + where.join(' · ') : '')));
+      if (j.salary) info.appendChild(el('div', 'salary', j.salary));
+      if (j.tags && j.tags.length) {
+        const tags = el('div', 'tags');
+        j.tags.forEach((t) => tags.appendChild(el('span', null, t)));
+        info.appendChild(tags);
+      }
+      card.appendChild(info);
+      const side = el('div', 'side');
+      side.appendChild(el('div', 'age', relAge(daysAgo(j.posted))));
+      const apply = j.url || (j.email ? 'mailto:' + j.email : '');
+      if (apply) {
+        const a = el('a', 'btn primary apply', lang() === 'hu' ? 'Jelentkezés' : 'Apply');
+        a.href = apply;
+        if (j.url) {
+          a.target = '_blank';
+          a.rel = 'noopener';
+        }
+        side.appendChild(a);
+      }
+      card.appendChild(side);
+      box.appendChild(card);
+    });
+  };
+  document.addEventListener('bhw-lang-change', renderJobs);
+  fetch('/jobs.json')
+    .then((r) => (r.ok ? r.json() : []))
+    .catch(() => [])
+    .then((data) => {
+      jobs = Array.isArray(data) ? data : [];
+      renderJobs();
+    });
+</script>
