@@ -1,0 +1,341 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Production - Budapest Hardware Club">
+  <Navigation />
+  <main id="top">
+
+    <section class="hero">
+      <div class="wrap">
+        <span class="eyebrow">// <span class="en">production services</span><span class="hu">gyártási szolgáltatások</span></span>
+        <h1><span class="en">Parts and <span class="accent">production</span>, from the club.</span><span class="hu">Alkatrészek és <span class="accent">gyártás</span>, a klubtól.</span></h1>
+        <p class="lead"><span class="en">3D printing, laser cutting, CAD and electronics work for one-offs and small batches. Made by club members who build hardware for a living - with a fixed price and a date before we start.</span><span class="hu">3D nyomtatás, lézervágás, CAD és elektronika egyedi darabokra és kis szériákra. A klub tagjai készítik, akik nap mint nap hardvert építenek - rögzített árral és határidővel, még a munka előtt.</span></p>
+        <div class="btns">
+          <a class="btn primary" href="#request"><span class="en">Send a job</span><span class="hu">Munkát küldök</span></a>
+          <a class="btn ghost" href="#prices"><span class="en">See prices</span><span class="hu">Árak</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="doors">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">// <span class="en">three doors</span><span class="hu">három ajtó</span></span>
+          <h2><span class="en">Start where you are</span><span class="hu">Ott kezdd, ahol vagy</span></h2>
+          <p><span class="en">You do not need a printable file. Bring the problem.</span><span class="hu">Nem kell nyomtatható fájl. Hozd a problémát.</span></p>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <div class="ic">📐</div>
+            <h3><span class="en">I have a file</span><span class="hu">Van fájlom</span></h3>
+            <p><span class="en">STL, 3MF, STEP, DXF or SVG. Tell us what it must fit or hold - a model alone rarely says enough.</span><span class="hu">STL, 3MF, STEP, DXF vagy SVG. Írd meg, mihez kell illeszkednie - a modell önmagában ritkán elég.</span></p>
+          </div>
+          <div class="card">
+            <div class="ic">📷</div>
+            <h3><span class="en">I need it designed</span><span class="hu">Meg kell tervezni</span></h3>
+            <p><span class="en">Photos, a sketch and the part it mates with. You get CAD, a first print and one agreed revision.</span><span class="hu">Fotók, vázlat és az illeszkedő alkatrész. CAD, első nyomtatás és egy megbeszélt javítás.</span></p>
+          </div>
+          <div class="card">
+            <div class="ic">🔌</div>
+            <h3><span class="en">Electronics and firmware</span><span class="hu">Elektronika és firmware</span></h3>
+            <p><span class="en">Boards, sensors, wiring, firmware. It starts with a paid scoping step, so nobody works from a guess.</span><span class="hu">Panelek, szenzorok, bekötés, firmware. Fizetett tervezéssel kezdünk, hogy senki ne tippeljen.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prices">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">// <span class="en">starting prices</span><span class="hu">kezdő árak</span></span>
+          <h2><span class="en">What it costs</span><span class="hu">Mennyibe kerül</span></h2>
+          <p><span class="en">Floors, not estimates: every job is quoted on its own files, and the quote is fixed before work starts.</span><span class="hu">Ezek minimumok, nem ajánlatok: minden munkára a saját fájljai alapján adunk ajánlatot, és az ár a munka előtt rögzül.</span></p>
+        </div>
+
+        <div class="rates">
+          <div class="rate">
+            <div>
+              <h3><span class="en">3D printing, from a file</span><span class="hu">3D nyomtatás fájlból</span></h3>
+              <p><span class="en">FDM printing in PLA, PETG and TPU; other filaments on request. Supports and finishing included in the price.</span><span class="hu">FDM nyomtatás PLA-ból, PETG-ből és TPU-ból; más filament kérésre. A tartók és az utómunka az árban vannak.</span></p>
+            </div>
+            <div class="n">7 900 Ft<small><span class="en">per order, ex-VAT</span><span class="hu">megrendelésenként, nettó</span></small></div>
+          </div>
+          <div class="rate">
+            <div>
+              <h3><span class="en">Laser cutting and engraving</span><span class="hu">Lézervágás és gravírozás</span></h3>
+              <p><span class="en">Wood, plywood and engraving to start. Ask before assuming a material - a 20 W diode is not a workshop laser.</span><span class="hu">Fa, rétegelt lemez és gravírozás kezdésnek. Kérdezz, mielőtt adott anyagra számítasz - a 20 W-os dióda nem ipari lézer.</span></p>
+            </div>
+            <div class="n">9 900 Ft<small><span class="en">per order, ex-VAT</span><span class="hu">megrendelésenként, nettó</span></small></div>
+          </div>
+          <div class="rate">
+            <div>
+              <h3><span class="en">Design work, with the first print</span><span class="hu">Tervezés, az első nyomtatással</span></h3>
+              <p><span class="en">One part, dimensions from you, one agreed revision, one print iteration. Reverse engineering is a larger scope.</span><span class="hu">Egy alkatrész, a méreteket te adod, egy megbeszélt javítás, egy nyomtatási kör. A visszafejtés nagyobb munka.</span></p>
+            </div>
+            <div class="n">40 000 Ft<small><span class="en">per part, ex-VAT</span><span class="hu">alkatrészenként, nettó</span></small></div>
+          </div>
+          <div class="rate">
+            <div>
+              <h3><span class="en">Electronics and firmware</span><span class="hu">Elektronika és firmware</span></h3>
+              <p><span class="en">A two-hour scoping session: requirements, architecture, a rough component list and a quote for the work itself.</span><span class="hu">Kétórás tervezés: követelmények, architektúra, hozzávetőleges alkatrészlista és ajánlat magára a munkára.</span></p>
+            </div>
+            <div class="n">30 000 Ft<small><span class="en">scoping, ex-VAT</span><span class="hu">tervezés, nettó</span></small></div>
+          </div>
+        </div>
+
+        <p class="note"><span class="en">Club members: say so in the form and ask about member pricing. Pickup in Budapest, or parcel delivery in Hungary and the EU.</span><span class="hu">Klubtagok: írjátok meg az űrlapon, és kérdezzetek a tagsági árról. Átvétel Budapesten vagy csomagküldés Magyarországon és az EU-ban.</span></p>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">// <span class="en">how it works</span><span class="hu">hogyan működik</span></span>
+          <h2><span class="en">Four steps, no surprises</span><span class="hu">Négy lépés, meglepetések nélkül</span></h2>
+        </div>
+        <div class="cards">
+          <div class="card"><div class="ic">01</div><h3><span class="en">Send the brief</span><span class="hu">Küldd el a leírást</span></h3><p><span class="en">File, sketch or the broken part itself.</span><span class="hu">Fájl, vázlat vagy maga a törött alkatrész.</span></p></div>
+          <div class="card"><div class="ic">02</div><h3><span class="en">Fixed price and date</span><span class="hu">Rögzített ár és határidő</span></h3><p><span class="en">We answer within one working day, including when the answer is no.</span><span class="hu">Egy munkanapon belül válaszolunk - akkor is, ha nem vállaljuk.</span></p></div>
+          <div class="card"><div class="ic">03</div><h3><span class="en">Approval, then production</span><span class="hu">Jóváhagyás, aztán gyártás</span></h3><p><span class="en">You approve the first article; batches run after that.</span><span class="hu">Az első darabot jóváhagyod; utána indul a széria.</span></p></div>
+          <div class="card"><div class="ic">04</div><h3><span class="en">Pickup or shipping</span><span class="hu">Átvétel vagy szállítás</span></h3><p><span class="en">Budapest pickup by arrangement, or parcel delivery.</span><span class="hu">Átvétel Budapesten megbeszélés szerint, vagy csomagküldés.</span></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="request">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">// <span class="en">request</span><span class="hu">megrendelés</span></span>
+          <h2><span class="en">Send a job</span><span class="hu">Küldj munkát</span></h2>
+          <p><span class="en">Tell us what it must do, not only what it is. Fits, loads, temperature, deadline - anything you already know saves a round trip.</span><span class="hu">Írd le, mit kell tudnia, ne csak azt, hogy mi az. Illeszkedés, terhelés, hőmérséklet, határidő - amit tudsz, egy e-mail körrel kevesebb.</span></p>
+        </div>
+
+        <form class="form" id="jobform">
+          <div class="pick">
+            <label>
+              <input type="radio" name="entry" value="file" checked />
+              <span><span class="en">I have a file</span><span class="hu">Van fájlom</span></span>
+            </label>
+            <label>
+              <input type="radio" name="entry" value="design" />
+              <span><span class="en">I need it designed</span><span class="hu">Meg kell tervezni</span></span>
+            </label>
+            <label>
+              <input type="radio" name="entry" value="electronics" />
+              <span><span class="en">Electronics and firmware</span><span class="hu">Elektronika és firmware</span></span>
+            </label>
+          </div>
+
+          <div class="pair">
+            <div class="field">
+              <label for="process"><span class="en">Process</span><span class="hu">Folyamat</span></label>
+              <select id="process" name="process">
+                <option value="3D printing" data-en="3D printing" data-hu="3D nyomtatás">3D printing</option>
+                <option value="Laser" data-en="Laser cutting or engraving" data-hu="Lézervágás vagy gravírozás">Laser cutting or engraving</option>
+                <option value="Print + laser" data-en="Printing and laser" data-hu="Nyomtatás és lézer">Printing and laser</option>
+                <option value="CAD design" data-en="CAD design" data-hu="CAD tervezés">CAD design</option>
+                <option value="Electronics" data-en="Electronics and firmware" data-hu="Elektronika és firmware">Electronics and firmware</option>
+                <option value="Not sure" data-en="Not sure - recommend" data-hu="Nem tudom - javasoljatok">Not sure - recommend</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="material"><span class="en">Material</span><span class="hu">Anyag</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></label>
+              <input id="material" name="material" placeholder="PLA, PETG, wood…" />
+            </div>
+          </div>
+
+          <div class="pair">
+            <div class="field">
+              <label for="quantity"><span class="en">How many</span><span class="hu">Mennyi</span></label>
+              <input id="quantity" name="quantity" inputmode="numeric" placeholder="1" />
+            </div>
+            <div class="field">
+              <label for="timeline"><span class="en">When you need it</span><span class="hu">Mikorra kell</span></label>
+              <input id="timeline" name="timeline" placeholder="This week / no rush" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="application"><span class="en">What you need</span><span class="hu">Mire van szükséged</span></label>
+            <textarea id="application" name="application" required placeholder="What it is, what it must fit, what it must hold or survive."></textarea>
+          </div>
+
+          <div class="field">
+            <label for="files"><span class="en">Files</span><span class="hu">Fájlok</span> <span class="opt"><span class="en">optional, up to 6</span><span class="hu">nem kötelező, max 6</span></span></label>
+            <input id="files" name="files" type="file" multiple accept=".stl,.3mf,.step,.stp,.iges,.igs,.obj,.dxf,.svg,.pdf,.png,.jpg,.jpeg,.zip" />
+            <p class="hint"><span class="en">STL, 3MF, STEP, DXF, SVG, PDF, photos or a ZIP - up to 6 files, 25 MB each. Files stay private, on the club's own storage.</span><span class="hu">STL, 3MF, STEP, DXF, SVG, PDF, fotó vagy ZIP - max 6 fájl, egyenként 25 MB. A fájlok privátak, a klub saját tárhelyén maradnak.</span></p>
+          </div>
+
+          <div class="pair">
+            <div class="field">
+              <label for="name"><span class="en">Name</span><span class="hu">Név</span></label>
+              <input id="name" name="name" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email"><span class="en">Email</span><span class="hu">E-mail</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div class="pair">
+            <div class="field">
+              <label for="org"><span class="en">Company</span><span class="hu">Cég</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></label>
+              <input id="org" name="org" autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label for="budget"><span class="en">Budget</span><span class="hu">Költségkeret</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></label>
+              <input id="budget" name="budget" placeholder="" />
+            </div>
+          </div>
+
+          <div class="foot">
+            <button class="btn primary" type="submit"><span class="en">Send the brief</span><span class="hu">Elküldöm</span></button>
+            <span class="hint"><span class="en">No payment now. We quote first and you decide.</span><span class="hu">Most nem kell fizetni. Előbb ajánlatot adunk, aztán döntesz.</span></span>
+          </div>
+          <p class="formmsg" id="formmsg" hidden></p>
+        </form>
+
+        <p class="note"><span class="en">Files are stored privately and never published, shared or sent to a third party. Every job is resliced for the club's own machines - we never run someone else's G-code. Questions: <a href="mailto:hello@bhw.hu">hello@bhw.hu</a></span><span class="hu">A fájlokat privát tárhelyen őrizzük, nem tesszük közzé, nem adjuk tovább. Minden munkát a klub saját gépeire szeletelünk újra - idegen G-code-ot soha nem futtatunk. Kérdés: <a href="mailto:hello@bhw.hu">hello@bhw.hu</a></span></p>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+
+  <style>
+    .hero .wrap{text-align:left;max-width:var(--maxw)}
+    .hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;margin:.35em 0 .1em;letter-spacing:-.02em}
+    .hero p.lead{margin:14px 0 0;max-width:640px}
+    .hero .btns{justify-content:flex-start;margin-top:28px}
+    .sec-head p{max-width:640px}
+    .rates{display:grid;border-top:1px solid var(--line)}
+    .rate{display:flex;justify-content:space-between;gap:28px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line)}
+    .rate h3{margin:0 0 6px;font-size:1.05rem}
+    .rate p{margin:0;color:var(--muted);font-size:.95rem;max-width:56ch}
+    .rate .n{font-family:var(--mono);font-size:1.05rem;white-space:nowrap;text-align:right}
+    .rate .n small{display:block;color:var(--muted);font-size:.72rem;margin-top:5px}
+    .note{color:var(--muted);font-size:.92rem;max-width:70ch;margin-top:22px}
+    .note a{color:var(--accent-2)}
+    .form{display:grid;gap:20px;max-width:680px}
+    .pair{display:grid;gap:20px}
+    @media(min-width:640px){.pair{grid-template-columns:1fr 1fr}}
+    .field{display:grid;gap:7px;min-width:0}
+    .field label{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .field .opt{letter-spacing:.02em;text-transform:none;font-size:.72rem;color:#9fb0c0}
+    .field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font-family:var(--sans);font-size:1rem;padding:11px 13px;transition:border-color .15s}
+    .field textarea{min-height:96px;resize:vertical}
+    .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--accent)}
+    .field .hint{font-size:.82rem;color:var(--muted);margin:0}
+    .pick{display:grid;gap:12px}
+    @media(min-width:760px){.pick{grid-template-columns:repeat(3,1fr)}}
+    .pick label{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;background:var(--card);font-weight:600;font-size:.95rem;transition:border-color .15s}
+    .pick label:hover{border-color:var(--accent)}
+    .pick label:has(input:checked){border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+    .pick input{accent-color:var(--accent);margin:0}
+    .foot{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+    .formmsg{margin:0;font-size:.95rem}
+    .formmsg.good{color:var(--accent-2)}
+    .formmsg.bad{color:#b42318}
+  </style>
+
+  <script>
+    // The form is two requests on purpose: files go to /api/upload, then the
+    // brief goes to /api/request citing their keys. If the upload fails the
+    // brief is still sent - a request without files is a lead, and a failed
+    // upload is not worth losing one over. The sender is told what happened.
+    (() => {
+      const form = document.getElementById('jobform');
+      const button = form.querySelector('button[type=submit]');
+      const msg = document.getElementById('formmsg');
+      const fileField = document.getElementById('files');
+      const label = button.innerHTML;
+
+      const T = {
+        sending: { en: 'Sending…', hu: 'Küldés…' },
+        uploading: { en: 'Uploading…', hu: 'Feltöltés…' },
+        sent: {
+          en: 'Sent. We answer within one working day, with a fixed price and a date.',
+          hu: 'Elküldve. Egy munkanapon belül válaszolunk, rögzített árral és határidővel.'
+        },
+        tooMany: { en: 'Up to 6 files per request.', hu: 'Legfeljebb 6 fájl küldhető.' },
+        tooBig: { en: 'A file is larger than 25 MB.', hu: 'Egy fájl nagyobb, mint 25 MB.' },
+        noAttach: {
+          en: ' Your files did not attach — email them to hello@bhw.hu and quote your name.',
+          hu: ' A fájlok nem csatolódtak — küldd el őket a hello@bhw.hu címre, a neved megadásával.'
+        },
+        fallback: { en: ' — or write to hello@bhw.hu directly.', hu: ' — vagy írj közvetlenül a hello@bhw.hu címre.' }
+      };
+      const lang = () => (document.documentElement.getAttribute('data-lang') === 'hu' ? 'hu' : 'en');
+      const t = (key) => T[key][lang()];
+
+      const say = (text, bad) => {
+        msg.textContent = text;
+        msg.className = 'formmsg ' + (bad ? 'bad' : 'good');
+        msg.hidden = false;
+      };
+
+      // A select cannot carry .en/.hu spans, so the option text is swapped on
+      // the same language event the header buttons dispatch.
+      const swapOptions = () => {
+        const language = lang();
+        for (const option of document.getElementById('process').options) {
+          option.textContent = option.dataset[language] || option.textContent;
+        }
+      };
+      swapOptions();
+      document.addEventListener('bhw-lang-change', swapOptions);
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        msg.hidden = true;
+
+        const picked = [...(fileField.files || [])];
+        if (picked.length > 6) return say(t('tooMany'), true);
+        if (picked.some((file) => file.size > 25 * 1024 * 1024)) return say(t('tooBig'), true);
+
+        button.disabled = true;
+        button.textContent = t('sending');
+
+        const body = Object.fromEntries(new FormData(form).entries());
+        delete body.files; // File objects, replaced by the R2 keys below
+
+        let warning = '';
+        if (picked.length) {
+          button.textContent = t('uploading');
+          try {
+            const upload = new FormData();
+            for (const file of picked) upload.append('files', file);
+            const response = await fetch('/api/upload', { method: 'POST', body: upload });
+            const data = await response.json();
+            if (!data || !data.ok) throw new Error((data && data.error) || 'upload failed');
+            body.files = data.files.map((file) => file.key);
+          } catch {
+            warning = t('noAttach');
+          }
+          button.textContent = t('sending');
+        }
+
+        try {
+          const response = await fetch('/api/request', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(body)
+          });
+          const data = await response.json();
+          if (!data || !data.ok) throw new Error((data && data.error) || 'could not send');
+          form.reset();
+          swapOptions();
+          say(t('sent') + warning, false);
+        } catch (error) {
+          say(error.message + t('fallback'), true);
+        } finally {
+          button.disabled = false;
+          button.innerHTML = label;
+        }
+      });
+    })();
+  </script>
+</BaseLayout>
