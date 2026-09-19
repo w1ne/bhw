@@ -9,3 +9,5 @@
 .news-article .recap-copy{font-size:17px;line-height:1.75}
 .news-article .badge{color:var(--accent-2)}
 .readmore{font-size:14px;font-weight:600}
+
+.news-article li a{text-decoration:underline;text-underline-offset:3px}

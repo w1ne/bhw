@@ -19,10 +19,10 @@ Tamás Puski gave an introduction to Claude, and Andrii Shylenko introduced LabW
 
 ## Thanks to our sponsors
 
-- **Silicon Labs** provided the hardware kits.
-- **Claude** provided the AI tokens.
-- **LabWired** provided the parts.
-- **Puzl CowOrKing Budapest** provided the space.
+- **[Silicon Labs](https://www.silabs.com/)** provided the hardware kits.
+- **[Claude](https://claude.ai/)** provided the AI tokens.
+- **[LabWired](https://labwired.com/)** provided the parts.
+- **[Puzl CowOrKing Budapest](https://www.puzl.com/)** provided the space.
 
 Thanks to everyone who joined us.
 
