@@ -12,38 +12,46 @@ import Footer from '../components/Footer.astro';
       <div class="wrap">
         <span class="eyebrow">// <span class="en">production services</span><span class="hu">gyártási szolgáltatások</span></span>
         <h1><span class="en">Parts and <span class="accent">production</span>, from the club.</span><span class="hu">Alkatrészek és <span class="accent">gyártás</span>, a klubtól.</span></h1>
-        <p class="lead"><span class="en">3D print, laser, CAD and electronics for one-offs and small batches. Fixed price and date before we start.</span><span class="hu">3D nyomtatás, lézer, CAD és elektronika egyedi darabokra és kis szériákra. Rögzített ár és határidő a munka előtt.</span></p>
+        <p class="lead"><span class="en">Send a brief. We reply with a fixed price and date — no instant pricing engine. Machines on the floor: FDM and diode laser.</span><span class="hu">Küldj leírást. Rögzített árral és határidővel válaszolunk — nincs azonnali ármotor. Gépek: FDM és dióda lézer.</span></p>
         <div class="btns">
           <a class="btn primary" href="#request"><span class="en">Send a job</span><span class="hu">Munkát küldök</span></a>
-          <a class="btn ghost" href="#prices"><span class="en">See prices</span><span class="hu">Árak</span></a>
-          <a class="btn ghost" href="/machines/"><span class="en">Machines</span><span class="hu">Gépek</span></a>
+          <a class="btn ghost" href="/machines/"><span class="en">See machines</span><span class="hu">Gépek</span></a>
         </div>
       </div>
     </section>
 
-    <section id="doors">
+    <section id="processes">
       <div class="wrap">
         <div class="sec-head">
-          <span class="eyebrow">// <span class="en">three doors</span><span class="hu">három ajtó</span></span>
-          <h2><span class="en">Three ways in</span><span class="hu">Három belépő</span></h2>
-          <p><span class="en">File, sketch, or electronics brief — you do not need a printable model.</span><span class="hu">Fájl, vázlat vagy elektronikai brief — nem kell nyomtatható modell.</span></p>
+          <span class="eyebrow">// <span class="en">processes</span><span class="hu">folyamatok</span></span>
+          <h2><span class="en">Pick a process</span><span class="hu">Válassz folyamatot</span></h2>
+          <p><span class="en">Maps to what we run. File, sketch, or electronics brief — you do not need a printable model.</span><span class="hu">Ahhoz igazodik, amit futtatunk. Fájl, vázlat vagy elektronikai brief — nem kell nyomtatható modell.</span></p>
         </div>
-        <div class="cards">
-          <div class="card">
+        <div class="cards process-tiles">
+          <a class="card process-tile" href="#request" data-process="3D printing">
+            <div class="ic">🖨</div>
+            <h3><span class="en">Print</span><span class="hu">Nyomtatás</span></h3>
+            <p><span class="en">FDM — PLA, PETG, TPU. From STL / 3MF / STEP.</span><span class="hu">FDM — PLA, PETG, TPU. STL / 3MF / STEP-ből.</span></p>
+            <span class="tile-link"><span class="en">Use FDM →</span><span class="hu">FDM →</span></span>
+          </a>
+          <a class="card process-tile" href="#request" data-process="Laser">
+            <div class="ic">🔦</div>
+            <h3><span class="en">Laser</span><span class="hu">Lézer</span></h3>
+            <p><span class="en">20 W diode — wood and plywood cut / engrave.</span><span class="hu">20 W dióda — fa és rétegelt vágás / gravír.</span></p>
+            <span class="tile-link"><span class="en">Use laser →</span><span class="hu">Lézer →</span></span>
+          </a>
+          <a class="card process-tile" href="#request" data-process="CAD design">
             <div class="ic">📐</div>
-            <h3><span class="en">I have a file</span><span class="hu">Van fájlom</span></h3>
-            <p><span class="en">STL, 3MF, STEP, DXF or SVG. Tell us what it must fit or hold - a model alone rarely says enough.</span><span class="hu">STL, 3MF, STEP, DXF vagy SVG. Írd meg, mihez kell illeszkednie - a modell önmagában ritkán elég.</span></p>
-          </div>
-          <div class="card">
-            <div class="ic">📷</div>
-            <h3><span class="en">I need it designed</span><span class="hu">Meg kell tervezni</span></h3>
-            <p><span class="en">Photos, a sketch and the part it mates with. You get CAD, a first print and one agreed revision.</span><span class="hu">Fotók, vázlat és az illeszkedő alkatrész. CAD, első nyomtatás és egy megbeszélt javítás.</span></p>
-          </div>
-          <div class="card">
+            <h3><span class="en">CAD</span><span class="hu">CAD</span></h3>
+            <p><span class="en">Design + first print, one agreed revision.</span><span class="hu">Tervezés + első nyomtatás, egy javítás.</span></p>
+            <span class="tile-link"><span class="en">Request CAD →</span><span class="hu">CAD kérés →</span></span>
+          </a>
+          <a class="card process-tile" href="#request" data-process="Electronics">
             <div class="ic">🔌</div>
-            <h3><span class="en">Electronics and firmware</span><span class="hu">Elektronika és firmware</span></h3>
-            <p><span class="en">Boards, sensors, wiring, firmware. It starts with a paid scoping step, so nobody works from a guess.</span><span class="hu">Panelek, szenzorok, bekötés, firmware. Fizetett tervezéssel kezdünk, hogy senki ne tippeljen.</span></p>
-          </div>
+            <h3><span class="en">Electronics</span><span class="hu">Elektronika</span></h3>
+            <p><span class="en">Boards, wiring, firmware — paid scoping first.</span><span class="hu">Panel, bekötés, firmware — előbb fizetett tervezés.</span></p>
+            <span class="tile-link"><span class="en">Scope electronics →</span><span class="hu">Elektronika →</span></span>
+          </a>
         </div>
       </div>
     </section>
@@ -55,7 +63,7 @@ import Footer from '../components/Footer.astro';
           <div>
             <span class="eyebrow">// <span class="en">machines</span><span class="hu">gépek</span></span>
             <strong><span class="en">What we run</span><span class="hu">Amin dolgozunk</span></strong>
-            <p><span class="en">FDM printer and diode laser on the floor today — honest static list, no fake telemetry.</span><span class="hu">FDM nyomtató és dióda lézer ma — őszinte, statikus lista, hamis telemetria nélkül.</span></p>
+            <p><span class="en">Build volumes, materials, power — capability cards, not marketing blurbs.</span><span class="hu">Építési terek, anyagok, teljesítmény — képességkártyák, nem marketing.</span></p>
           </div>
           <span class="btn ghost"><span class="en">Machines</span><span class="hu">Gépek</span></span>
         </a>
@@ -65,43 +73,40 @@ import Footer from '../components/Footer.astro';
     <section id="prices">
       <div class="wrap">
         <div class="sec-head">
-          <span class="eyebrow">// <span class="en">starting prices</span><span class="hu">kezdő árak</span></span>
-          <h2><span class="en">What it costs</span><span class="hu">Mennyibe kerül</span></h2>
+          <span class="eyebrow">// <span class="en">floor prices</span><span class="hu">kezdő árak</span></span>
+          <h2><span class="en">From prices</span><span class="hu">Árak ettől</span></h2>
           <p><span class="en">Floors, not quotes. Every job is priced on its files; the price is fixed before work starts.</span><span class="hu">Minimumok, nem ajánlatok. Minden munkát a saját fájljai alapján árazunk; az ár a munka előtt rögzül.</span></p>
         </div>
 
-        <div class="rates">
-          <div class="rate">
-            <div>
-              <h3><span class="en">3D printing, from a file</span><span class="hu">3D nyomtatás fájlból</span></h3>
-              <p><span class="en">FDM printing in PLA, PETG and TPU; other filaments on request. Supports and finishing included in the price.</span><span class="hu">FDM nyomtatás PLA-ból, PETG-ből és TPU-ból; más filament kérésre. A tartók és az utómunka az árban vannak.</span></p>
-            </div>
-            <div class="n">7 900 Ft<small><span class="en">per order, ex-VAT</span><span class="hu">megrendelésenként, nettó</span></small></div>
+        <div class="price-table" role="table" aria-label="Floor prices">
+          <div class="price-row price-head" role="row">
+            <span role="columnheader"><span class="en">Process</span><span class="hu">Folyamat</span></span>
+            <span role="columnheader"><span class="en">From</span><span class="hu">Ettől</span></span>
+            <span role="columnheader"><span class="en">Note</span><span class="hu">Megjegyzés</span></span>
           </div>
-          <div class="rate">
-            <div>
-              <h3><span class="en">Laser cutting and engraving</span><span class="hu">Lézervágás és gravírozás</span></h3>
-              <p><span class="en">Wood, plywood and engraving to start. Ask before assuming a material - a 20 W diode is not a workshop laser.</span><span class="hu">Fa, rétegelt lemez és gravírozás kezdésnek. Kérdezz, mielőtt adott anyagra számítasz - a 20 W-os dióda nem ipari lézer.</span></p>
-            </div>
-            <div class="n">9 900 Ft<small><span class="en">per order, ex-VAT</span><span class="hu">megrendelésenként, nettó</span></small></div>
+          <div class="price-row" role="row">
+            <span role="cell"><span class="en">3D printing</span><span class="hu">3D nyomtatás</span></span>
+            <span class="n" role="cell">7 900 Ft</span>
+            <span role="cell"><span class="en">Per order, ex-VAT · PLA / PETG / TPU</span><span class="hu">Megrendelésenként, nettó · PLA / PETG / TPU</span></span>
           </div>
-          <div class="rate">
-            <div>
-              <h3><span class="en">Design work, with the first print</span><span class="hu">Tervezés, az első nyomtatással</span></h3>
-              <p><span class="en">One part, dimensions from you, one agreed revision, one print iteration. Reverse engineering is a larger scope.</span><span class="hu">Egy alkatrész, a méreteket te adod, egy megbeszélt javítás, egy nyomtatási kör. A visszafejtés nagyobb munka.</span></p>
-            </div>
-            <div class="n">40 000 Ft<small><span class="en">per part, ex-VAT</span><span class="hu">alkatrészenként, nettó</span></small></div>
+          <div class="price-row" role="row">
+            <span role="cell"><span class="en">Laser</span><span class="hu">Lézer</span></span>
+            <span class="n" role="cell">9 900 Ft</span>
+            <span role="cell"><span class="en">Per order, ex-VAT · wood / plywood</span><span class="hu">Megrendelésenként, nettó · fa / rétegelt</span></span>
           </div>
-          <div class="rate">
-            <div>
-              <h3><span class="en">Electronics and firmware</span><span class="hu">Elektronika és firmware</span></h3>
-              <p><span class="en">A two-hour scoping session: requirements, architecture, a rough component list and a quote for the work itself.</span><span class="hu">Kétórás tervezés: követelmények, architektúra, hozzávetőleges alkatrészlista és ajánlat magára a munkára.</span></p>
-            </div>
-            <div class="n">30 000 Ft<small><span class="en">scoping, ex-VAT</span><span class="hu">tervezés, nettó</span></small></div>
+          <div class="price-row" role="row">
+            <span role="cell"><span class="en">CAD + first print</span><span class="hu">CAD + első nyomtatás</span></span>
+            <span class="n" role="cell">40 000 Ft</span>
+            <span role="cell"><span class="en">Per part, ex-VAT · one revision</span><span class="hu">Alkatrészenként, nettó · egy javítás</span></span>
+          </div>
+          <div class="price-row" role="row">
+            <span role="cell"><span class="en">Electronics scoping</span><span class="hu">Elektronikai tervezés</span></span>
+            <span class="n" role="cell">30 000 Ft</span>
+            <span role="cell"><span class="en">Two-hour scope, ex-VAT</span><span class="hu">Kétórás tervezés, nettó</span></span>
           </div>
         </div>
 
-        <p class="note"><span class="en">Club members: say so in the form and ask about member pricing. Pickup in Budapest, or parcel delivery in Hungary and the EU.</span><span class="hu">Klubtagok: írjátok meg az űrlapon, és kérdezzetek a tagsági árról. Átvétel Budapesten vagy csomagküldés Magyarországon és az EU-ban.</span></p>
+        <p class="note"><span class="en">Club members: say so in the form. Pickup in Budapest, or parcel delivery in Hungary and the EU.</span><span class="hu">Klubtagok: írjátok meg az űrlapon. Átvétel Budapesten vagy csomagküldés Magyarországon és az EU-ban.</span></p>
       </div>
     </section>
 
@@ -226,12 +231,15 @@ import Footer from '../components/Footer.astro';
     .hero p.lead{margin:14px 0 0;max-width:640px}
     .hero .btns{justify-content:flex-start;margin-top:28px}
     .sec-head p{max-width:640px}
-    .rates{display:grid;border-top:1px solid var(--line)}
-    .rate{display:flex;justify-content:space-between;gap:28px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line)}
-    .rate h3{margin:0 0 6px;font-size:1.05rem}
-    .rate p{margin:0;color:var(--muted);font-size:.95rem;max-width:56ch}
-    .rate .n{font-family:var(--mono);font-size:1.05rem;white-space:nowrap;text-align:right}
-    .rate .n small{display:block;color:var(--muted);font-size:.72rem;margin-top:5px}
+    .process-tiles a.card{color:inherit;transition:border-color .15s,box-shadow .15s}
+    .process-tiles a.card:hover{border-color:var(--accent);box-shadow:0 12px 28px -18px rgba(13,27,42,.28)}
+    .process-tiles .tile-link{display:inline-block;margin-top:14px;font-weight:600;font-size:.9rem;color:var(--accent-2)}
+    .price-table{display:grid;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+    .price-row{display:grid;grid-template-columns:1.2fr .7fr 1.6fr;gap:16px;align-items:baseline;padding:16px 20px;border-bottom:1px solid var(--line)}
+    .price-row:last-child{border-bottom:0}
+    .price-head{background:var(--bg-soft);font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .price-row .n{font-family:var(--mono);font-size:1.02rem;white-space:nowrap}
+    @media(max-width:640px){.price-row{grid-template-columns:1fr;gap:4px}.price-head{display:none}.price-row .n{margin:2px 0}}
     .note{color:var(--muted);font-size:.92rem;max-width:70ch;margin-top:22px}
     .note a{color:var(--accent-2)}
     .form{display:grid;gap:20px;max-width:680px}
@@ -302,6 +310,19 @@ import Footer from '../components/Footer.astro';
       };
       swapOptions();
       document.addEventListener('bhw-lang-change', swapOptions);
+
+      const processSelect = document.getElementById('process');
+      const applyProcess = (value) => {
+        if (!value || !processSelect) return;
+        const match = [...processSelect.options].find((o) => o.value === value);
+        if (match) processSelect.value = value;
+      };
+      const params = new URLSearchParams(window.location.search);
+      applyProcess(params.get('process'));
+
+      document.querySelectorAll('[data-process]').forEach((el) => {
+        el.addEventListener('click', () => applyProcess(el.getAttribute('data-process')));
+      });
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
