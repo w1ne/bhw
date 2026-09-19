@@ -21,11 +21,15 @@ The challenge was to give people a direct way to see what an agent is doing and 
 
 We started with presentations, then moved to the hardware tables. Participants worked in small groups with laptops, development boards and the available components. The photos below show the setup and work in progress.
 
-The event also included a Claude Code workshop with Tamás Puski. Participants were asked to join the workshop to receive Claude AI credits for the hackathon. Hardware parts were provided; participants brought their laptops and chargers.
+The event also included a Claude Code workshop with Tamás Puski. Participants were asked to join the workshop to receive Claude AI credits for the hackathon. Silicon Labs provided the hardware kits, LabWired provided the parts, and Claude provided AI tokens for participants. Participants brought their laptops and chargers.
 
 The brief left room for different approaches: a desk controller for an automated workflow, a panel for supervising a robot, or a simple interface for approving an agent’s next action. The shared task was to connect a physical input or output to software behaviour.
 
-Thank you to everyone who came and worked on the challenge, to Tamás for the workshop, and to Puzl for hosting us.
+## Sponsors
+
+Thank you to **Silicon Labs** for providing the hardware kits, **Claude** for providing the AI tokens, **LabWired** for providing the parts, and **Puzl CowOrKing Budapest** for providing the space.
+
+Thank you to everyone who came and worked on the challenge, and to Tamás for the workshop.
 
 ## Photos from the evening
 
