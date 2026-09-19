@@ -7,7 +7,7 @@ assert.equal(packageJson.scripts.deploy, 'wrangler pages deploy dist --project-n
 const page = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
 
 assert.match(page, /BaseLayout/);
-for (const component of ['Navigation', 'Hero', 'WhatWeDo', 'Events', 'NewsRecap', 'Jobs', 'Join', 'Footer']) {
+for (const component of ['Navigation', 'Hero', 'WhatWeDo', 'Events', 'NewsRecap', 'Jobs', 'Production', 'Join', 'Footer']) {
   assert.match(page, new RegExp(component));
 }
 assert.doesNotMatch(page, /Gallery|#gallery|Meetup #1 in photos/);
@@ -89,6 +89,16 @@ assert.match(services, /never run someone else's G-code/);
 
 assert.match(nav, /href="\/services\/"/);
 assert.match(nav, /Gyártás/);
+
+// The home page links to the service in the body, and the footer links it
+// everywhere, because the top nav is hidden on phones.
+const production = await readFile(new URL('../src/components/Production.astro', import.meta.url), 'utf8');
+assert.match(production, /href="\/services\/"/);
+assert.match(production, /class="en"/);
+assert.match(production, /class="hu"/);
+
+const footer = await readFile(new URL('../src/components/Footer.astro', import.meta.url), 'utf8');
+assert.match(footer, /href="\/services\/"/);
 
 const request = await readFile(new URL('../functions/api/request.js', import.meta.url), 'utf8');
 assert.match(request, /onRequestPost/);
