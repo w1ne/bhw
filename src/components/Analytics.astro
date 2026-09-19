@@ -1,0 +1,73 @@
+<aside id="analytics-choice" hidden aria-label="Analytics cookies">
+  <p><span class="en">Allow Google Analytics cookies to help us understand how this site is used?</span><span class="hu">Engedélyezed a Google Analytics sütijeit, hogy lássuk, hogyan használják az oldalt?</span> <a href="https://policies.google.com/technologies/partner-sites"><span class="en">How Google uses data</span><span class="hu">Hogyan használja a Google az adatokat?</span></a></p>
+  <div><button type="button" data-analytics="denied"><span class="en">Decline</span><span class="hu">Elutasítom</span></button><button type="button" data-analytics="granted"><span class="en">Accept</span><span class="hu">Elfogadom</span></button></div>
+</aside>
+
+<script is:inline>
+  (() => {
+    const id = 'G-NMS9L924YL';
+    const key = 'bhw-analytics-consent';
+    const notice = document.getElementById('analytics-choice');
+    let choice;
+    try { choice = localStorage.getItem(key); } catch {}
+    let started = false;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied', ad_storage: 'denied',
+      ad_user_data: 'denied', ad_personalization: 'denied'
+    });
+    const start = () => {
+      if (started) return;
+      started = true;
+      window.gtag('consent', 'update', { analytics_storage: 'granted' });
+      window.gtag('js', new Date());
+      window.gtag('config', id, {
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+      });
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+      document.head.appendChild(script);
+    };
+    if (choice === 'granted') start();
+    notice.hidden = choice === 'granted' || choice === 'denied';
+    document.querySelectorAll('[data-analytics]').forEach(button => {
+      button.addEventListener('click', () => {
+        choice = button.dataset.analytics;
+        try { localStorage.setItem(key, choice); } catch {}
+        notice.hidden = true;
+        if (choice === 'granted') {
+          start();
+        } else if (started) {
+          window['ga-disable-' + id] = true;
+          window.gtag('consent', 'update', { analytics_storage: 'denied' });
+          for (const cookie of document.cookie.split(';')) {
+            const name = cookie.split('=')[0].trim();
+            if (!name.startsWith('_ga')) continue;
+            for (const domain of ['', location.hostname, '.' + location.hostname]) {
+              document.cookie = name + '=; Max-Age=0; path=/' + (domain ? '; domain=' + domain : '');
+            }
+          }
+          location.reload();
+        }
+      });
+    });
+    document.querySelectorAll('[data-analytics-settings]').forEach(button => {
+      button.addEventListener('click', () => {
+        notice.hidden = false;
+        notice.querySelector('button').focus();
+      });
+    });
+  })();
+</script>
+
+<style>
+  aside { position: fixed; bottom: 16px; left: 16px; right: 16px; z-index: 100; max-width: 660px; margin: auto; padding: 18px 20px; background: var(--bg); color: var(--ink); border: 1px solid var(--line); box-shadow: 0 4px 24px #0002; font-size: 14px; }
+  aside[hidden] { display: none; }
+  p { margin: 0 0 12px; }
+  a { text-decoration: underline; }
+  div { display: flex; gap: 12px; }
+  button { padding: 8px 18px; border: 1px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; }
+</style>

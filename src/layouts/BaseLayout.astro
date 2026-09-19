@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/news.css';
+import Analytics from '../components/Analytics.astro';
 
 const { title = 'BHW - Budapest Hardware Club' } = Astro.props;
 ---
@@ -21,6 +22,7 @@ const { title = 'BHW - Budapest Hardware Club' } = Astro.props;
   </head>
   <body>
     <slot />
+    <Analytics />
     <script>
       const root = document.documentElement;
       const saved = localStorage.getItem('bhw-lang');
