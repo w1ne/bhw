@@ -1,0 +1,73 @@
+---
+import { readFile } from 'node:fs/promises';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const machines = JSON.parse(
+  await readFile(new URL('../../public/machines.json', import.meta.url), 'utf8')
+);
+---
+
+<BaseLayout title="Machines - Budapest Hardware Club">
+  <Navigation />
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <span class="eyebrow">// <span class="en">machines</span><span class="hu">gépek</span></span>
+        <h1><span class="en">Club <span class="accent">machines</span>.</span><span class="hu">A klub <span class="accent">gépei</span>.</span></h1>
+        <p class="lead"><span class="en">What we run for production jobs today. Static list — ask if you need something that is not here yet.</span><span class="hu">Amin ma gyártási munkákat futtatunk. Statikus lista — írj, ha valami még nincs fent.</span></p>
+        <div class="btns">
+          <a class="btn primary" href="/services/"><span class="en">Send a production job</span><span class="hu">Gyártási munka küldése</span></a>
+          <a class="btn ghost" href="mailto:hello@bhw.hu"><span class="en">Ask about access</span><span class="hu">Hozzáférésről kérdezek</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="list">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">// <span class="en">inventory</span><span class="hu">lista</span></span>
+          <h2><span class="en">On the floor</span><span class="hu">A műhelyben</span></h2>
+          <p><span class="en">Short descriptions only. For a quote or a date, use the production form.</span><span class="hu">Rövid leírások. Árajánlathoz vagy határidőhöz a gyártási űrlapot használd.</span></p>
+        </div>
+
+        <div class="machine-list">
+          {machines.map((m) => (
+            <article class="machine">
+              <div class="info">
+                <div class="cat"><span class="en">{m.category}</span><span class="hu">{m.categoryHu}</span></div>
+                <h3><span class="en">{m.name}</span><span class="hu">{m.nameHu}</span></h3>
+                <p><span class="en">{m.summary}</span><span class="hu">{m.summaryHu}</span></p>
+                {(m.notes || m.notesHu) && (
+                  <p class="notes"><span class="en">{m.notes}</span><span class="hu">{m.notesHu}</span></p>
+                )}
+              </div>
+              <div class="side">
+                <span class={`status ${m.status === 'available' ? 'ok' : ''}`}>
+                  <span class="en">{m.status === 'available' ? 'Available for jobs' : m.status}</span>
+                  <span class="hu">{m.status === 'available' ? 'Munkákra elérhető' : m.status}</span>
+                </span>
+                <a class="btn ghost apply" href="/services/#request"><span class="en">Request work</span><span class="hu">Munkát kérek</span></a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <p class="sec-head" style="margin-top:28px;margin-bottom:0">
+          <span class="en">Need something made? Fixed price and date before we start — <a class="readmore" href="/services/">production services</a>.</span>
+          <span class="hu">Alkatrész kell? Rögzített ár és határidő a munka előtt — <a class="readmore" href="/services/">gyártási szolgáltatások</a>.</span>
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <style>
+    .hero .wrap{text-align:left;max-width:var(--maxw)}
+    .hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;margin:.35em 0 .1em;letter-spacing:-.02em}
+    .hero p.lead{margin:14px 0 0;max-width:640px}
+    .hero .btns{justify-content:flex-start;margin-top:28px}
+        .machine .apply{padding:9px 16px;font-size:.9rem}
+  </style>
+</BaseLayout>
