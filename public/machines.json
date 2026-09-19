@@ -1,0 +1,26 @@
+[
+  {
+    "id": "fdm-printer",
+    "name": "FDM 3D printer",
+    "nameHu": "FDM 3D nyomtató",
+    "category": "3D printing",
+    "categoryHu": "3D nyomtatás",
+    "summary": "PLA, PETG and TPU for prototypes and small batches. Supports and basic finishing included in production jobs.",
+    "summaryHu": "PLA, PETG és TPU prototípusokra és kis szériákra. A tartók és az alap utómunka a gyártási munkák árában vannak.",
+    "notes": "Used for club production jobs. Not a walk-in self-serve machine — send a brief via Production.",
+    "notesHu": "A klub gyártási munkáira. Nem önkiszolgáló — a gyártási űrlapon küldj leírást.",
+    "status": "available"
+  },
+  {
+    "id": "diode-laser",
+    "name": "20 W diode laser",
+    "nameHu": "20 W-os dióda lézer",
+    "category": "Laser",
+    "categoryHu": "Lézer",
+    "summary": "Cutting and engraving on wood and plywood. Not a CO₂ workshop laser — ask before assuming a material.",
+    "summaryHu": "Vágás és gravírozás fán és rétegelt lemezen. Nem CO₂-s műhelylézer — kérdezz, mielőtt adott anyagra számítasz.",
+    "notes": "Booked through production jobs. Material limits apply.",
+    "notesHu": "Gyártási munkán keresztül. Anyagkorlátok vannak.",
+    "status": "available"
+  }
+]

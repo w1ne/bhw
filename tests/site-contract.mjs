@@ -32,7 +32,7 @@ const newsIndex = await readFile(new URL('../src/pages/news/index.astro', import
 assert.match(newsIndex, /getCollection\('news'\)/);
 assert.match(newsIndex, /\/news\/\$\{post\.slug\}\//);
 
-const newsArticle = await readFile(new URL('../src/pages/news/[slug].astro', import.meta.url), 'utf8');
+const newsArticle = await readFile(new URL('../src/pages/news\/[slug].astro', import.meta.url), 'utf8');
 assert.match(newsArticle, /getStaticPaths/);
 assert.match(newsArticle, /render\(post\)/);
 
@@ -45,6 +45,12 @@ await assert.rejects(access(new URL('../src/components/Interest.astro', import.m
 const nav = await readFile(new URL('../src/components/Navigation.astro', import.meta.url), 'utf8');
 assert.match(nav, /href="\/#jobs"/);
 assert.match(nav, /Jobs/);
+assert.match(nav, /href="\/machines\/"/);
+assert.match(nav, /Machines/);
+assert.match(nav, /nav-toggle/);
+assert.match(nav, /aria-expanded/);
+assert.match(nav, /aria-controls="main-nav"/);
+assert.match(nav, /Escape/);
 assert.doesNotMatch(nav, /hackathon/i);
 
 const join = await readFile(new URL('../src/components/Join.astro', import.meta.url), 'utf8');
@@ -59,6 +65,22 @@ assert.match(jobs, /mailto:hello@bhw\.hu/);
 
 const jobsData = JSON.parse(await readFile(new URL('../public/jobs.json', import.meta.url), 'utf8'));
 assert.ok(Array.isArray(jobsData));
+
+// Machines catalog: editable public/machines.json, page at /machines/.
+const machinesPage = await readFile(new URL('../src/pages/machines.astro', import.meta.url), 'utf8');
+assert.match(machinesPage, /BaseLayout/);
+assert.match(machinesPage, /machines\.json/);
+assert.match(machinesPage, /class="en"/);
+assert.match(machinesPage, /class="hu"/);
+assert.match(machinesPage, /href="\/services\/"/);
+
+const machinesData = JSON.parse(await readFile(new URL('../public/machines.json', import.meta.url), 'utf8'));
+assert.ok(Array.isArray(machinesData));
+assert.ok(machinesData.length >= 1);
+for (const m of machinesData) {
+  assert.ok(m.id && m.name && m.nameHu && m.summary && m.summaryHu);
+  assert.doesNotMatch(JSON.stringify(m), /telemetry|live temp|online now/i);
+}
 
 // The signup endpoint is read-only now: export what was collected, accept nothing new.
 const fn = await readFile(new URL('../functions/api/interest.js', import.meta.url), 'utf8');
@@ -86,19 +108,27 @@ assert.match(services, /class="hu"/);
 assert.match(services, /fetch\('\/api\/upload'/);
 assert.match(services, /fetch\('\/api\/request'/);
 assert.match(services, /never run someone else's G-code/);
+assert.match(services, /href="\/machines\/"/);
 
 assert.match(nav, /href="\/services\/"/);
 assert.match(nav, /Gyártás/);
 
-// The home page links to the service in the body, and the footer links it
-// everywhere, because the top nav is hidden on phones.
 const production = await readFile(new URL('../src/components/Production.astro', import.meta.url), 'utf8');
 assert.match(production, /href="\/services\/"/);
+assert.match(production, /href="\/machines\/"/);
 assert.match(production, /class="en"/);
 assert.match(production, /class="hu"/);
 
 const footer = await readFile(new URL('../src/components/Footer.astro', import.meta.url), 'utf8');
 assert.match(footer, /href="\/services\/"/);
+assert.match(footer, /href="\/machines\/"/);
+assert.match(footer, /footer-sisters/);
+assert.match(footer, /https:\/\/labwired\.com/);
+assert.match(footer, /https:\/\/kernelcad\.com/);
+assert.match(footer, /https:\/\/komatachi\.com/);
+assert.match(footer, /https:\/\/shylenko\.com/);
+assert.match(footer, /https:\/\/bhw\.hu/);
+assert.doesNotMatch(footer, /koamtachi/);
 
 const request = await readFile(new URL('../functions/api/request.js', import.meta.url), 'utf8');
 assert.match(request, /onRequestPost/);
@@ -108,5 +138,9 @@ const upload = await readFile(new URL('../functions/api/upload.js', import.meta.
 assert.match(upload, /onRequestPost/);
 const permitList = upload.slice(upload.indexOf('const EXT = new Set(['), upload.indexOf(']);', upload.indexOf('const EXT')));
 assert.ok(!/gcode/i.test(permitList), 'the upload permit list must not accept gcode');
+
+const globalCss = await readFile(new URL('../src/styles/global.css', import.meta.url), 'utf8');
+assert.match(globalCss, /nav-toggle/);
+assert.match(globalCss, /\.nav\.is-open nav/);
 
 console.log('site contract passed');

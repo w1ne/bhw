@@ -12,10 +12,11 @@ import Footer from '../components/Footer.astro';
       <div class="wrap">
         <span class="eyebrow">// <span class="en">production services</span><span class="hu">gyártási szolgáltatások</span></span>
         <h1><span class="en">Parts and <span class="accent">production</span>, from the club.</span><span class="hu">Alkatrészek és <span class="accent">gyártás</span>, a klubtól.</span></h1>
-        <p class="lead"><span class="en">3D printing, laser cutting, CAD and electronics work for one-offs and small batches. Made by club members who build hardware for a living - with a fixed price and a date before we start.</span><span class="hu">3D nyomtatás, lézervágás, CAD és elektronika egyedi darabokra és kis szériákra. A klub tagjai készítik, akik nap mint nap hardvert építenek - rögzített árral és határidővel, még a munka előtt.</span></p>
+        <p class="lead"><span class="en">3D print, laser, CAD and electronics for one-offs and small batches. Fixed price and date before we start.</span><span class="hu">3D nyomtatás, lézer, CAD és elektronika egyedi darabokra és kis szériákra. Rögzített ár és határidő a munka előtt.</span></p>
         <div class="btns">
           <a class="btn primary" href="#request"><span class="en">Send a job</span><span class="hu">Munkát küldök</span></a>
           <a class="btn ghost" href="#prices"><span class="en">See prices</span><span class="hu">Árak</span></a>
+          <a class="btn ghost" href="/machines/"><span class="en">Machines</span><span class="hu">Gépek</span></a>
         </div>
       </div>
     </section>
@@ -24,8 +25,8 @@ import Footer from '../components/Footer.astro';
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">// <span class="en">three doors</span><span class="hu">három ajtó</span></span>
-          <h2><span class="en">Start where you are</span><span class="hu">Ott kezdd, ahol vagy</span></h2>
-          <p><span class="en">You do not need a printable file. Bring the problem.</span><span class="hu">Nem kell nyomtatható fájl. Hozd a problémát.</span></p>
+          <h2><span class="en">Three ways in</span><span class="hu">Három belépő</span></h2>
+          <p><span class="en">File, sketch, or electronics brief — you do not need a printable model.</span><span class="hu">Fájl, vázlat vagy elektronikai brief — nem kell nyomtatható modell.</span></p>
         </div>
         <div class="cards">
           <div class="card">
@@ -47,12 +48,26 @@ import Footer from '../components/Footer.astro';
       </div>
     </section>
 
+
+    <section id="kit">
+      <div class="wrap">
+        <a class="next-cta" href="/machines/">
+          <div>
+            <span class="eyebrow">// <span class="en">machines</span><span class="hu">gépek</span></span>
+            <strong><span class="en">What we run</span><span class="hu">Amin dolgozunk</span></strong>
+            <p><span class="en">FDM printer and diode laser on the floor today — honest static list, no fake telemetry.</span><span class="hu">FDM nyomtató és dióda lézer ma — őszinte, statikus lista, hamis telemetria nélkül.</span></p>
+          </div>
+          <span class="btn ghost"><span class="en">Machines</span><span class="hu">Gépek</span></span>
+        </a>
+      </div>
+    </section>
+
     <section id="prices">
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">// <span class="en">starting prices</span><span class="hu">kezdő árak</span></span>
           <h2><span class="en">What it costs</span><span class="hu">Mennyibe kerül</span></h2>
-          <p><span class="en">Floors, not estimates: every job is quoted on its own files, and the quote is fixed before work starts.</span><span class="hu">Ezek minimumok, nem ajánlatok: minden munkára a saját fájljai alapján adunk ajánlatot, és az ár a munka előtt rögzül.</span></p>
+          <p><span class="en">Floors, not quotes. Every job is priced on its files; the price is fixed before work starts.</span><span class="hu">Minimumok, nem ajánlatok. Minden munkát a saját fájljai alapján árazunk; az ár a munka előtt rögzül.</span></p>
         </div>
 
         <div class="rates">
@@ -94,7 +109,7 @@ import Footer from '../components/Footer.astro';
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">// <span class="en">how it works</span><span class="hu">hogyan működik</span></span>
-          <h2><span class="en">Four steps, no surprises</span><span class="hu">Négy lépés, meglepetések nélkül</span></h2>
+          <h2><span class="en">How it works</span><span class="hu">Hogyan működik</span></h2>
         </div>
         <div class="cards">
           <div class="card"><div class="ic">01</div><h3><span class="en">Send the brief</span><span class="hu">Küldd el a leírást</span></h3><p><span class="en">File, sketch or the broken part itself.</span><span class="hu">Fájl, vázlat vagy maga a törött alkatrész.</span></p></div>
@@ -110,7 +125,7 @@ import Footer from '../components/Footer.astro';
         <div class="sec-head">
           <span class="eyebrow">// <span class="en">request</span><span class="hu">megrendelés</span></span>
           <h2><span class="en">Send a job</span><span class="hu">Küldj munkát</span></h2>
-          <p><span class="en">Tell us what it must do, not only what it is. Fits, loads, temperature, deadline - anything you already know saves a round trip.</span><span class="hu">Írd le, mit kell tudnia, ne csak azt, hogy mi az. Illeszkedés, terhelés, hőmérséklet, határidő - amit tudsz, egy e-mail körrel kevesebb.</span></p>
+          <p><span class="en">What it must fit, hold, or survive — plus deadline. We quote first; no payment now.</span><span class="hu">Mihez kell illeszkednie, mit kell bírnia — plusz határidő. Előbb ajánlat; most nem kell fizetni.</span></p>
         </div>
 
         <form class="form" id="jobform">
