@@ -108,11 +108,13 @@ npm run build
 npx wrangler pages dev dist --kv REQUESTS --r2 UPLOADS
 ```
 
-Read the archive:
+Read the archive (wrangler defaults to *local* storage, so keep `--remote`):
 
 ```bash
 npx wrangler kv namespace list
-npx wrangler kv key list --namespace-id <id>
+npx wrangler kv key list --namespace-id <id> --remote
+npx wrangler kv key get  --namespace-id <id> --remote "request:..."
+npx wrangler r2 object get bhw-uploads/<key> --remote --pipe
 ```
 
 ⚠️ Before promoting the page:
