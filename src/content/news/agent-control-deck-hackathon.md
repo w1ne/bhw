@@ -10,7 +10,7 @@ badgeHu: Hardware hackathon
 
 On 9 September, 17 people came to Puzl CowOrKing Budapest for our hardware hackathon. The task was to build a physical controller for an AI agent, using buttons, displays and other electronic parts.
 
-We started with an introduction and a Claude Code workshop with Tamás Puski. Then participants worked in small groups, connecting components and writing code. We had four hours for the event, from 18:00 to 22:00.
+Participants worked in small groups, connecting components and writing code. The hackathon ran from 18:00 to 22:00.
 
 <figure>
 <img src="/images/agent-deck-2026-09-09/04.webp" alt="Hardware boards, components and cables laid out on the parts table" width="1600" height="1067" />
@@ -24,12 +24,12 @@ We started with an introduction and a Claude Code workshop with Tamás Puski. Th
 - **LabWired** provided the parts.
 - **Puzl CowOrKing Budapest** provided the space.
 
-Thanks to Tamás for the workshop and to everyone who joined us.
+Thanks to everyone who joined us.
 
 ## A few photos
 
 <div class="recap-photos">
-<a href="/images/agent-deck-2026-09-09/18.webp" aria-label="Open photo: Presenting a hardware wiring diagram during the introduction"><img src="/images/agent-deck-2026-09-09/18.webp" alt="Presenting a hardware wiring diagram during the introduction" loading="lazy" decoding="async" /></a>
+<a href="/images/agent-deck-2026-09-09/22.webp" aria-label="Open photo: Explaining the hardware hackathon challenge"><img src="/images/agent-deck-2026-09-09/22.webp" alt="Explaining the hardware hackathon challenge" loading="lazy" decoding="async" /></a>
 <a href="/images/agent-deck-2026-09-09/50.webp" aria-label="Open photo: A team working with laptops and electronic components"><img src="/images/agent-deck-2026-09-09/50.webp" alt="A team working with laptops and electronic components" loading="lazy" decoding="async" /></a>
 <a href="/images/agent-deck-2026-09-09/59.webp" aria-label="Open photo: Two participants working on a circuit layout with hardware beside their laptops"><img src="/images/agent-deck-2026-09-09/59.webp" alt="Two participants working on a circuit layout with hardware beside their laptops" loading="lazy" decoding="async" /></a>
 </div>
