@@ -1,0 +1,19 @@
+# A Worker that exists for one reason: Pages Functions cannot carry a
+# send_email binding, but a Worker can. The bhw Pages project reaches it
+# through a service binding, so this is never exposed publicly.
+#
+# Email Routing's send binding needs no credential at all. It can only deliver
+# to an address already verified as a destination in the Cloudflare account,
+# which is the club's own inbox and nothing else.
+#
+#   npx wrangler deploy
+name = "bhw-mailer"
+main = "src/index.js"
+compatibility_date = "2026-09-19"
+
+# No workers.dev URL. The only caller is the Pages service binding.
+workers_dev = false
+
+[[send_email]]
+name = "NOTIFY"
+destination_address = "shylenkoa@gmail.com"

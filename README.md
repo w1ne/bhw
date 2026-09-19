@@ -94,18 +94,30 @@ Bindings on the Pages project (`bhw`):
 
 - `REQUESTS` — KV namespace holding one entry per brief, key `request:<iso>:<rand>`
 - `UPLOADS` — R2 bucket `bhw-uploads`, private
+- `MAILER` — service binding to the `bhw-mailer` Worker in `mailer/`
 
-Secrets:
+Notifications go through `bhw-mailer`, which uses Cloudflare Email Routing's
+send binding: no credential at all, and it can only deliver to the verified
+destination address on the account (`shylenkoa@gmail.com`). Deploy it from its
+directory after any change:
 
-- `SMTP_PASSWORD` — PrivateEmail password for andrii@shylenko.com (notifications)
+```bash
+cd mailer && npx wrangler deploy
+```
+
+Secrets, all optional:
+
+- `SMTP_PASSWORD` — PrivateEmail password for andrii@shylenko.com; the fallback
+  path for mail the send binding cannot carry (a customer reply, for instance)
 - `SMTP_USER` — optional, defaults to the sender address
-- `REQUEST_TO` — optional, defaults to shylenkoa@gmail.com
+- `REQUEST_TO` — optional; setting it to an address other than the verified
+  destination takes notifications off the credential-free path and needs SMTP
 
 Local development with the bindings simulated:
 
 ```bash
 npm run build
-npx wrangler pages dev dist --kv REQUESTS --r2 UPLOADS
+npx wrangler pages dev dist --kv REQUESTS --r2 UPLOADS --service MAILER=bhw-mailer
 ```
 
 Read the archive (wrangler defaults to *local* storage, so keep `--remote`):
