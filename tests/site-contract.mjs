@@ -7,7 +7,7 @@ assert.equal(packageJson.scripts.deploy, 'wrangler pages deploy dist --project-n
 const page = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
 
 assert.match(page, /BaseLayout/);
-for (const component of ['Navigation', 'Hero', 'WhatWeDo', 'Events', 'NewsRecap', 'Jobs', 'Production', 'Join', 'Footer']) {
+for (const component of ['Navigation', 'Hero', 'Events', 'NewsRecap', 'Jobs', 'Production', 'Join', 'Footer']) {
   assert.match(page, new RegExp(component));
 }
 assert.doesNotMatch(page, /Gallery|#gallery|Meetup #1 in photos/);
@@ -15,8 +15,8 @@ assert.doesNotMatch(page, /Interest/);
 assert.doesNotMatch(page, /Hackathon/);
 
 const recap = await readFile(new URL('../src/components/NewsRecap.astro', import.meta.url), 'utf8');
-assert.match(recap, /getEntry\('news', 'meetup-1-build-before-the-hardware-arrives'\)/);
-assert.match(recap, /<Content \/>/);
+assert.match(recap, /getCollection\('news'\)/);
+assert.match(recap, /event-grid/);
 
 const contentConfig = await readFile(new URL('../src/content.config.ts', import.meta.url), 'utf8');
 assert.match(contentConfig, /news/);
@@ -149,11 +149,7 @@ assert.match(globalCss, /prod-actions/);
 
 const hero = await readFile(new URL('../src/components/Hero.astro', import.meta.url), 'utf8');
 assert.match(hero, /luma\.com\/BudapestHardware/);
-assert.match(hero, /Join as a member|Csatlakozz tagnak/);
-assert.match(hero, /mailto:hello@bhw\.hu\?subject=Job%20posting/);
-assert.match(hero, /Post a job|Állást hirdetek/);
-assert.match(hero, /href="\/services\/#request"/);
-assert.match(hero, /Post a production job|Gyártási munkát küldök/);
+assert.match(hero, /Join the next meetup/);
 assert.doesNotMatch(hero, /href="\/machines\/"/);
 
 
