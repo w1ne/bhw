@@ -83,6 +83,46 @@ Without the token the endpoint returns 404, so the list is not discoverable.
 Once the list has been exported and mailed, delete the function and the KV
 namespace.
 
+## Production services
+
+`/services/` offers club-run 3D printing, laser cutting, CAD and electronics
+work. The form posts to `/api/request` (KV `REQUESTS`, notification mail) and
+files go to `/api/upload` (R2 `bhw-uploads`), cited in the record by key.
+Nothing is readable back over HTTP.
+
+Bindings on the Pages project (`bhw`):
+
+- `REQUESTS` — KV namespace holding one entry per brief, key `request:<iso>:<rand>`
+- `UPLOADS` — R2 bucket `bhw-uploads`, private
+
+Secrets:
+
+- `SMTP_PASSWORD` — PrivateEmail password for andrii@shylenko.com (notifications)
+- `SMTP_USER` — optional, defaults to the sender address
+- `REQUEST_TO` — optional, defaults to shylenkoa@gmail.com
+
+Local development with the bindings simulated:
+
+```bash
+npm run build
+npx wrangler pages dev dist --kv REQUESTS --r2 UPLOADS
+```
+
+Read the archive:
+
+```bash
+npx wrangler kv namespace list
+npx wrangler kv key list --namespace-id <id>
+```
+
+⚠️ Before promoting the page:
+
+- **bhw.hu publishes no MX records** — `hello@bhw.hu` cannot receive mail today.
+  Set up Cloudflare Email Routing (or a real mailbox) before linking the address.
+- Confirm the four prices (7,900 / 9,900 / 40,000 / 30,000 HUF floors).
+- Publish a privacy notice covering the form and the uploads, and decide which
+  entity quotes and invoices.
+
 ## Credits
 
 Meetup #1 photography: Csaba Gábor.

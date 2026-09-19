@@ -78,4 +78,25 @@ const layout = await readFile(new URL('../src/layouts/BaseLayout.astro', import.
 assert.match(layout, /bhw-lang/);
 assert.match(layout, /data-set/);
 
+// Production services: one page, one intake, files in R2 only.
+const services = await readFile(new URL('../src/pages/services.astro', import.meta.url), 'utf8');
+assert.match(services, /BaseLayout/);
+assert.match(services, /class="en"/);
+assert.match(services, /class="hu"/);
+assert.match(services, /fetch\('\/api\/upload'/);
+assert.match(services, /fetch\('\/api\/request'/);
+assert.match(services, /never run someone else's G-code/);
+
+assert.match(nav, /href="\/services\/"/);
+assert.match(nav, /Gyártás/);
+
+const request = await readFile(new URL('../functions/api/request.js', import.meta.url), 'utf8');
+assert.match(request, /onRequestPost/);
+assert.doesNotMatch(request, /onRequestGet/);
+
+const upload = await readFile(new URL('../functions/api/upload.js', import.meta.url), 'utf8');
+assert.match(upload, /onRequestPost/);
+const permitList = upload.slice(upload.indexOf('const EXT = new Set(['), upload.indexOf(']);', upload.indexOf('const EXT')));
+assert.ok(!/gcode/i.test(permitList), 'the upload permit list must not accept gcode');
+
 console.log('site contract passed');
