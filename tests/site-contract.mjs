@@ -43,11 +43,15 @@ await assert.rejects(access(new URL('../src/components/HackathonBanner.astro', i
 await assert.rejects(access(new URL('../src/components/Interest.astro', import.meta.url)));
 
 const nav = await readFile(new URL('../src/components/Navigation.astro', import.meta.url), 'utf8');
-assert.match(nav, /href="\/machines\/"/);
-assert.match(nav, /Machines/);
+assert.match(nav, /luma\.com\/BudapestHardware/);
+assert.match(nav, /Join|Csatlakozz/);
+assert.match(nav, /mailto:hello@bhw\.hu\?subject=Job%20posting/);
+assert.match(nav, /Post a job|Állást hirdetek/);
 assert.match(nav, /href="\/services\/#request"/);
-assert.match(nav, /Send job|Munka küldése/);
+assert.match(nav, /Production|Gyártás/);
 assert.match(nav, /nav-cta/);
+assert.doesNotMatch(nav, /href="\/machines\/"/);
+assert.doesNotMatch(nav, /Machines|Gépek/);
 assert.doesNotMatch(nav, /nav-toggle/);
 assert.doesNotMatch(nav, /aria-expanded/);
 assert.doesNotMatch(nav, /is-open|nav-open/);
@@ -70,29 +74,9 @@ assert.match(jobs, /mailto:hello@bhw\.hu/);
 const jobsData = JSON.parse(await readFile(new URL('../public/jobs.json', import.meta.url), 'utf8'));
 assert.ok(Array.isArray(jobsData));
 
-// Machines catalog: editable public/machines.json, page at /machines/.
-const machinesPage = await readFile(new URL('../src/pages/machines.astro', import.meta.url), 'utf8');
-assert.match(machinesPage, /BaseLayout/);
-assert.match(machinesPage, /machines\.json/);
-assert.match(machinesPage, /class="en"/);
-assert.match(machinesPage, /class="hu"/);
-assert.match(machinesPage, /href="\/services\/#(request|prices)"/);
-
-const machinesData = JSON.parse(await readFile(new URL('../public/machines.json', import.meta.url), 'utf8'));
-assert.ok(Array.isArray(machinesData));
-assert.ok(machinesData.length >= 1);
-for (const m of machinesData) {
-  assert.ok(m.id && m.name && m.nameHu && m.summary && m.summaryHu);
-  assert.ok(Array.isArray(m.specs) && m.specs.length >= 2);
-  for (const s of m.specs) {
-    assert.ok(s.label && s.value);
-  }
-  assert.doesNotMatch(JSON.stringify(m), /telemetry|live temp|online now/i);
-}
-
-assert.match(machinesPage, /machine-grid|machine-card/);
-assert.match(machinesPage, /Use for a job|Munkához használom/);
-assert.match(machinesPage, /\\?process=/);
+// Machines feature removed: no page, no catalog, no nav.
+await assert.rejects(access(new URL('../src/pages/machines.astro', import.meta.url)));
+await assert.rejects(access(new URL('../public/machines.json', import.meta.url)));
 
 // The signup endpoint is read-only now: export what was collected, accept nothing new.
 const fn = await readFile(new URL('../functions/api/interest.js', import.meta.url), 'utf8');
@@ -120,23 +104,27 @@ assert.match(services, /class="hu"/);
 assert.match(services, /fetch\('\/api\/upload'/);
 assert.match(services, /fetch\('\/api\/request'/);
 assert.match(services, /never run someone else's G-code/);
-assert.match(services, /href="\/machines\/"/);
+assert.doesNotMatch(services, /href="\/machines\/"/);
+assert.doesNotMatch(services, /See machines/);
 assert.match(services, /process-tiles|data-process/);
 assert.match(services, /price-table/);
-assert.match(services, /See machines|Gépek/);
+assert.match(services, /#request/);
+assert.match(services, /#prices/);
 
 assert.match(nav, /href="\/services\/#request"/);
-assert.match(nav, /Send job|Munka küldése/);
+assert.match(nav, /Production|Gyártás/);
 
 const production = await readFile(new URL('../src/components/Production.astro', import.meta.url), 'utf8');
 assert.match(production, /href="\/services\/#request"/);
-assert.match(production, /href="\/machines\/"/);
+assert.match(production, /href="\/services\/#prices"/);
+assert.doesNotMatch(production, /href="\/machines\/"/);
 assert.match(production, /class="en"/);
 assert.match(production, /class="hu"/);
 
 const footer = await readFile(new URL('../src/components/Footer.astro', import.meta.url), 'utf8');
 assert.match(footer, /href="\/services\/"/);
-assert.match(footer, /href="\/machines\/"/);
+assert.doesNotMatch(footer, /href="\/machines\/"/);
+assert.doesNotMatch(footer, /Machines|Gépek/);
 assert.match(footer, /href="\/#events"/);
 assert.match(footer, /href="\/news\/"/);
 assert.match(footer, /href="\/#jobs"/);
@@ -161,7 +149,37 @@ const globalCss = await readFile(new URL('../src/styles/global.css', import.meta
 assert.doesNotMatch(globalCss, /nav-toggle/);
 assert.doesNotMatch(globalCss, /\.nav\.is-open/);
 assert.doesNotMatch(globalCss, /nav-open/);
-assert.match(globalCss, /machine-grid/);
+assert.doesNotMatch(globalCss, /machine-grid|machine-card/);
 assert.match(globalCss, /nav-cta/);
+assert.match(globalCss, /prod-actions/);
+
+
+const hero = await readFile(new URL('../src/components/Hero.astro', import.meta.url), 'utf8');
+assert.match(hero, /luma\.com\/BudapestHardware/);
+assert.match(hero, /Join as a member|Csatlakozz tagnak/);
+assert.match(hero, /mailto:hello@bhw\.hu\?subject=Job%20posting/);
+assert.match(hero, /Post a job|Állást hirdetek/);
+assert.match(hero, /href="\/services\/#request"/);
+assert.match(hero, /Post a production job|Gyártási munkát küldök/);
+assert.doesNotMatch(hero, /href="\/machines\/"/);
+
+
+for (const path of [
+  '../src/pages/services.astro',
+  '../src/components/Production.astro',
+  '../src/components/Hero.astro',
+  '../src/components/Navigation.astro',
+  '../src/components/Footer.astro',
+]) {
+  const body = await readFile(new URL(path, import.meta.url), 'utf8');
+  assert.doesNotMatch(body, /Not a CO₂ workshop laser/i);
+  assert.doesNotMatch(body, /Not a walk-in self-serve machine/i);
+  assert.doesNotMatch(body, /Hard specs below/i);
+  assert.doesNotMatch(body, /No walk-in; club jobs only/i);
+  assert.doesNotMatch(body, /Nem CO₂-s műhelylézer/);
+  assert.doesNotMatch(body, /Nem önkiszolgáló/);
+  assert.doesNotMatch(body, /Kemény specifikáció/);
+  assert.doesNotMatch(body, /Nincs önkiszolgálás; csak klubmunkák/);
+}
 
 console.log('site contract passed');
