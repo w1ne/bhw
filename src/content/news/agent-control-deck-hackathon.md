@@ -10,7 +10,7 @@ badgeHu: Hardware hackathon
 
 On 9 September, 17 people came to Puzl CowOrKing Budapest for our hardware hackathon. The task was to build a physical controller for an AI agent, using buttons, displays and other electronic parts.
 
-Participants worked in small groups, connecting components and writing code. The hackathon ran from 18:00 to 22:00.
+Tamás Puski gave an introduction to Claude, and Andrii Shylenko introduced LabWired. Participants then worked in small groups, using LabWired to help develop their hardware, connect components and write code. The hackathon ran from 18:00 to 22:00.
 
 <figure>
 <img src="/images/agent-deck-2026-09-09/04.webp" alt="Hardware boards, components and cables laid out on the parts table" width="1600" height="1067" />
