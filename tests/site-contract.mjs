@@ -43,14 +43,18 @@ await assert.rejects(access(new URL('../src/components/HackathonBanner.astro', i
 await assert.rejects(access(new URL('../src/components/Interest.astro', import.meta.url)));
 
 const nav = await readFile(new URL('../src/components/Navigation.astro', import.meta.url), 'utf8');
-assert.match(nav, /href="\/#jobs"/);
-assert.match(nav, /Jobs/);
 assert.match(nav, /href="\/machines\/"/);
 assert.match(nav, /Machines/);
-assert.match(nav, /nav-toggle/);
-assert.match(nav, /aria-expanded/);
-assert.match(nav, /aria-controls="main-nav"/);
-assert.match(nav, /Escape/);
+assert.match(nav, /href="\/services\/#request"/);
+assert.match(nav, /Send job|Munka küldése/);
+assert.match(nav, /nav-cta/);
+assert.doesNotMatch(nav, /nav-toggle/);
+assert.doesNotMatch(nav, /aria-expanded/);
+assert.doesNotMatch(nav, /is-open|nav-open/);
+assert.doesNotMatch(nav, /href="\/#jobs"/);
+assert.doesNotMatch(nav, /href="\/#what"/);
+assert.doesNotMatch(nav, /href="\/#events"/);
+assert.doesNotMatch(nav, /href="\/news\/"/);
 assert.doesNotMatch(nav, /hackathon/i);
 
 const join = await readFile(new URL('../src/components/Join.astro', import.meta.url), 'utf8');
@@ -72,15 +76,23 @@ assert.match(machinesPage, /BaseLayout/);
 assert.match(machinesPage, /machines\.json/);
 assert.match(machinesPage, /class="en"/);
 assert.match(machinesPage, /class="hu"/);
-assert.match(machinesPage, /href="\/services\/"/);
+assert.match(machinesPage, /href="\/services\/#(request|prices)"/);
 
 const machinesData = JSON.parse(await readFile(new URL('../public/machines.json', import.meta.url), 'utf8'));
 assert.ok(Array.isArray(machinesData));
 assert.ok(machinesData.length >= 1);
 for (const m of machinesData) {
   assert.ok(m.id && m.name && m.nameHu && m.summary && m.summaryHu);
+  assert.ok(Array.isArray(m.specs) && m.specs.length >= 2);
+  for (const s of m.specs) {
+    assert.ok(s.label && s.value);
+  }
   assert.doesNotMatch(JSON.stringify(m), /telemetry|live temp|online now/i);
 }
+
+assert.match(machinesPage, /machine-grid|machine-card/);
+assert.match(machinesPage, /Use for a job|Munkához használom/);
+assert.match(machinesPage, /\\?process=/);
 
 // The signup endpoint is read-only now: export what was collected, accept nothing new.
 const fn = await readFile(new URL('../functions/api/interest.js', import.meta.url), 'utf8');
@@ -109,12 +121,15 @@ assert.match(services, /fetch\('\/api\/upload'/);
 assert.match(services, /fetch\('\/api\/request'/);
 assert.match(services, /never run someone else's G-code/);
 assert.match(services, /href="\/machines\/"/);
+assert.match(services, /process-tiles|data-process/);
+assert.match(services, /price-table/);
+assert.match(services, /See machines|Gépek/);
 
-assert.match(nav, /href="\/services\/"/);
-assert.match(nav, /Gyártás/);
+assert.match(nav, /href="\/services\/#request"/);
+assert.match(nav, /Send job|Munka küldése/);
 
 const production = await readFile(new URL('../src/components/Production.astro', import.meta.url), 'utf8');
-assert.match(production, /href="\/services\/"/);
+assert.match(production, /href="\/services\/#request"/);
 assert.match(production, /href="\/machines\/"/);
 assert.match(production, /class="en"/);
 assert.match(production, /class="hu"/);
@@ -122,6 +137,9 @@ assert.match(production, /class="hu"/);
 const footer = await readFile(new URL('../src/components/Footer.astro', import.meta.url), 'utf8');
 assert.match(footer, /href="\/services\/"/);
 assert.match(footer, /href="\/machines\/"/);
+assert.match(footer, /href="\/#events"/);
+assert.match(footer, /href="\/news\/"/);
+assert.match(footer, /href="\/#jobs"/);
 assert.match(footer, /footer-sisters/);
 assert.match(footer, /https:\/\/labwired\.com/);
 assert.match(footer, /https:\/\/kernelcad\.com/);
@@ -140,7 +158,10 @@ const permitList = upload.slice(upload.indexOf('const EXT = new Set(['), upload.
 assert.ok(!/gcode/i.test(permitList), 'the upload permit list must not accept gcode');
 
 const globalCss = await readFile(new URL('../src/styles/global.css', import.meta.url), 'utf8');
-assert.match(globalCss, /nav-toggle/);
-assert.match(globalCss, /\.nav\.is-open nav/);
+assert.doesNotMatch(globalCss, /nav-toggle/);
+assert.doesNotMatch(globalCss, /\.nav\.is-open/);
+assert.doesNotMatch(globalCss, /nav-open/);
+assert.match(globalCss, /machine-grid/);
+assert.match(globalCss, /nav-cta/);
 
 console.log('site contract passed');

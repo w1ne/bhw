@@ -7,6 +7,12 @@ import Footer from '../components/Footer.astro';
 const machines = JSON.parse(
   await readFile(new URL('../../public/machines.json', import.meta.url), 'utf8')
 );
+
+const jobHref = (m) => {
+  const process = m.process || m.category || '';
+  const q = process ? `?process=${encodeURIComponent(process)}` : '';
+  return `/services/${q}#request`;
+};
 ---
 
 <BaseLayout title="Machines - Budapest Hardware Club">
@@ -14,50 +20,58 @@ const machines = JSON.parse(
   <main id="top">
     <section class="hero">
       <div class="wrap">
-        <span class="eyebrow">// <span class="en">machines</span><span class="hu">gépek</span></span>
-        <h1><span class="en">Club <span class="accent">machines</span>.</span><span class="hu">A klub <span class="accent">gépei</span>.</span></h1>
-        <p class="lead"><span class="en">What we run for production jobs today. Static list — ask if you need something that is not here yet.</span><span class="hu">Amin ma gyártási munkákat futtatunk. Statikus lista — írj, ha valami még nincs fent.</span></p>
+        <span class="eyebrow">// <span class="en">capability board</span><span class="hu">képességtábla</span></span>
+        <h1><span class="en">What we can <span class="accent">run</span>.</span><span class="hu">Amit <span class="accent">futtatunk</span>.</span></h1>
+        <p class="lead"><span class="en">FDM and diode laser on the floor today. Hard specs below — send a job for a fixed quote, not an instant price.</span><span class="hu">FDM és dióda lézer ma a műhelyben. Kemény specifikációk alább — munkára rögzített ajánlatot adunk, nem azonnali árat.</span></p>
         <div class="btns">
-          <a class="btn primary" href="/services/"><span class="en">Send a production job</span><span class="hu">Gyártási munka küldése</span></a>
-          <a class="btn ghost" href="mailto:hello@bhw.hu"><span class="en">Ask about access</span><span class="hu">Hozzáférésről kérdezek</span></a>
+          <a class="btn primary" href="/services/#request"><span class="en">Send a job</span><span class="hu">Munkát küldök</span></a>
+          <a class="btn ghost" href="/services/#prices"><span class="en">Floor prices</span><span class="hu">Kezdő árak</span></a>
         </div>
       </div>
     </section>
 
     <section id="list">
       <div class="wrap">
-        <div class="sec-head">
-          <span class="eyebrow">// <span class="en">inventory</span><span class="hu">lista</span></span>
-          <h2><span class="en">On the floor</span><span class="hu">A műhelyben</span></h2>
-          <p><span class="en">Short descriptions only. For a quote or a date, use the production form.</span><span class="hu">Rövid leírások. Árajánlathoz vagy határidőhöz a gyártási űrlapot használd.</span></p>
-        </div>
-
-        <div class="machine-list">
+        <div class="machine-grid">
           {machines.map((m) => (
-            <article class="machine">
-              <div class="info">
-                <div class="cat"><span class="en">{m.category}</span><span class="hu">{m.categoryHu}</span></div>
-                <h3><span class="en">{m.name}</span><span class="hu">{m.nameHu}</span></h3>
-                <p><span class="en">{m.summary}</span><span class="hu">{m.summaryHu}</span></p>
-                {(m.notes || m.notesHu) && (
-                  <p class="notes"><span class="en">{m.notes}</span><span class="hu">{m.notesHu}</span></p>
-                )}
-              </div>
-              <div class="side">
+            <article class="machine-card">
+              <div class="machine-card-top">
+                <span class="process-badge"><span class="en">{m.category}</span><span class="hu">{m.categoryHu}</span></span>
                 <span class={`status ${m.status === 'available' ? 'ok' : ''}`}>
-                  <span class="en">{m.status === 'available' ? 'Available for jobs' : m.status}</span>
-                  <span class="hu">{m.status === 'available' ? 'Munkákra elérhető' : m.status}</span>
+                  <span class="en">{m.status === 'available' ? 'Available' : m.status}</span>
+                  <span class="hu">{m.status === 'available' ? 'Elérhető' : m.status}</span>
                 </span>
-                <a class="btn ghost apply" href="/services/#request"><span class="en">Request work</span><span class="hu">Munkát kérek</span></a>
               </div>
+              <h2><span class="en">{m.name}</span><span class="hu">{m.nameHu}</span></h2>
+              <p class="machine-summary"><span class="en">{m.summary}</span><span class="hu">{m.summaryHu}</span></p>
+              {Array.isArray(m.specs) && m.specs.length > 0 && (
+                <dl class="spec-list">
+                  {m.specs.map((s) => (
+                    <div class="spec-row">
+                      <dt><span class="en">{s.label}</span><span class="hu">{s.labelHu || s.label}</span></dt>
+                      <dd><span class="en">{s.value}</span><span class="hu">{s.valueHu || s.value}</span></dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+              {(m.notes || m.notesHu) && (
+                <p class="notes"><span class="en">{m.notes}</span><span class="hu">{m.notesHu}</span></p>
+              )}
+              <a class="btn primary machine-cta" href={jobHref(m)}>
+                <span class="en">Use for a job</span><span class="hu">Munkához használom</span>
+              </a>
             </article>
           ))}
         </div>
 
-        <p class="sec-head" style="margin-top:28px;margin-bottom:0">
-          <span class="en">Need something made? Fixed price and date before we start — <a class="readmore" href="/services/">production services</a>.</span>
-          <span class="hu">Alkatrész kell? Rögzített ár és határidő a munka előtt — <a class="readmore" href="/services/">gyártási szolgáltatások</a>.</span>
-        </p>
+        <aside class="floor-strip" aria-label="Floor prices">
+          <div>
+            <span class="eyebrow">// <span class="en">from</span><span class="hu">ettől</span></span>
+            <strong><span class="en">Floor prices</span><span class="hu">Kezdő árak</span></strong>
+            <p><span class="en">Print from 7 900 Ft · Laser from 9 900 Ft · CAD from 40 000 Ft — floors, not quotes.</span><span class="hu">Nyomtatás 7 900 Ft-tól · Lézer 9 900 Ft-tól · CAD 40 000 Ft-tól — minimumok, nem ajánlatok.</span></p>
+          </div>
+          <a class="btn ghost" href="/services/#prices"><span class="en">Full price list</span><span class="hu">Teljes árlista</span></a>
+        </aside>
       </div>
     </section>
   </main>
@@ -65,9 +79,8 @@ const machines = JSON.parse(
 
   <style>
     .hero .wrap{text-align:left;max-width:var(--maxw)}
-    .hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;margin:.35em 0 .1em;letter-spacing:-.02em}
+    .hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;margin:.35em 0 .1em;letter-spacing:-.02em}
     .hero p.lead{margin:14px 0 0;max-width:640px}
     .hero .btns{justify-content:flex-start;margin-top:28px}
-        .machine .apply{padding:9px 16px;font-size:.9rem}
   </style>
 </BaseLayout>

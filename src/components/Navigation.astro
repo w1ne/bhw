@@ -1,66 +1,12 @@
 <header class="nav">
   <div class="wrap">
-    <a class="logo" href="/"><img class="mark" src="/images/logo.png" alt="Budapest Hardware Club logo" /><span class="full">Budapest Hardware Club</span></a>
-    <button
-      class="nav-toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="main-nav"
-      aria-label="Menu"
-    >
-      <span class="nav-toggle-bars" aria-hidden="true"></span>
-    </button>
+    <a class="logo" href="/"><img class="mark" src="/images/logo.png" alt="Budapest Hardware Club logo" /><span class="full">Budapest Hardware Club</span><span class="short">BHW</span></a>
     <nav id="main-nav" aria-label="Main navigation">
-      <a href="/#what"><span class="en">What we do</span><span class="hu">Miről szól</span></a>
-      <a href="/#events"><span class="en">Events</span><span class="hu">Események</span></a>
-      <a href="/services/"><span class="en">Production</span><span class="hu">Gyártás</span></a>
       <a href="/machines/"><span class="en">Machines</span><span class="hu">Gépek</span></a>
-      <a href="/news/"><span class="en">News</span><span class="hu">Hírek</span></a>
-      <a href="/#jobs"><span class="en">Jobs</span><span class="hu">Állások</span></a>
-      <a href="/#join"><span class="en">Join</span><span class="hu">Csatlakozz</span></a>
+      <a class="nav-cta" href="/services/#request"><span class="en">Send job</span><span class="hu">Munka küldése</span></a>
     </nav>
     <div class="langsw" role="group" aria-label="Language">
       <button data-set="en" class="active" type="button">EN</button><button data-set="hu" type="button">HU</button>
     </div>
   </div>
 </header>
-
-<script>
-  (() => {
-    const header = document.querySelector('header.nav');
-    const toggle = header?.querySelector('.nav-toggle');
-    const nav = header?.querySelector('#main-nav');
-    if (!header || !toggle || !nav) return;
-
-    const setOpen = (open) => {
-      header.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      document.body.classList.toggle('nav-open', open);
-    };
-
-    toggle.addEventListener('click', (event) => {
-      event.stopPropagation();
-      setOpen(!header.classList.contains('is-open'));
-    });
-
-    nav.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => setOpen(false));
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') setOpen(false);
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!header.classList.contains('is-open')) return;
-      if (header.contains(event.target)) return;
-      setOpen(false);
-    });
-
-    const mq = window.matchMedia('(min-width: 821px)');
-    const onBreakpoint = () => {
-      if (mq.matches) setOpen(false);
-    };
-    mq.addEventListener('change', onBreakpoint);
-  })();
-</script>
