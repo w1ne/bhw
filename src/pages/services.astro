@@ -11,11 +11,11 @@ import Footer from '../components/Footer.astro';
     <section class="hero">
       <div class="wrap">
         <span class="eyebrow">// <span class="en">production services</span><span class="hu">gyártási szolgáltatások</span></span>
-        <h1><span class="en">Parts and <span class="accent">production</span>, from the club.</span><span class="hu">Alkatrészek és <span class="accent">gyártás</span>, a klubtól.</span></h1>
-        <p class="lead"><span class="en">Send a brief. We reply with a fixed price and date — no instant pricing engine. Print, laser, CAD, and electronics.</span><span class="hu">Küldj leírást. Rögzített árral és határidővel válaszolunk — nincs azonnali ármotor. Nyomtatás, lézer, CAD és elektronika.</span></p>
+        <h1><span class="en"><span class="accent">Parts made to order</span></span><span class="hu"><span class="accent">Alkatrészgyártás rendelésre</span></span></h1>
+        <p class="lead"><span class="en">3D printing, laser cutting, CAD design and electronics. Tell us what you need made. We’ll reply with a price and delivery date.</span><span class="hu">3D nyomtatás, lézervágás, CAD-tervezés és elektronika. Írd meg, mit szeretnél gyártatni. Árral és szállítási határidővel válaszolunk.</span></p>
         <div class="btns">
           <a class="btn primary" href="#request"><span class="en">Send a job</span><span class="hu">Munkát küldök</span></a>
-          <a class="btn ghost" href="#prices"><span class="en">Floor prices</span><span class="hu">Kezdő árak</span></a>
+          <a class="btn ghost" href="#prices"><span class="en">Starting prices</span><span class="hu">Kezdő árak</span></a>
         </div>
       </div>
     </section>
@@ -24,33 +24,33 @@ import Footer from '../components/Footer.astro';
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">// <span class="en">processes</span><span class="hu">folyamatok</span></span>
-          <h2><span class="en">Pick a process</span><span class="hu">Válassz folyamatot</span></h2>
-          <p><span class="en">Maps to what we run. File, sketch, or electronics brief — you do not need a printable model.</span><span class="hu">Ahhoz igazodik, amit futtatunk. Fájl, vázlat vagy elektronikai brief — nem kell nyomtatható modell.</span></p>
+          <h2><span class="en">Choose a service</span><span class="hu">Válassz szolgáltatást</span></h2>
+          <p><span class="en">Send a model, drawing or description of your project.</span><span class="hu">Küldj modellt, rajzot vagy projektleírást.</span></p>
         </div>
         <div class="cards process-tiles">
           <a class="card process-tile" href="#request" data-process="3D printing">
             <div class="ic">🖨</div>
             <h3><span class="en">Print</span><span class="hu">Nyomtatás</span></h3>
-            <p><span class="en">FDM — PLA, PETG, TPU. From STL / 3MF / STEP.</span><span class="hu">FDM — PLA, PETG, TPU. STL / 3MF / STEP-ből.</span></p>
-            <span class="tile-link"><span class="en">Use FDM →</span><span class="hu">FDM →</span></span>
+            <p><span class="en">FDM printing in PLA, PETG or TPU. Accepts STL, 3MF and STEP files.</span><span class="hu">FDM nyomtatás PLA, PETG vagy TPU anyagból. STL, 3MF és STEP fájlokat fogadunk.</span></p>
+            <span class="tile-link"><span class="en">Request a print →</span><span class="hu">FDM →</span></span>
           </a>
           <a class="card process-tile" href="#request" data-process="Laser">
             <div class="ic">🔦</div>
             <h3><span class="en">Laser</span><span class="hu">Lézer</span></h3>
-            <p><span class="en">20 W diode — wood and plywood cut / engrave.</span><span class="hu">20 W dióda — fa és rétegelt vágás / gravír.</span></p>
-            <span class="tile-link"><span class="en">Use laser →</span><span class="hu">Lézer →</span></span>
+            <p><span class="en">Cutting and engraving wood and plywood with a 20 W diode laser.</span><span class="hu">Fa és rétegelt lemez vágása és gravírozása 20 W-os diódalézerrel.</span></p>
+            <span class="tile-link"><span class="en">Request laser work →</span><span class="hu">Lézer →</span></span>
           </a>
           <a class="card process-tile" href="#request" data-process="CAD design">
             <div class="ic">📐</div>
             <h3><span class="en">CAD</span><span class="hu">CAD</span></h3>
-            <p><span class="en">Design + first print, one agreed revision.</span><span class="hu">Tervezés + első nyomtatás, egy javítás.</span></p>
+            <p><span class="en">Part design and a first print, including one agreed revision.</span><span class="hu">Alkatrésztervezés és első nyomtatás, egy egyeztetett módosítással.</span></p>
             <span class="tile-link"><span class="en">Request CAD →</span><span class="hu">CAD kérés →</span></span>
           </a>
           <a class="card process-tile" href="#request" data-process="Electronics">
             <div class="ic">🔌</div>
             <h3><span class="en">Electronics</span><span class="hu">Elektronika</span></h3>
-            <p><span class="en">Boards, wiring, firmware — paid scoping first.</span><span class="hu">Panel, bekötés, firmware — előbb fizetett tervezés.</span></p>
-            <span class="tile-link"><span class="en">Scope electronics →</span><span class="hu">Elektronika →</span></span>
+            <p><span class="en">Boards, wiring and firmware. Starts with a paid planning session.</span><span class="hu">Panelek, bekötés és firmware. Fizetett tervezési egyeztetéssel kezdünk.</span></p>
+            <span class="tile-link"><span class="en">Discuss your project →</span><span class="hu">Elektronika →</span></span>
           </a>
         </div>
       </div>
@@ -60,12 +60,12 @@ import Footer from '../components/Footer.astro';
     <section id="prices">
       <div class="wrap">
         <div class="sec-head">
-          <span class="eyebrow">// <span class="en">floor prices</span><span class="hu">kezdő árak</span></span>
-          <h2><span class="en">From prices</span><span class="hu">Árak ettől</span></h2>
-          <p><span class="en">Floors, not quotes. Every job is priced on its files; the price is fixed before work starts.</span><span class="hu">Minimumok, nem ajánlatok. Minden munkát a saját fájljai alapján árazunk; az ár a munka előtt rögzül.</span></p>
+          <span class="eyebrow">// <span class="en">starting prices</span><span class="hu">kezdő árak</span></span>
+          <h2><span class="en">Prices</span><span class="hu">Árak</span></h2>
+          <p><span class="en">These are minimum prices. We review your requirements and agree on the final price before starting.</span><span class="hu">Ezek minimumárak. Az igények áttekintése után, a munka kezdete előtt egyeztetjük a végleges árat.</span></p>
         </div>
 
-        <div class="price-table" role="table" aria-label="Floor prices">
+        <div class="price-table" role="table" aria-label="Starting prices">
           <div class="price-row price-head" role="row">
             <span role="columnheader"><span class="en">Process</span><span class="hu">Folyamat</span></span>
             <span role="columnheader"><span class="en">From</span><span class="hu">Ettől</span></span>
@@ -89,7 +89,7 @@ import Footer from '../components/Footer.astro';
           <div class="price-row" role="row">
             <span role="cell"><span class="en">Electronics scoping</span><span class="hu">Elektronikai tervezés</span></span>
             <span class="n" role="cell">30 000 Ft</span>
-            <span role="cell"><span class="en">Two-hour scope, ex-VAT</span><span class="hu">Kétórás tervezés, nettó</span></span>
+            <span role="cell"><span class="en">Two-hour planning session, ex-VAT</span><span class="hu">Kétórás tervezés, nettó</span></span>
           </div>
         </div>
 
@@ -105,8 +105,8 @@ import Footer from '../components/Footer.astro';
         </div>
         <div class="cards">
           <div class="card"><div class="ic">01</div><h3><span class="en">Send the brief</span><span class="hu">Küldd el a leírást</span></h3><p><span class="en">File, sketch or the broken part itself.</span><span class="hu">Fájl, vázlat vagy maga a törött alkatrész.</span></p></div>
-          <div class="card"><div class="ic">02</div><h3><span class="en">Fixed price and date</span><span class="hu">Rögzített ár és határidő</span></h3><p><span class="en">We answer within one working day, including when the answer is no.</span><span class="hu">Egy munkanapon belül válaszolunk - akkor is, ha nem vállaljuk.</span></p></div>
-          <div class="card"><div class="ic">03</div><h3><span class="en">Approval, then production</span><span class="hu">Jóváhagyás, aztán gyártás</span></h3><p><span class="en">You approve the first article; batches run after that.</span><span class="hu">Az első darabot jóváhagyod; utána indul a széria.</span></p></div>
+          <div class="card"><div class="ic">02</div><h3><span class="en">Fixed price and date</span><span class="hu">Rögzített ár és határidő</span></h3><p><span class="en">We reply within one working day.</span><span class="hu">Egy munkanapon belül válaszolunk.</span></p></div>
+          <div class="card"><div class="ic">03</div><h3><span class="en">Approval, then production</span><span class="hu">Jóváhagyás, aztán gyártás</span></h3><p><span class="en">You approve the first part before we make the rest.</span><span class="hu">Az első darabot jóváhagyod; utána indul a széria.</span></p></div>
           <div class="card"><div class="ic">04</div><h3><span class="en">Pickup or shipping</span><span class="hu">Átvétel vagy szállítás</span></h3><p><span class="en">Budapest pickup by arrangement, or parcel delivery.</span><span class="hu">Átvétel Budapesten megbeszélés szerint, vagy csomagküldés.</span></p></div>
         </div>
       </div>
@@ -117,7 +117,7 @@ import Footer from '../components/Footer.astro';
         <div class="sec-head">
           <span class="eyebrow">// <span class="en">request</span><span class="hu">megrendelés</span></span>
           <h2><span class="en">Send a job</span><span class="hu">Küldj munkát</span></h2>
-          <p><span class="en">What it must fit, hold, or survive — plus deadline. We quote first; no payment now.</span><span class="hu">Mihez kell illeszkednie, mit kell bírnia — plusz határidő. Előbb ajánlat; most nem kell fizetni.</span></p>
+          <p><span class="en">Describe the part, its dimensions, quantity and when you need it.</span><span class="hu">Írd le az alkatrészt, a méreteit, a darabszámot és a kért határidőt.</span></p>
         </div>
 
         <form class="form" id="jobform">
@@ -167,13 +167,13 @@ import Footer from '../components/Footer.astro';
 
           <div class="field">
             <label for="application"><span class="en">What you need</span><span class="hu">Mire van szükséged</span></label>
-            <textarea id="application" name="application" required placeholder="What it is, what it must fit, what it must hold or survive."></textarea>
+            <textarea id="application" name="application" required placeholder="Describe the part, how it will be used, and any dimensions or load requirements."></textarea>
           </div>
 
           <div class="field">
             <label for="files"><span class="en">Files</span><span class="hu">Fájlok</span> <span class="opt"><span class="en">optional, up to 6</span><span class="hu">nem kötelező, max 6</span></span></label>
             <input id="files" name="files" type="file" multiple accept=".stl,.3mf,.step,.stp,.iges,.igs,.obj,.dxf,.svg,.pdf,.png,.jpg,.jpeg,.zip" />
-            <p class="hint"><span class="en">STL, 3MF, STEP, DXF, SVG, PDF, photos or a ZIP - up to 6 files, 25 MB each. Files stay private, on the club's own storage.</span><span class="hu">STL, 3MF, STEP, DXF, SVG, PDF, fotó vagy ZIP - max 6 fájl, egyenként 25 MB. A fájlok privátak, a klub saját tárhelyén maradnak.</span></p>
+            <p class="hint"><span class="en">STL, 3MF, STEP, DXF, SVG, PDF, photos or a ZIP - up to 6 files, 25 MB each.</span><span class="hu">STL, 3MF, STEP, DXF, SVG, PDF, fotó vagy ZIP - max 6 fájl, egyenként 25 MB.</span></p>
           </div>
 
           <div class="pair">
@@ -200,12 +200,11 @@ import Footer from '../components/Footer.astro';
 
           <div class="foot">
             <button class="btn primary" type="submit"><span class="en">Send the brief</span><span class="hu">Elküldöm</span></button>
-            <span class="hint"><span class="en">No payment now. We quote first and you decide.</span><span class="hu">Most nem kell fizetni. Előbb ajánlatot adunk, aztán döntesz.</span></span>
+            <span class="hint"><span class="en">We’ll send a quote for your approval.</span><span class="hu">Árajánlatot küldünk jóváhagyásra.</span></span>
           </div>
           <p class="formmsg" id="formmsg" hidden></p>
         </form>
 
-        <p class="note"><span class="en">Files are stored privately and never published, shared or sent to a third party. Every job is resliced for the club's own machines - we never run someone else's G-code. Questions: <a href="mailto:hello@bhw.hu">hello@bhw.hu</a></span><span class="hu">A fájlokat privát tárhelyen őrizzük, nem tesszük közzé, nem adjuk tovább. Minden munkát a klub saját gépeire szeletelünk újra - idegen G-code-ot soha nem futtatunk. Kérdés: <a href="mailto:hello@bhw.hu">hello@bhw.hu</a></span></p>
       </div>
     </section>
 

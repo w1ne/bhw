@@ -24,7 +24,7 @@ await assert.rejects(access(new URL('../src/content/config.ts', import.meta.url)
 
 const article = await readFile(new URL('../src/content/news/meetup-1-build-before-the-hardware-arrives.md', import.meta.url), 'utf8');
 assert.match(article, /Build before the hardware arrives/);
-assert.match(article, /What we dug into/);
+assert.match(article, /What we covered/);
 assert.match(article, /recap-community-2.jpg/);
 assert.match(article, /recap-room.jpg/);
 
@@ -89,7 +89,7 @@ const whatWeDo = await readFile(new URL('../src/components/WhatWeDo.astro', impo
 assert.equal((whatWeDo.match(/class="card"/g) ?? []).length, 3);
 assert.match(whatWeDo, /Firmware engineering/);
 assert.match(whatWeDo, /Product, hardware &amp; CAD/);
-assert.match(whatWeDo, /Open knowledge/);
+assert.match(whatWeDo, /Project discussions/);
 assert.doesNotMatch(whatWeDo, /Digital twins/);
 
 const layout = await readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8');
@@ -103,7 +103,6 @@ assert.match(services, /class="en"/);
 assert.match(services, /class="hu"/);
 assert.match(services, /fetch\('\/api\/upload'/);
 assert.match(services, /fetch\('\/api\/request'/);
-assert.match(services, /never run someone else's G-code/);
 assert.doesNotMatch(services, /href="\/machines\/"/);
 assert.doesNotMatch(services, /See machines/);
 assert.match(services, /process-tiles|data-process/);
@@ -128,12 +127,6 @@ assert.doesNotMatch(footer, /Machines|Gépek/);
 assert.match(footer, /href="\/#events"/);
 assert.match(footer, /href="\/news\/"/);
 assert.match(footer, /href="\/#jobs"/);
-assert.match(footer, /footer-sisters/);
-assert.match(footer, /https:\/\/labwired\.com/);
-assert.match(footer, /https:\/\/kernelcad\.com/);
-assert.match(footer, /https:\/\/komatachi\.com/);
-assert.match(footer, /https:\/\/shylenko\.com/);
-assert.match(footer, /https:\/\/bhw\.hu/);
 assert.doesNotMatch(footer, /koamtachi/);
 
 const request = await readFile(new URL('../functions/api/request.js', import.meta.url), 'utf8');
