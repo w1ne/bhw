@@ -10,6 +10,10 @@
 // Export the list from a machine with a Cloudflare session:
 //
 //   curl "https://bhw.hu/api/join?token=$JOIN_TOKEN" -o join.csv
+//
+// Past 900 signups the HTTP export returns 503 (KV caps a Worker invocation
+// at 1,000 operations); read the namespace with `wrangler kv key list/get`
+// instead.
 
 import { send, OPS } from "../../lib/mail.js";
 
@@ -45,10 +49,14 @@ export async function onRequestPost({ request, env, waitUntil }) {
   if (String(data.bhw_hp || "").trim()) return json({ ok: true });
 
   const name = String(data.name || "").trim().slice(0, 200);
-  const email = String(data.email || "").trim().slice(0, 254);
+  const email = String(data.email || "").trim();
 
   if (!name) return json({ ok: false, error: "name is required" }, 400);
-  if (!EMAIL.test(email)) return json({ ok: false, error: "a valid email is required" }, 400);
+  // Reject overlong input instead of truncating it: a truncated address is a
+  // different address. The byte check keeps the KV key under its 512-byte cap.
+  if (!EMAIL.test(email) || email.length > 254 || new TextEncoder().encode(email).length > 500) {
+    return json({ ok: false, error: "a valid email is required" }, 400);
+  }
 
   const record = {
     name,
