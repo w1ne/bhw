@@ -7,6 +7,14 @@
   (() => {
     const id = 'G-NMS9L924YL';
     const key = 'bhw-analytics-consent';
+    const params = new URLSearchParams(location.search);
+    const internalKey = 'bhw-analytics-internal';
+    let internal = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
+    internal ||= params.get('analytics_internal') === '1';
+    try {
+      if (params.has('analytics_internal')) localStorage.setItem(internalKey, params.get('analytics_internal') === '1' ? '1' : '0');
+      internal ||= localStorage.getItem(internalKey) === '1';
+    } catch {}
     const notice = document.getElementById('analytics-choice');
     let choice;
     try { choice = localStorage.getItem(key); } catch {}
@@ -18,7 +26,7 @@
       ad_user_data: 'denied', ad_personalization: 'denied'
     });
     const start = () => {
-      if (started) return;
+      if (started || internal) return;
       started = true;
       window.gtag('consent', 'update', { analytics_storage: 'granted' });
       window.gtag('js', new Date());
@@ -32,6 +40,16 @@
       document.head.appendChild(script);
     };
     if (choice === 'granted') start();
+    const track = (name) => {
+      if (started && choice === 'granted' && !internal) window.gtag('event', name);
+    };
+    document.addEventListener('bhw:enquiry-accepted', () => track('generate_lead'));
+    document.addEventListener('click', (event) => {
+      const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+      if (!link) return;
+      const url = new URL(link.href, location.href);
+      if (['luma.com', 'lu.ma'].includes(url.hostname)) track('meetup_registration_click');
+    });
     notice.hidden = choice === 'granted' || choice === 'denied';
     document.querySelectorAll('[data-analytics]').forEach(button => {
       button.addEventListener('click', () => {

@@ -347,7 +347,8 @@ import Footer from '../components/Footer.astro';
             body: JSON.stringify(body)
           });
           const data = await response.json();
-          if (!data || !data.ok) throw new Error((data && data.error) || 'could not send');
+          if (!response.ok || !data || !data.ok) throw new Error((data && data.error) || 'could not send');
+          document.dispatchEvent(new CustomEvent('bhw:enquiry-accepted'));
           form.reset();
           swapOptions();
           say(t('sent') + warning, false);
