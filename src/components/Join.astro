@@ -1,4 +1,92 @@
 <section id="join"><div class="wrap contact-row">
-  <h2><span class="en">Get in touch</span><span class="hu">Kapcsolat</span></h2>
-  <div><p><span class="en">To give a talk, host a meetup or support the club, email us.</span><span class="hu">Ha előadnál, helyszínt biztosítanál vagy támogatnád a klubot, írj nekünk.</span></p><a class="contact-email" href="mailto:hello@bhw.hu">hello@bhw.hu ↗</a></div>
+  <h2><span class="en">Join the club</span><span class="hu">Csatlakozz a klubhoz</span></h2>
+  <div>
+    <p><span class="en">Meetup announcements by email — nothing else.</span><span class="hu">Meetup-értesítők e-mailben — semmi más.</span></p>
+    <form class="form" id="joinform">
+      <div class="pair">
+        <div class="field">
+          <label for="join-name"><span class="en">Name</span><span class="hu">Név</span></label>
+          <input id="join-name" name="name" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="join-email"><span class="en">Email</span><span class="hu">E-mail</span></label>
+          <input id="join-email" name="email" type="email" autocomplete="email" required />
+        </div>
+      </div>
+      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <div class="foot">
+        <button class="btn primary" type="submit"><span class="en">Sign up</span><span class="hu">Feliratkozom</span></button>
+      </div>
+      <p class="formmsg" id="joinmsg" hidden></p>
+    </form>
+    <p class="consent"><span class="en">We only use your email for club announcements. Reply to any mail to unsubscribe.</span><span class="hu">Az e-mail címedet csak klubértesítésekre használjuk. Bármelyik levélre válaszolva leiratkozhatsz.</span></p>
+    <p class="contact-line"><span class="en">To give a talk, host a meetup or support the club, email us.</span><span class="hu">Ha előadnál, helyszínt biztosítanál vagy támogatnád a klubot, írj nekünk.</span></p>
+    <a class="contact-email" href="mailto:hello@bhw.hu">hello@bhw.hu ↗</a>
+  </div>
 </div></section>
+
+<style>
+  .form{display:grid;gap:20px;max-width:680px;margin:22px 0 0}
+  .pair{display:grid;gap:20px}
+  @media(min-width:640px){.pair{grid-template-columns:1fr 1fr}}
+  .field{display:grid;gap:7px;min-width:0}
+  .field label{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .field input{width:100%;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);font-family:var(--sans);font-size:1rem;padding:11px 13px;transition:border-color .15s}
+  .field input:focus{outline:none;border-color:var(--accent)}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .foot{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .formmsg{margin:0;font-size:.95rem}
+  .formmsg.good{color:var(--accent-2)}
+  .formmsg.bad{color:#b42318}
+  .consent{font-size:.82rem;color:var(--muted);margin:18px 0 26px;max-width:60ch}
+  .contact-line{margin-bottom:10px}
+</style>
+
+<script>
+  (() => {
+    const form = document.getElementById('joinform');
+    if (!form) return;
+    const button = form.querySelector('button[type=submit]');
+    const msg = document.getElementById('joinmsg');
+    const label = button.innerHTML;
+
+    const T = {
+      sending: { en: 'Sending…', hu: 'Küldés…' },
+      done: { en: "Thanks! You're on the list.", hu: 'Köszönjük, felvettünk a listára.' },
+      bad: { en: 'Something went wrong — write to hello@bhw.hu.', hu: 'Valami hiba történt — írj a hello@bhw.hu címre.' }
+    };
+    const lang = () => (document.documentElement.getAttribute('data-lang') === 'hu' ? 'hu' : 'en');
+    const t = (key) => T[key][lang()];
+
+    const say = (text, bad) => {
+      msg.textContent = text;
+      msg.className = 'formmsg ' + (bad ? 'bad' : 'good');
+      msg.hidden = false;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      msg.hidden = true;
+      button.disabled = true;
+      button.textContent = t('sending');
+
+      try {
+        const body = Object.fromEntries(new FormData(form).entries());
+        const response = await fetch('/api/join', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        const data = await response.json().catch(() => null);
+        if (!response.ok || !data || !data.ok) throw new Error();
+        form.reset();
+        say(t('done'), false);
+      } catch {
+        say(t('bad'), true);
+      } finally {
+        button.disabled = false;
+        button.innerHTML = label;
+      }
+    });
+  })();
+</script>

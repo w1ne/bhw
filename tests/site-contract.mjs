@@ -64,6 +64,14 @@ assert.doesNotMatch(nav, /hackathon/i);
 
 const join = await readFile(new URL('../src/components/Join.astro', import.meta.url), 'utf8');
 assert.doesNotMatch(join, /hackathon/i);
+assert.doesNotMatch(join, /luma\.com/);
+assert.match(join, /id="join"/);
+assert.match(join, /id="joinform"/);
+assert.match(join, /name="name"/);
+assert.match(join, /name="email"/);
+assert.match(join, /name="company"/);
+assert.match(join, /fetch\('\/api\/join'/);
+assert.match(join, /mailto:hello@bhw\.hu/);
 
 // Jobs board: static catalog in public/jobs.json, rendered by Jobs.astro.
 const jobs = await readFile(new URL('../src/components/Jobs.astro', import.meta.url), 'utf8');
