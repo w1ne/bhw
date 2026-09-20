@@ -21,7 +21,13 @@ export async function onRequestGet({ request, env }) {
   const { keys } = await env.INTEREST.list({ prefix: 'interest:' });
   const rows = await Promise.all(keys.map((k) => env.INTEREST.get(k.name, 'json')));
 
-  const cell = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
+  // A leading =, +, - or @ is evaluated as a formula by Excel or Sheets when
+  // the operator opens the export; neutralize it.
+  const cell = (v) => {
+    let s = String(v ?? '');
+    if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`;
+    return `"${s.replace(/"/g, '""')}"`;
+  };
   const csv = [
     'submitted_at,name,email,background,team,dates,notes,country',
     ...rows
