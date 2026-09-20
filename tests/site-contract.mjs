@@ -69,7 +69,7 @@ assert.match(join, /id="join"/);
 assert.match(join, /id="joinform"/);
 assert.match(join, /name="name"/);
 assert.match(join, /name="email"/);
-assert.match(join, /name="company"/);
+assert.match(join, /name="bhw_hp"/);
 assert.match(join, /fetch\('\/api\/join'/);
 assert.match(join, /mailto:hello@bhw\.hu/);
 

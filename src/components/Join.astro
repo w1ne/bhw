@@ -13,11 +13,11 @@
           <input id="join-email" name="email" type="email" autocomplete="email" required />
         </div>
       </div>
-      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <input class="hp" type="text" name="bhw_hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div class="foot">
         <button class="btn primary" type="submit"><span class="en">Sign up</span><span class="hu">Feliratkozom</span></button>
       </div>
-      <p class="formmsg" id="joinmsg" hidden></p>
+      <p class="formmsg" id="joinmsg" role="status" aria-live="polite" hidden></p>
     </form>
     <p class="consent"><span class="en">We only use your email for club announcements. Reply to any mail to unsubscribe.</span><span class="hu">Az e-mail címedet csak klubértesítésekre használjuk. Bármelyik levélre válaszolva leiratkozhatsz.</span></p>
     <p class="contact-line"><span class="en">To give a talk, host a meetup or support the club, email us.</span><span class="hu">Ha előadnál, helyszínt biztosítanál vagy támogatnád a klubot, írj nekünk.</span></p>
@@ -45,9 +45,9 @@
 <script>
   (() => {
     const form = document.getElementById('joinform');
-    if (!form) return;
-    const button = form.querySelector('button[type=submit]');
+    const button = form && form.querySelector('button[type=submit]');
     const msg = document.getElementById('joinmsg');
+    if (!form || !button || !msg) return;
     const label = button.innerHTML;
 
     const T = {
