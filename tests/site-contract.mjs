@@ -43,7 +43,8 @@ await assert.rejects(access(new URL('../src/components/HackathonBanner.astro', i
 await assert.rejects(access(new URL('../src/components/Interest.astro', import.meta.url)));
 
 const nav = await readFile(new URL('../src/components/Navigation.astro', import.meta.url), 'utf8');
-assert.match(nav, /luma\.com\/BudapestHardware/);
+assert.match(nav, /href="\/#join"/);
+assert.doesNotMatch(nav, /luma\.com/);
 assert.match(nav, /Join|Csatlakozz/);
 assert.match(nav, /mailto:hello@bhw\.hu\?subject=Job%20posting/);
 assert.match(nav, /Post a job|Állást hirdetek/);
