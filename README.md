@@ -85,7 +85,7 @@ namespace.
 
 ## Join list
 
-The homepage Join section collects a name and an email for club
+The homepage Join section collects a name and an email for meetup
 announcements. Signups land in the `JOIN` KV namespace (key
 `join:<lowercased email>`, so a repeat signup updates rather than duplicates)
 and each one sends a notification to the club inbox with Reply-To the signer.
@@ -95,6 +95,8 @@ Bindings on the Pages project (`bhw`):
 
 - `JOIN` — KV namespace holding one entry per signup
 - `JOIN_TOKEN` — secret guarding the CSV export
+- `MAILER` — existing service binding to the `bhw-mailer` Worker (see
+  Production services); join notifications go through it
 
 Export the list:
 
@@ -102,11 +104,12 @@ Export the list:
 curl "https://bhw.hu/api/join?token=$JOIN_TOKEN" -o join.csv
 ```
 
-Without the token the endpoint returns 404. The HTTP export stops at 900
-signups (KV caps a Worker invocation at 1,000 operations) and returns 503;
-for a larger list, read the namespace directly:
+Without the token the endpoint returns 404. The HTTP export returns 503 once
+the list exceeds 900 signups (KV caps a Worker invocation at 1,000
+operations); for a larger list, read the namespace directly:
 
 ```bash
+npx wrangler kv namespace list
 npx wrangler kv key list --namespace-id <id> --remote
 npx wrangler kv key get  --namespace-id <id> --remote "join:..."
 ```
@@ -161,8 +164,8 @@ npx wrangler r2 object get bhw-uploads/<key> --remote --pipe
 
 - **bhw.hu mail:** Cloudflare Email Routing is enabled (Cloudflare MX + SPF are
   live) and `bhw-mailer` sends club notifications to the verified destination.
-  If you want `hello@bhw.hu` to receive and forward, add a routing rule in the
-  Cloudflare dashboard.
+  `hello@bhw.hu` is linked across the site; add a routing rule in the
+  Cloudflare dashboard so it can receive and forward.
 - Confirm the four prices (7,900 / 9,900 / 40,000 / 30,000 HUF floors).
 - Publish a privacy notice covering the form and the uploads, and decide which
   entity quotes and invoices.
