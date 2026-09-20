@@ -92,6 +92,14 @@ const fn = await readFile(new URL('../functions/api/interest.js', import.meta.ur
 assert.match(fn, /onRequestGet/);
 assert.doesNotMatch(fn, /onRequestPost/);
 
+const joinFn = await readFile(new URL('../functions/api/join.js', import.meta.url), 'utf8');
+assert.match(joinFn, /onRequestPost/);
+assert.match(joinFn, /onRequestGet/);
+assert.match(joinFn, /env\.JOIN\b/);
+assert.match(joinFn, /JOIN_TOKEN/);
+assert.match(joinFn, /join:\$\{email\.toLowerCase\(\)\}/);
+assert.match(joinFn, /lib\/mail\.js/);
+
 await assert.rejects(access(new URL('../docs/superpowers', import.meta.url)));
 
 const whatWeDo = await readFile(new URL('../src/components/WhatWeDo.astro', import.meta.url), 'utf8');
