@@ -114,6 +114,10 @@ npx wrangler kv key list --namespace-id <id> --remote
 npx wrangler kv key get  --namespace-id <id> --remote "join:..."
 ```
 
+A honeypot is the only abuse control on the public POST. If spam appears, add
+a Cloudflare rate-limiting rule for `/api/join`; the KV free-tier write quota
+(1,000/day) is the resource to watch.
+
 ## Production services
 
 `/services/` offers club-run 3D printing, laser cutting, CAD and electronics
@@ -148,7 +152,7 @@ Local development with the bindings simulated:
 
 ```bash
 npm run build
-npx wrangler pages dev dist --kv REQUESTS --r2 UPLOADS --service MAILER=bhw-mailer
+npx wrangler pages dev dist --kv REQUESTS --kv JOIN --r2 UPLOADS --service MAILER=bhw-mailer --binding JOIN_TOKEN=devtoken
 ```
 
 Read the archive (wrangler defaults to *local* storage, so keep `--remote`):

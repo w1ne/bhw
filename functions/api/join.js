@@ -48,7 +48,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   // has nothing to learn from a rejection.
   if (String(data.bhw_hp || "").trim()) return json({ ok: true });
 
-  const name = String(data.name || "").trim().slice(0, 200);
+  const name = String(data.name || "").trim().replace(/[\r\n\t]+/g, " ").slice(0, 200);
   const email = String(data.email || "").trim();
 
   if (!name) return json({ ok: false, error: "name is required" }, 400);
@@ -111,6 +111,10 @@ export async function onRequestGet({ request, env }) {
   } catch (error) {
     console.log("[join] KV read failed:", error && error.message);
     return json({ error: "storage unavailable" }, 503);
+  }
+
+  if (rows.length !== page.keys.length) {
+    console.log("[join] dropped", page.keys.length - rows.length, "unreadable record(s) from the export");
   }
 
   // A leading =, +, - or @ is evaluated as a formula by Excel or Sheets when

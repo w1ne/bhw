@@ -71,6 +71,7 @@ assert.match(join, /name="name"/);
 assert.match(join, /name="email"/);
 assert.match(join, /name="bhw_hp"/);
 assert.match(join, /fetch\('\/api\/join'/);
+assert.match(join, /action="\/api\/join"/);
 assert.match(join, /mailto:hello@bhw\.hu/);
 
 // Jobs board: static catalog in public/jobs.json, rendered by Jobs.astro.
@@ -91,12 +92,16 @@ await assert.rejects(access(new URL('../public/machines.json', import.meta.url))
 const fn = await readFile(new URL('../functions/api/interest.js', import.meta.url), 'utf8');
 assert.match(fn, /onRequestGet/);
 assert.doesNotMatch(fn, /onRequestPost/);
+assert.match(fn, /\[\=\+\\-@\\t\\r\]/);
 
 const joinFn = await readFile(new URL('../functions/api/join.js', import.meta.url), 'utf8');
 assert.match(joinFn, /onRequestPost/);
 assert.match(joinFn, /onRequestGet/);
 assert.match(joinFn, /env\.JOIN\b/);
 assert.match(joinFn, /JOIN_TOKEN/);
+assert.match(joinFn, /data\.bhw_hp/);
+assert.match(joinFn, /list_complete/);
+assert.match(joinFn, /\[\=\+\\-@\\t\\r\]/);
 assert.match(joinFn, /join:\$\{email\.toLowerCase\(\)\}/);
 assert.match(joinFn, /lib\/mail\.js/);
 
