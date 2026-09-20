@@ -83,6 +83,34 @@ Without the token the endpoint returns 404, so the list is not discoverable.
 Once the list has been exported and mailed, delete the function and the KV
 namespace.
 
+## Join list
+
+The homepage Join section collects a name and an email for club
+announcements. Signups land in the `JOIN` KV namespace (key
+`join:<lowercased email>`, so a repeat signup updates rather than duplicates)
+and each one sends a notification to the club inbox with Reply-To the signer.
+Luma stays the RSVP path for meetups.
+
+Bindings on the Pages project (`bhw`):
+
+- `JOIN` — KV namespace holding one entry per signup
+- `JOIN_TOKEN` — secret guarding the CSV export
+
+Export the list:
+
+```bash
+curl "https://bhw.hu/api/join?token=$JOIN_TOKEN" -o join.csv
+```
+
+Without the token the endpoint returns 404. The HTTP export stops at 900
+signups (KV caps a Worker invocation at 1,000 operations) and returns 503;
+for a larger list, read the namespace directly:
+
+```bash
+npx wrangler kv key list --namespace-id <id> --remote
+npx wrangler kv key get  --namespace-id <id> --remote "join:..."
+```
+
 ## Production services
 
 `/services/` offers club-run 3D printing, laser cutting, CAD and electronics
@@ -131,8 +159,10 @@ npx wrangler r2 object get bhw-uploads/<key> --remote --pipe
 
 ⚠️ Before promoting the page:
 
-- **bhw.hu publishes no MX records** — `hello@bhw.hu` cannot receive mail today.
-  Set up Cloudflare Email Routing (or a real mailbox) before linking the address.
+- **bhw.hu mail:** Cloudflare Email Routing is enabled (Cloudflare MX + SPF are
+  live) and `bhw-mailer` sends club notifications to the verified destination.
+  If you want `hello@bhw.hu` to receive and forward, add a routing rule in the
+  Cloudflare dashboard.
 - Confirm the four prices (7,900 / 9,900 / 40,000 / 30,000 HUF floors).
 - Publish a privacy notice covering the form and the uploads, and decide which
   entity quotes and invoices.
