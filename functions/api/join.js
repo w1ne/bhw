@@ -36,13 +36,16 @@ export async function onRequestPost({ request, env, waitUntil }) {
   } catch {
     return json({ ok: false, error: "could not read the form" }, 400);
   }
+  if (!data || typeof data !== "object") {
+    return json({ ok: false, error: "could not read the form" }, 400);
+  }
 
   // Honeypot: a real person never sees this field. Pretend success so a bot
   // has nothing to learn from a rejection.
   if (String(data.bhw_hp || "").trim()) return json({ ok: true });
 
-  const name = String(data.name || "").trim();
-  const email = String(data.email || "").trim();
+  const name = String(data.name || "").trim().slice(0, 200);
+  const email = String(data.email || "").trim().slice(0, 254);
 
   if (!name) return json({ ok: false, error: "name is required" }, 400);
   if (!EMAIL.test(email)) return json({ ok: false, error: "a valid email is required" }, 400);
@@ -57,7 +60,12 @@ export async function onRequestPost({ request, env, waitUntil }) {
   // Keyed by the lowercased address: a repeat signup updates the record
   // instead of duplicating it.
   const key = `join:${email.toLowerCase()}`;
-  await env.JOIN.put(key, JSON.stringify(record, null, 2));
+  try {
+    await env.JOIN.put(key, JSON.stringify(record, null, 2));
+  } catch (error) {
+    console.log("[join] KV write failed:", error && error.message);
+    return json({ ok: false, error: "signup could not be stored" }, 503);
+  }
 
   // The record is safe now. The mail goes out after the response, so a slow
   // send never becomes a slow form. send() swallows its own failures.
@@ -74,10 +82,36 @@ export async function onRequestGet({ request, env }) {
   }
   if (!env.JOIN) return json({ error: "storage not configured" }, 500);
 
-  const { keys } = await env.JOIN.list({ prefix: "join:" });
-  const rows = (await Promise.all(keys.map((k) => env.JOIN.get(k.name, "json")))).filter(Boolean);
+  let page;
+  try {
+    page = await env.JOIN.list({ prefix: "join:" });
+  } catch (error) {
+    console.log("[join] KV list failed:", error && error.message);
+    return json({ error: "storage unavailable" }, 503);
+  }
 
-  const cell = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
+  // KV caps a Worker invocation at 1,000 operations, so a one-shot HTTP
+  // export stops being safe well before the list gets big. Say so instead
+  // of silently truncating; the wrangler path in the README has no cap.
+  if (!page.list_complete || page.keys.length > 900) {
+    return json({ error: "list is too large for the HTTP export; use wrangler kv" }, 503);
+  }
+
+  let rows;
+  try {
+    rows = (await Promise.all(page.keys.map((k) => env.JOIN.get(k.name, "json")))).filter(Boolean);
+  } catch (error) {
+    console.log("[join] KV read failed:", error && error.message);
+    return json({ error: "storage unavailable" }, 503);
+  }
+
+  // A leading =, +, - or @ is evaluated as a formula by Excel or Sheets when
+  // the operator opens the export; neutralize it.
+  const cell = (v) => {
+    let s = String(v ?? "");
+    if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`;
+    return `"${s.replace(/"/g, '""')}"`;
+  };
   const csv = [
     "submitted_at,name,email,country",
     ...rows
@@ -89,6 +123,8 @@ export async function onRequestGet({ request, env }) {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
       "Content-Disposition": 'attachment; filename="bhw-join.csv"',
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
     },
   });
 }
