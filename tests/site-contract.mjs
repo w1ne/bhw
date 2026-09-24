@@ -28,6 +28,9 @@ assert.match(article, /What we covered/);
 assert.match(article, /recap-community-2.jpg/);
 assert.match(article, /recap-room.jpg/);
 
+const hackathon = await readFile(new URL('../src/content/news/agent-control-deck-hackathon.md', import.meta.url), 'utf8');
+assert.match(hackathon, /\/images\/hackathon-cover\.jpg/);
+
 const newsIndex = await readFile(new URL('../src/pages/news/index.astro', import.meta.url), 'utf8');
 assert.match(newsIndex, /getCollection\('news'\)/);
 assert.match(newsIndex, /\/news\/\$\{post\.slug\}\//);
@@ -79,6 +82,7 @@ assert.match(join, /mailto:hello@bhw\.hu/);
 assert.match(join, /Join the association/);
 assert.match(join, /\/images\/join\.jpg/);
 assert.match(join, /\/images\/join-2\.jpg/);
+assert.match(join, /\/images\/hackathon-cover\.jpg/);
 assert.match(join, /data-carousel/);
 assert.match(join, /Priority access to events and workshops/);
 assert.match(join, /Member pricing for fabrication/);

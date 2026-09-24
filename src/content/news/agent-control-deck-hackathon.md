@@ -8,6 +8,11 @@ badge: Hardware hackathon
 badgeHu: Hardveres hackathon
 ---
 
+<figure>
+<img src="/images/hackathon-cover.jpg" alt="A group gathered around a table of hardware parts at the hackathon" width="1800" height="1200" />
+<figcaption><span class="en">The hardware hackathon at Puzl.</span><span class="hu">A hardveres hackathon a Puzlban.</span></figcaption>
+</figure>
+
 <p><span class="en">On 9 September, 17 people came to Puzl CowOrKing Budapest for our hardware hackathon. The task was to build a physical controller for an AI agent, using buttons, displays and other electronic parts.</span><span class="hu">Szeptember 9-én 17-en gyűltünk össze a Puzl CowOrKing Budapestben a hardveres hackathonunkra. A feladat egy AI-ügynök fizikai vezérlőjének megépítése volt, gombokkal, kijelzőkkel és más elektronikai alkatrészekkel.</span></p>
 
 <p><span class="en">Tamás Puski gave an introduction to Claude, and Andrii Shylenko introduced LabWired. Participants then worked in small groups, using LabWired to help develop their hardware, connect components and write code. The hackathon ran from 18:00 to 22:00.</span><span class="hu">Puski Tamás bemutatta a Claude-ot, Andrii Shylenko pedig a LabWiredöt. Ezután a résztvevők kis csoportokban dolgoztak: a LabWired segítségével fejlesztették a hardvert, alkatrészeket kötöttek össze és kódot írtak. A hackathon 18:00-tól 22:00-ig tartott.</span></p>

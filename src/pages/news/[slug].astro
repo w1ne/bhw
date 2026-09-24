@@ -11,9 +11,12 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const image = post.slug === 'agent-control-deck-hackathon'
+  ? 'https://bhw.hu/images/hackathon-cover.jpg'
+  : undefined;
 ---
 
-<BaseLayout title={`${post.data.title} · Budapest Hardware Club`}>
+<BaseLayout title={`${post.data.title} · Budapest Hardware Club`} image={image}>
   <Navigation />
   <main class="news-page"><section><div class="wrap"><a class="back-link" href="/news/"><span class="en">← All news</span><span class="hu">← Minden hír</span></a><article class="recap news-article"><div class="recap-copy"><span class="badge"><span class="en">{post.data.badge}</span><span class="hu">{post.data.badgeHu}</span></span><h1><span class="en">{post.data.title}</span><span class="hu">{post.data.titleHu}</span></h1><Content /></div></article></div></section></main>
   <Footer />

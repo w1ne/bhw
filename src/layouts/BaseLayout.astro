@@ -3,7 +3,7 @@ import '../styles/global.css';
 import '../styles/news.css';
 import Analytics from '../components/Analytics.astro';
 
-const { title = 'BHW - Budapest Hardware Club' } = Astro.props;
+const { title = 'BHW - Budapest Hardware Club', image = 'https://bhw.hu/images/hero.jpg' } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,7 +17,7 @@ const { title = 'BHW - Budapest Hardware Club' } = Astro.props;
     <meta property="og:description" content="Meetups in Budapest about hardware, firmware and robotics." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bhw.hu" />
-    <meta property="og:image" content="https://bhw.hu/images/hero.jpg" />
+    <meta property="og:image" content={image} />
     <link rel="icon" href="/images/logo.png" />
   </head>
   <body>
