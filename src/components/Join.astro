@@ -1,9 +1,11 @@
 <section id="join"><div class="wrap contact-row">
   <h2><span class="en">Join the association</span><span class="hu">Csatlakozz az egyesülethez</span></h2>
   <div>
-    <p><span class="en">Membership is open. No payment.</span><span class="hu">A tagság nyitott. Nincs fizetés.</span></p>
+    <p class="what"><span class="en">Budapest Hardware Club is where people build hardware, firmware and robotics together. We run meetups, workshops and hackathons. Members help each other on hardware projects.</span><span class="hu">A Budapest Hardware Clubban hardvert, firmware-t és robotikát építünk együtt. Meetupokat, workshopokat és hackathonokat tartunk. A tagok segítenek egymás hardverprojektjeiben.</span></p>
     <ul class="benefits">
       <li><span class="en">Priority access to events and workshops</span><span class="hu">Elsőbbség eseményeken és workshopokon</span></li>
+      <li><span class="en">Hackathons</span><span class="hu">Hackathonok</span></li>
+      <li><span class="en">Help with members' hardware projects</span><span class="hu">Segítség a tagok hardverprojektjeiben</span></li>
       <li><span class="en">Member pricing for fabrication</span><span class="hu">Tagi ár a gyártásra</span></li>
       <li><span class="en">Member channels on Discord</span><span class="hu">Tagi csatornák Discordon</span></li>
       <li><span class="en">A vote on decisions</span><span class="hu">Szavazat a döntéseknél</span></li>
@@ -25,7 +27,7 @@
       </div>
       <p class="formmsg" id="joinmsg" role="status" aria-live="polite" hidden></p>
     </form>
-    <p class="consent"><span class="en">We'll email you. Questions: </span><span class="hu">Írunk neked. Kérdés: </span><a href="mailto:hello@bhw.hu">hello@bhw.hu</a></p>
+    <p class="consent"><span class="en">No payment. We'll email you. Questions: </span><span class="hu">Nincs fizetés. Írunk neked. Kérdés: </span><a href="mailto:hello@bhw.hu">hello@bhw.hu</a></p>
   </div>
 </div></section>
 
@@ -37,7 +39,8 @@
   .field label{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .field input{width:100%;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);font-family:var(--sans);font-size:1rem;padding:11px 13px;transition:border-color .15s}
   .field input:focus{outline:none;border-color:var(--accent)}
-  .benefits{margin:0;padding-left:18px;max-width:52ch;color:var(--ink)}
+  .what{color:var(--ink);max-width:62ch}
+  .benefits{margin:0;padding-left:18px;max-width:62ch;color:var(--ink)}
   .benefits li{margin:8px 0}
   .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
   .foot{display:flex;align-items:center;gap:18px;flex-wrap:wrap}

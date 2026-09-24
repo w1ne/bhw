@@ -36,8 +36,8 @@ const newsArticle = await readFile(new URL('../src/pages/news\/[slug].astro', im
 assert.match(newsArticle, /getStaticPaths/);
 assert.match(newsArticle, /render\(post\)/);
 
-// The hackathon is over: its banner, section, nav entry and Join mention are
-// gone for good, and the old interest form stays gone.
+// The one-off hackathon banner is gone. Join still names hackathons as a
+// club activity. The old interest form stays gone.
 await assert.rejects(access(new URL('../src/components/Hackathon.astro', import.meta.url)));
 await assert.rejects(access(new URL('../src/components/HackathonBanner.astro', import.meta.url)));
 await assert.rejects(access(new URL('../src/components/Interest.astro', import.meta.url)));
@@ -65,7 +65,9 @@ assert.doesNotMatch(nav, /href="\/news\/"/);
 assert.doesNotMatch(nav, /hackathon/i);
 
 const join = await readFile(new URL('../src/components/Join.astro', import.meta.url), 'utf8');
-assert.doesNotMatch(join, /hackathon/i);
+assert.match(join, /hackathons/i);
+assert.match(join, /help each other on hardware projects/i);
+assert.match(join, /Help with members' hardware projects/);
 assert.doesNotMatch(join, /luma\.com/);
 assert.match(join, /id="join"/);
 assert.match(join, /id="joinform"/);
