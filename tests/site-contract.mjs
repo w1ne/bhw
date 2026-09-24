@@ -90,6 +90,8 @@ assert.match(join, /Member pricing for fabrication/);
 assert.match(join, /Discord/);
 assert.match(join, /vote on decisions/);
 assert.match(join, /Sponsorships and investments/);
+assert.doesNotMatch(join, /No payment/i);
+assert.doesNotMatch(join, /Nincs fizetés/i);
 assert.match(join, /egyesület/i);
 assert.doesNotMatch(join, /href="\/founding\/"/);
 assert.doesNotMatch(join, /founding member/i);
