@@ -9,7 +9,7 @@ badgeHu: Hardveres hackathon
 ---
 
 <figure>
-<img src="/images/hackathon-cover.jpg" alt="A group gathered around a table of hardware parts at the hackathon" width="1800" height="1200" />
+<img src="/images/hackathon-cover.webp" alt="A group gathered around a table of hardware parts at the hackathon" width="1600" height="1067" fetchpriority="high" decoding="async" />
 <figcaption><span class="en">The hardware hackathon at Puzl.</span><span class="hu">A hardveres hackathon a Puzlban.</span></figcaption>
 </figure>
 
@@ -18,7 +18,7 @@ badgeHu: Hardveres hackathon
 <p><span class="en">Tamás Puski gave an introduction to Claude, and Andrii Shylenko introduced LabWired. Participants then worked in small groups, using LabWired to help develop their hardware, connect components and write code. The hackathon ran from 18:00 to 22:00.</span><span class="hu">Puski Tamás bemutatta a Claude-ot, Andrii Shylenko pedig a LabWiredöt. Ezután a résztvevők kis csoportokban dolgoztak: a LabWired segítségével fejlesztették a hardvert, alkatrészeket kötöttek össze és kódot írtak. A hackathon 18:00-tól 22:00-ig tartott.</span></p>
 
 <figure>
-<img src="/images/agent-deck-2026-09-09/04.webp" alt="Hardware boards, components and cables laid out on the parts table" width="1600" height="1067" />
+<img src="/images/agent-deck-2026-09-09/04.webp" alt="Hardware boards, components and cables laid out on the parts table" width="1200" height="800" loading="lazy" decoding="async" />
 <figcaption><span class="en">The parts table, ready for the evening.</span><span class="hu">Alkatrészek az asztalon, kezdésre készen.</span></figcaption>
 </figure>
 

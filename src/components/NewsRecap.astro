@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 const posts = (await getCollection('news')).sort((a,b) => b.data.date.valueOf() - a.data.date.valueOf());
-const photos = { 'agent-control-deck-hackathon': '/images/hackathon-cover.jpg', 'meetup-1-build-before-the-hardware-arrives': '/images/recap-community-1.jpg' };
+const photos = { 'agent-control-deck-hackathon': '/images/hackathon-cover.webp', 'meetup-1-build-before-the-hardware-arrives': '/images/recap-community-1.webp' };
 ---
 <section id="news"><div class="wrap">
   <div class="section-heading"><h2><span class="en">Recent events</span><span class="hu">Korábbi események</span></h2><a class="text-link" href="/news/"><span class="en">All reports →</span><span class="hu">Összes beszámoló →</span></a></div>

@@ -25,11 +25,11 @@ await assert.rejects(access(new URL('../src/content/config.ts', import.meta.url)
 const article = await readFile(new URL('../src/content/news/meetup-1-build-before-the-hardware-arrives.md', import.meta.url), 'utf8');
 assert.match(article, /Build before the hardware arrives/);
 assert.match(article, /What we covered/);
-assert.match(article, /recap-community-2.jpg/);
-assert.match(article, /recap-room.jpg/);
+assert.match(article, /recap-community-2.webp/);
+assert.match(article, /recap-room.webp/);
 
 const hackathon = await readFile(new URL('../src/content/news/agent-control-deck-hackathon.md', import.meta.url), 'utf8');
-assert.match(hackathon, /\/images\/hackathon-cover\.jpg/);
+assert.match(hackathon, /\/images\/hackathon-cover\.webp/);
 
 const newsIndex = await readFile(new URL('../src/pages/news/index.astro', import.meta.url), 'utf8');
 assert.match(newsIndex, /getCollection\('news'\)/);
@@ -80,9 +80,10 @@ assert.match(join, /fetch\('\/api\/join'/);
 assert.match(join, /action="\/api\/join"/);
 assert.match(join, /mailto:hello@bhw\.hu/);
 assert.match(join, /Join the association/);
-assert.match(join, /\/images\/join\.jpg/);
-assert.match(join, /\/images\/join-2\.jpg/);
-assert.match(join, /\/images\/hackathon-cover\.jpg/);
+assert.match(join, /\/images\/join\.webp/);
+assert.match(join, /\/images\/join-2\.webp/);
+assert.match(join, /\/images\/hackathon-cover\.webp/);
+assert.match(join, /loading="lazy"/);
 assert.match(join, /data-carousel/);
 assert.match(join, /Priority access to events and workshops/);
 assert.match(join, /Member pricing for fabrication/);
