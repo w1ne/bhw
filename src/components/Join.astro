@@ -65,10 +65,10 @@
   .consent{font-size:.82rem;color:var(--muted);margin:18px 0 0;max-width:60ch}
   .carousel{margin:28px 0 0}
   .carousel-frame{position:relative}
-  .carousel-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+  .carousel-track{display:flex;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
   .carousel-track::-webkit-scrollbar{display:none}
   .carousel-track{background:var(--bg)}
-  .carousel-track img{flex:0 0 100%;width:100%;aspect-ratio:3/2;object-fit:contain;background:var(--bg);scroll-snap-align:start;scroll-snap-stop:always;display:block}
+  .carousel-track img{flex:0 0 100%;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;scroll-snap-align:start;scroll-snap-stop:always;display:block}
   .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);font-size:26px;line-height:1;cursor:pointer}
   .carousel-prev{left:12px}
   .carousel-next{right:12px}
