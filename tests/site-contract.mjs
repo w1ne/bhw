@@ -77,6 +77,7 @@ assert.match(join, /fetch\('\/api\/join'/);
 assert.match(join, /action="\/api\/join"/);
 assert.match(join, /mailto:hello@bhw\.hu/);
 assert.match(join, /Join the association/);
+assert.match(join, /\/images\/join\.jpg/);
 assert.match(join, /Priority access to events and workshops/);
 assert.match(join, /Member pricing for fabrication/);
 assert.match(join, /Discord/);
