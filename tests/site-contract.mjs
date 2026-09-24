@@ -66,8 +66,7 @@ assert.doesNotMatch(nav, /hackathon/i);
 
 const join = await readFile(new URL('../src/components/Join.astro', import.meta.url), 'utf8');
 assert.match(join, /hackathons/i);
-assert.match(join, /help each other on hardware projects/i);
-assert.match(join, /Help with members' hardware projects/);
+assert.match(join, /help on hardware projects/i);
 assert.doesNotMatch(join, /luma\.com/);
 assert.match(join, /id="join"/);
 assert.match(join, /id="joinform"/);
