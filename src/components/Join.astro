@@ -67,13 +67,15 @@
   .formmsg.bad{color:#b42318}
   .consent{font-size:.82rem;color:var(--muted);margin:18px 0 0;max-width:60ch}
   .join-col{display:grid;align-content:start;gap:18px}
-  .carousel{margin:0;max-width:260px}
+  .contact-row{grid-template-columns:1fr 1fr}
+  @media(max-width:640px){.contact-row{grid-template-columns:1fr}}
+  .carousel{margin:0}
   .carousel-frame{position:relative}
   .carousel-track{display:flex;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
   .carousel-track::-webkit-scrollbar{display:none}
   .carousel-track{background:var(--bg)}
   .carousel-track img{flex:0 0 100%;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;scroll-snap-align:start;scroll-snap-stop:always;display:block}
-  .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:28px;height:28px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);font-size:18px;line-height:1;cursor:pointer}
+  .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
   .carousel-prev{left:12px}
   .carousel-next{right:12px}
   .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
