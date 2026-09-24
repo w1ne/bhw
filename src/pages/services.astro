@@ -8,54 +8,41 @@ import Footer from '../components/Footer.astro';
   <Navigation />
   <main id="top">
 
-    <section class="hero">
+    <section class="hero" id="request">
       <div class="wrap">
 
-        <h1><span class="en"><span class="accent">Parts made to order</span></span><span class="hu"><span class="accent">Alkatrészgyártás rendelésre</span></span></h1>
-        <p class="lead"><span class="en">3D printing, laser cutting, CAD design and electronics. Tell us what you need made. We’ll reply with a price and delivery date.</span><span class="hu">3D nyomtatás, lézervágás, CAD-tervezés és elektronika. Írd meg, mit szeretnél gyártatni. Árral és szállítási határidővel válaszolunk.</span></p>
-        <div class="btns">
-          <a class="btn primary" href="#request"><span class="en">Send a job</span><span class="hu">Munkát küldök</span></a>
-          <a class="btn ghost" href="#prices"><span class="en">Starting prices</span><span class="hu">Kezdő árak</span></a>
-        </div>
+        <h1><span class="en">Send a job</span><span class="hu">Küldj munkát</span></h1>
+        <p class="lead"><span class="en">3D printing, laser, CAD and electronics. We'll email you a price.</span><span class="hu">3D nyomtatás, lézer, CAD és elektronika. Árral írunk.</span></p>
+
+        <form class="form" id="jobform">
+          <div class="pair">
+            <div class="field">
+              <label for="name"><span class="en">Name</span><span class="hu">Név</span></label>
+              <input id="name" name="name" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email"><span class="en">Email</span><span class="hu">E-mail</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="application"><span class="en">What to make</span><span class="hu">Mit gyártsunk</span></label>
+            <textarea id="application" name="application" required minlength="10"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="files"><span class="en">File</span><span class="hu">Fájl</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></label>
+            <input id="files" name="files" type="file" multiple accept=".stl,.3mf,.step,.stp,.iges,.igs,.obj,.dxf,.svg,.pdf,.png,.jpg,.jpeg,.zip" />
+          </div>
+
+          <div class="foot">
+            <button class="btn primary" type="submit"><span class="en">Send</span><span class="hu">Elküldöm</span></button>
+          </div>
+          <p class="formmsg" id="formmsg" hidden></p>
+        </form>
       </div>
     </section>
-
-    <section id="processes">
-      <div class="wrap">
-        <div class="sec-head">
-
-          <h2><span class="en">Choose a service</span><span class="hu">Válassz szolgáltatást</span></h2>
-          <p><span class="en">Send a model, drawing or description of your project.</span><span class="hu">Küldj modellt, rajzot vagy projektleírást.</span></p>
-        </div>
-        <div class="cards process-tiles">
-          <a class="card process-tile" href="#request" data-process="3D printing">
-
-            <h3><span class="en">Print</span><span class="hu">Nyomtatás</span></h3>
-            <p><span class="en">FDM printing in PLA, PETG or TPU. Accepts STL, 3MF and STEP files.</span><span class="hu">FDM nyomtatás PLA, PETG vagy TPU anyagból. STL, 3MF és STEP fájlokat fogadunk.</span></p>
-            <span class="tile-link"><span class="en">Request a print →</span><span class="hu">FDM →</span></span>
-          </a>
-          <a class="card process-tile" href="#request" data-process="Laser">
-
-            <h3><span class="en">Laser</span><span class="hu">Lézer</span></h3>
-            <p><span class="en">Cutting and engraving wood and plywood with a 20 W diode laser.</span><span class="hu">Fa és rétegelt lemez vágása és gravírozása 20 W-os diódalézerrel.</span></p>
-            <span class="tile-link"><span class="en">Request laser work →</span><span class="hu">Lézer →</span></span>
-          </a>
-          <a class="card process-tile" href="#request" data-process="CAD design">
-
-            <h3><span class="en">CAD</span><span class="hu">CAD</span></h3>
-            <p><span class="en">Part design and a first print, including one agreed revision.</span><span class="hu">Alkatrésztervezés és első nyomtatás, egy egyeztetett módosítással.</span></p>
-            <span class="tile-link"><span class="en">Request CAD →</span><span class="hu">CAD kérés →</span></span>
-          </a>
-          <a class="card process-tile" href="#request" data-process="Electronics">
-
-            <h3><span class="en">Electronics</span><span class="hu">Elektronika</span></h3>
-            <p><span class="en">Boards, wiring and firmware. Starts with a paid planning session.</span><span class="hu">Panelek, bekötés és firmware. Fizetett tervezési egyeztetéssel kezdünk.</span></p>
-            <span class="tile-link"><span class="en">Discuss your project →</span><span class="hu">Elektronika →</span></span>
-          </a>
-        </div>
-      </div>
-    </section>
-
 
     <section id="prices">
       <div class="wrap">
@@ -97,62 +84,6 @@ import Footer from '../components/Footer.astro';
       </div>
     </section>
 
-    <section id="how">
-      <div class="wrap">
-        <div class="sec-head">
-
-          <h2><span class="en">How it works</span><span class="hu">Hogyan működik</span></h2>
-        </div>
-        <div class="cards">
-          <div class="card"><h3><span class="en">Send the brief</span><span class="hu">Küldd el a leírást</span></h3><p><span class="en">File, sketch or the broken part itself.</span><span class="hu">Fájl, vázlat vagy maga a törött alkatrész.</span></p></div>
-          <div class="card"><h3><span class="en">Fixed price and date</span><span class="hu">Rögzített ár és határidő</span></h3><p><span class="en">We reply within one working day.</span><span class="hu">Egy munkanapon belül válaszolunk.</span></p></div>
-          <div class="card"><h3><span class="en">Approval, then production</span><span class="hu">Jóváhagyás, aztán gyártás</span></h3><p><span class="en">You approve the first part before we make the rest.</span><span class="hu">Az első darabot jóváhagyod; utána indul a széria.</span></p></div>
-          <div class="card"><h3><span class="en">Pickup or shipping</span><span class="hu">Átvétel vagy szállítás</span></h3><p><span class="en">Budapest pickup by arrangement, or parcel delivery.</span><span class="hu">Átvétel Budapesten megbeszélés szerint, vagy csomagküldés.</span></p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="request">
-      <div class="wrap">
-        <div class="sec-head">
-
-          <h2><span class="en">Send a job</span><span class="hu">Küldj munkát</span></h2>
-          <p><span class="en">Name, email, and what to make. Attach a file if you have one.</span><span class="hu">Név, e-mail, és mit gyártsunk. Csatolj fájlt, ha van.</span></p>
-        </div>
-
-        <form class="form" id="jobform">
-          <input type="hidden" id="process" name="process" value="" />
-
-          <div class="pair">
-            <div class="field">
-              <label for="name"><span class="en">Name</span><span class="hu">Név</span></label>
-              <input id="name" name="name" autocomplete="name" required />
-            </div>
-            <div class="field">
-              <label for="email"><span class="en">Email</span><span class="hu">E-mail</span></label>
-              <input id="email" name="email" type="email" autocomplete="email" required />
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="application"><span class="en">What to make</span><span class="hu">Mit gyártsunk</span></label>
-            <textarea id="application" name="application" required minlength="10"></textarea>
-          </div>
-
-          <div class="field">
-            <label for="files"><span class="en">File</span><span class="hu">Fájl</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></label>
-            <input id="files" name="files" type="file" multiple accept=".stl,.3mf,.step,.stp,.iges,.igs,.obj,.dxf,.svg,.pdf,.png,.jpg,.jpeg,.zip" />
-          </div>
-
-          <div class="foot">
-            <button class="btn primary" type="submit"><span class="en">Send</span><span class="hu">Elküldöm</span></button>
-          </div>
-          <p class="formmsg" id="formmsg" hidden></p>
-        </form>
-
-      </div>
-    </section>
-
   </main>
   <Footer />
 
@@ -162,9 +93,6 @@ import Footer from '../components/Footer.astro';
     .hero p.lead{margin:14px 0 0;max-width:640px}
     .hero .btns{justify-content:flex-start;margin-top:28px}
     .sec-head p{max-width:640px}
-    .process-tiles a.card{color:inherit;transition:border-color .15s,box-shadow .15s}
-    .process-tiles a.card:hover{border-color:var(--accent);box-shadow:none}
-    .process-tiles .tile-link{display:inline-block;margin-top:14px;font-weight:600;font-size:.9rem;color:var(--accent-2)}
     .price-table{display:grid;border:1px solid var(--line);border-radius:0;overflow:hidden;background:var(--card)}
     .price-row{display:grid;grid-template-columns:1.2fr .7fr 1.6fr;gap:16px;align-items:baseline;padding:16px 20px;border-bottom:1px solid var(--line)}
     .price-row:last-child{border-bottom:0}
@@ -173,7 +101,7 @@ import Footer from '../components/Footer.astro';
     @media(max-width:640px){.price-row{grid-template-columns:1fr;gap:4px}.price-head{display:none}.price-row .n{margin:2px 0}}
     .note{color:var(--muted);font-size:.92rem;max-width:70ch;margin-top:22px}
     .note a{color:var(--accent-2)}
-    .form{display:grid;gap:20px;max-width:680px}
+    .form{display:grid;gap:20px;max-width:680px;margin-top:28px}
     .pair{display:grid;gap:20px}
     @media(min-width:640px){.pair{grid-template-columns:1fr 1fr}}
     .field{display:grid;gap:7px;min-width:0}
@@ -225,17 +153,6 @@ import Footer from '../components/Footer.astro';
         msg.hidden = false;
       };
 
-      const processField = document.getElementById('process');
-      const applyProcess = (value) => {
-        if (processField && value) processField.value = value;
-      };
-      const params = new URLSearchParams(window.location.search);
-      applyProcess(params.get('process'));
-
-      document.querySelectorAll('[data-process]').forEach((el) => {
-        el.addEventListener('click', () => applyProcess(el.getAttribute('data-process')));
-      });
-
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
         msg.hidden = true;
@@ -276,7 +193,6 @@ import Footer from '../components/Footer.astro';
           if (!response.ok || !data || !data.ok) throw new Error((data && data.error) || 'could not send');
           document.dispatchEvent(new CustomEvent('bhw:enquiry-accepted'));
           form.reset();
-          applyProcess(params.get('process'));
           say(t('sent') + warning, false);
         } catch (error) {
           say(error.message + t('fallback'), true);
