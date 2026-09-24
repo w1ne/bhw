@@ -46,8 +46,8 @@ const nav = await readFile(new URL('../src/components/Navigation.astro', import.
 assert.match(nav, /href="\/#join"/);
 assert.doesNotMatch(nav, /luma\.com/);
 assert.match(nav, /Join|Csatlakozz/);
-assert.match(nav, /href="\/founding\/"/);
-assert.match(nav, /Found|Alapítás/);
+assert.doesNotMatch(nav, /href="\/founding\/"/);
+assert.doesNotMatch(nav, />Found</);
 assert.match(nav, /mailto:hello@bhw\.hu\?subject=Job%20posting/);
 assert.match(nav, /Post a job|Állást hirdetek/);
 assert.match(nav, /href="\/services\/#request"/);
@@ -75,8 +75,17 @@ assert.match(join, /name="bhw_hp"/);
 assert.match(join, /fetch\('\/api\/join'/);
 assert.match(join, /action="\/api\/join"/);
 assert.match(join, /mailto:hello@bhw\.hu/);
-assert.match(join, /href="\/founding\/"/);
-assert.match(join, /founding member|alapító/i);
+assert.match(join, /Join the association/);
+assert.match(join, /Priority access to events and workshops/);
+assert.match(join, /Member pricing for fabrication/);
+assert.match(join, /Discord/);
+assert.match(join, /vote on decisions/);
+assert.match(join, /egyesület/i);
+assert.doesNotMatch(join, /href="\/founding\/"/);
+assert.doesNotMatch(join, /founding member/i);
+assert.doesNotMatch(join, /name="dues"/);
+assert.doesNotMatch(join, /name="notes"/);
+assert.doesNotMatch(join, /name="consent"/);
 
 // Jobs board: static catalog in public/jobs.json, rendered by Jobs.astro.
 const jobs = await readFile(new URL('../src/components/Jobs.astro', import.meta.url), 'utf8');
@@ -147,8 +156,7 @@ assert.match(production, /class="en"/);
 assert.match(production, /class="hu"/);
 
 const footer = await readFile(new URL('../src/components/Footer.astro', import.meta.url), 'utf8');
-assert.match(footer, /href="\/founding\/"/);
-assert.match(footer, /Found|Alapítás/);
+assert.doesNotMatch(footer, /href="\/founding\/"/);
 assert.match(footer, /href="\/services\/"/);
 assert.doesNotMatch(footer, /href="\/machines\/"/);
 assert.doesNotMatch(footer, /Machines|Gépek/);
@@ -177,7 +185,8 @@ assert.match(globalCss, /prod-actions/);
 
 const hero = await readFile(new URL('../src/components/Hero.astro', import.meta.url), 'utf8');
 assert.match(hero, /luma\.com\/BudapestHardware/);
-assert.match(hero, /Join the next meetup/);
+assert.match(hero, /Next meetup on Luma/);
+assert.doesNotMatch(hero, /Join the next meetup/);
 assert.doesNotMatch(hero, /href="\/machines\/"/);
 
 
@@ -200,43 +209,21 @@ for (const path of [
 }
 
 
-// Founding association page + API (egyesület — not a foundation/alapítvány).
+// /founding/ is the same association offer as the homepage Join section.
 const foundingPage = await readFile(new URL('../src/pages/founding.astro', import.meta.url), 'utf8');
 assert.match(foundingPage, /BaseLayout/);
-assert.match(foundingPage, /Found the association|Egyesület alapítása/);
-assert.match(foundingPage, /id="foundingform"/);
-assert.match(foundingPage, /name="name"/);
-assert.match(foundingPage, /name="email"/);
-assert.match(foundingPage, /name="dues"/);
-assert.match(foundingPage, /name="notes"/);
-assert.match(foundingPage, /name="bhw_hp"/);
-assert.match(foundingPage, /name="consent"/);
-assert.doesNotMatch(foundingPage, /name="role"/);
-assert.doesNotMatch(foundingPage, /name="intent_founding"/);
-assert.doesNotMatch(foundingPage, /name="intent_dues"/);
-assert.doesNotMatch(foundingPage, /name="help"/);
-assert.match(foundingPage, /fetch\('\/api\/founding'/);
-assert.match(foundingPage, /action="\/api\/founding"/);
-assert.match(foundingPage, /mailto:hello@bhw\.hu/);
-assert.match(foundingPage, /egyesület/i);
+assert.match(foundingPage, /<Join/);
+assert.doesNotMatch(foundingPage, /name="dues"/);
+assert.doesNotMatch(foundingPage, /name="consent"/);
 assert.doesNotMatch(foundingPage, /alapítvány/i);
 assert.doesNotMatch(foundingPage, /\bfoundation\b/i);
 
 const foundingFn = await readFile(new URL('../functions/api/founding.js', import.meta.url), 'utf8');
 assert.match(foundingFn, /onRequestPost/);
 assert.match(foundingFn, /onRequestGet/);
-assert.match(foundingFn, /env\.JOIN\b/);
-assert.match(foundingFn, /JOIN_TOKEN/);
-assert.match(foundingFn, /data\.bhw_hp/);
-assert.match(foundingFn, /founding:\$\{email\.toLowerCase\(\)\}/);
-assert.match(foundingFn, /prefix:\s*"founding:"/);
-assert.match(foundingFn, /bhw-founding\.csv/);
-assert.match(foundingFn, /list_complete/);
-assert.match(foundingFn, /\[\=\+\\-@\\t\\r\]/);
-assert.match(foundingFn, /lib\/mail\.js/);
-assert.match(foundingFn, /Founding: \$\{name\}/);
-assert.match(foundingFn, /consent is required/);
-assert.doesNotMatch(foundingFn, /intent_founding/);
-assert.doesNotMatch(foundingFn, /pick at least one intent/);
+assert.match(foundingFn, /from ["']\.\/join\.js["']/);
+
+const joinMail = await readFile(new URL('../functions/api/join.js', import.meta.url), 'utf8');
+assert.match(joinMail, /Wants to join the association/);
 
 console.log('site contract passed');

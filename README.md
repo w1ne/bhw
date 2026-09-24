@@ -85,11 +85,11 @@ namespace.
 
 ## Join list
 
-The homepage Join section collects a name and an email for meetup
-announcements. Signups land in the `JOIN` KV namespace (key
+The homepage Join section is how someone joins the association: a name and an
+email. Signups land in the `JOIN` KV namespace (key
 `join:<lowercased email>`, so a repeat signup updates rather than duplicates)
 and each one sends a notification to the club inbox with Reply-To the signer.
-Luma stays the RSVP path for meetups.
+Luma is the meetup calendar, not this list. `/founding/` shows the same form.
 
 Bindings on the Pages project (`bhw`):
 
@@ -104,7 +104,7 @@ Export the list:
 curl "https://bhw.hu/api/join?token=$JOIN_TOKEN" -o join.csv
 ```
 
-Founding-member signups (name, email, optional dues band and note) use the same `JOIN` KV and `JOIN_TOKEN`, keyed `founding:<email>`. Each one emails the club inbox. Export with `curl "https://bhw.hu/api/founding?token=$JOIN_TOKEN" -o founding.csv`.
+`/api/founding` is the same signup as `/api/join`.
 
 Without the token the endpoint returns 404. The HTTP export returns 503 once
 the list exceeds 900 signups (KV caps a Worker invocation at 1,000

@@ -1,4 +1,4 @@
-// POST /api/join — mailing-list signup from the homepage Join section.
+// POST /api/join — association signup from the homepage Join section.
 //
 // One intake and one store: the record goes to the JOIN KV namespace and a
 // notification goes to the club inbox with Reply-To set to the signer. The
@@ -148,7 +148,7 @@ function bodyFor(record, key) {
   return [
     `${record.name} <${record.email}>`,
     "",
-    `Signed up on bhw.hu on ${record.submittedAt}`,
+    `Wants to join the association. Signed up on bhw.hu on ${record.submittedAt}`,
     record.ip_country ? `Country: ${record.ip_country}` : null,
     "",
     "--",
