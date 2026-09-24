@@ -29,9 +29,20 @@
   </div>
 </div>
 <div class="wrap">
-  <figure class="join-photo">
-    <img src="/images/join.jpg" alt="Members working together on laptops and hardware" width="1800" height="1096" />
-  </figure>
+  <div class="carousel" data-carousel>
+    <div class="carousel-frame">
+      <div class="carousel-track">
+        <img src="/images/join.jpg" alt="Members working together on laptops and hardware" width="1800" height="1096" />
+        <img src="/images/join-2.jpg" alt="Members at another table working on laptops and hardware" width="1800" height="1200" />
+      </div>
+      <button class="carousel-btn carousel-prev" type="button" data-en="Previous photo" data-hu="Előző kép" aria-label="Previous photo">‹</button>
+      <button class="carousel-btn carousel-next" type="button" data-en="Next photo" data-hu="Következő kép" aria-label="Next photo">›</button>
+    </div>
+    <div class="carousel-dots">
+      <button type="button" data-en="Photo 1" data-hu="1. kép" aria-label="Photo 1" aria-current="true"></button>
+      <button type="button" data-en="Photo 2" data-hu="2. kép" aria-label="Photo 2"></button>
+    </div>
+  </div>
 </div>
 </section>
 
@@ -52,8 +63,18 @@
   .formmsg.good{color:var(--accent-2)}
   .formmsg.bad{color:#b42318}
   .consent{font-size:.82rem;color:var(--muted);margin:18px 0 0;max-width:60ch}
-  .join-photo{margin:28px 0 0}
-  .join-photo img{width:100%;height:auto;display:block}
+  .carousel{margin:28px 0 0}
+  .carousel-frame{position:relative}
+  .carousel-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+  .carousel-track::-webkit-scrollbar{display:none}
+  .carousel-track{background:var(--bg)}
+  .carousel-track img{flex:0 0 100%;width:100%;aspect-ratio:3/2;object-fit:contain;background:var(--bg);scroll-snap-align:start;scroll-snap-stop:always;display:block}
+  .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);font-size:26px;line-height:1;cursor:pointer}
+  .carousel-prev{left:12px}
+  .carousel-next{right:12px}
+  .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
+  .carousel-dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:var(--line);cursor:pointer}
+  .carousel-dots button[aria-current="true"]{background:var(--ink)}
 </style>
 
 <script>
@@ -102,5 +123,36 @@
         button.innerHTML = label;
       }
     });
+  })();
+
+  (() => {
+    const root = document.querySelector('[data-carousel]');
+    if (!root) return;
+    const track = root.querySelector('.carousel-track');
+    const slides = [...track.querySelectorAll('img')];
+    const dots = [...root.querySelectorAll('.carousel-dots button')];
+    const label = (el) => {
+      const language = document.documentElement.getAttribute('data-lang') === 'hu' ? 'hu' : 'en';
+      el.setAttribute('aria-label', el.dataset[language] || el.getAttribute('aria-label'));
+    };
+    const labels = () => {
+      root.querySelectorAll('[data-en]').forEach(label);
+    };
+    const index = () => Math.round(track.scrollLeft / (track.clientWidth || 1));
+    const go = (i) => {
+      const n = (i + slides.length) % slides.length;
+      track.scrollTo({ left: n * track.clientWidth, behavior: 'smooth' });
+    };
+    const mark = () => {
+      const current = index();
+      dots.forEach((dot, n) => dot.setAttribute('aria-current', n === current ? 'true' : 'false'));
+    };
+    root.querySelector('.carousel-prev').addEventListener('click', () => go(index() - 1));
+    root.querySelector('.carousel-next').addEventListener('click', () => go(index() + 1));
+    dots.forEach((dot, n) => dot.addEventListener('click', () => go(n)));
+    track.addEventListener('scroll', mark, { passive: true });
+    document.addEventListener('bhw-lang-change', labels);
+    labels();
+    mark();
   })();
 </script>
