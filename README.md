@@ -123,7 +123,8 @@ a Cloudflare rate-limiting rule for `/api/join`; the KV free-tier write quota
 ## Production services
 
 `/services/` offers club-run 3D printing, laser cutting, CAD and electronics
-work. The form posts to `/api/request` (KV `REQUESTS`, notification mail) and
+work. The form asks for a name, an email, what to make, and an optional file.
+It posts to `/api/request` (KV `REQUESTS`, notification mail) and
 files go to `/api/upload` (R2 `bhw-uploads`), cited in the record by key.
 Nothing is readable back over HTTP.
 

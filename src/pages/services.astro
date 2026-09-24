@@ -117,64 +117,11 @@ import Footer from '../components/Footer.astro';
         <div class="sec-head">
 
           <h2><span class="en">Send a job</span><span class="hu">Küldj munkát</span></h2>
-          <p><span class="en">Describe the part, its dimensions, quantity and when you need it.</span><span class="hu">Írd le az alkatrészt, a méreteit, a darabszámot és a kért határidőt.</span></p>
+          <p><span class="en">Name, email, and what to make. Attach a file if you have one.</span><span class="hu">Név, e-mail, és mit gyártsunk. Csatolj fájlt, ha van.</span></p>
         </div>
 
         <form class="form" id="jobform">
-          <div class="pick">
-            <label>
-              <input type="radio" name="entry" value="file" checked />
-              <span><span class="en">I have a file</span><span class="hu">Van fájlom</span></span>
-            </label>
-            <label>
-              <input type="radio" name="entry" value="design" />
-              <span><span class="en">I need it designed</span><span class="hu">Meg kell tervezni</span></span>
-            </label>
-            <label>
-              <input type="radio" name="entry" value="electronics" />
-              <span><span class="en">Electronics and firmware</span><span class="hu">Elektronika és firmware</span></span>
-            </label>
-          </div>
-
-          <div class="pair">
-            <div class="field">
-              <label for="process"><span class="en">Process</span><span class="hu">Folyamat</span></label>
-              <select id="process" name="process">
-                <option value="3D printing" data-en="3D printing" data-hu="3D nyomtatás">3D printing</option>
-                <option value="Laser" data-en="Laser cutting or engraving" data-hu="Lézervágás vagy gravírozás">Laser cutting or engraving</option>
-                <option value="Print + laser" data-en="Printing and laser" data-hu="Nyomtatás és lézer">Printing and laser</option>
-                <option value="CAD design" data-en="CAD design" data-hu="CAD tervezés">CAD design</option>
-                <option value="Electronics" data-en="Electronics and firmware" data-hu="Elektronika és firmware">Electronics and firmware</option>
-                <option value="Not sure" data-en="Not sure - recommend" data-hu="Nem tudom - javasoljatok">Not sure - recommend</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="material"><span class="en">Material</span><span class="hu">Anyag</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></label>
-              <input id="material" name="material" placeholder="PLA, PETG, wood…" />
-            </div>
-          </div>
-
-          <div class="pair">
-            <div class="field">
-              <label for="quantity"><span class="en">How many</span><span class="hu">Mennyi</span></label>
-              <input id="quantity" name="quantity" inputmode="numeric" placeholder="1" />
-            </div>
-            <div class="field">
-              <label for="timeline"><span class="en">When you need it</span><span class="hu">Mikorra kell</span></label>
-              <input id="timeline" name="timeline" placeholder="This week / no rush" />
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="application"><span class="en">What you need</span><span class="hu">Mire van szükséged</span></label>
-            <textarea id="application" name="application" required placeholder="Describe the part, how it will be used, and any dimensions or load requirements."></textarea>
-          </div>
-
-          <div class="field">
-            <label for="files"><span class="en">Files</span><span class="hu">Fájlok</span> <span class="opt"><span class="en">optional, up to 6</span><span class="hu">nem kötelező, max 6</span></span></label>
-            <input id="files" name="files" type="file" multiple accept=".stl,.3mf,.step,.stp,.iges,.igs,.obj,.dxf,.svg,.pdf,.png,.jpg,.jpeg,.zip" />
-            <p class="hint"><span class="en">STL, 3MF, STEP, DXF, SVG, PDF, photos or a ZIP - up to 6 files, 25 MB each.</span><span class="hu">STL, 3MF, STEP, DXF, SVG, PDF, fotó vagy ZIP - max 6 fájl, egyenként 25 MB.</span></p>
-          </div>
+          <input type="hidden" id="process" name="process" value="" />
 
           <div class="pair">
             <div class="field">
@@ -187,20 +134,18 @@ import Footer from '../components/Footer.astro';
             </div>
           </div>
 
-          <div class="pair">
-            <div class="field">
-              <label for="org"><span class="en">Company</span><span class="hu">Cég</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></label>
-              <input id="org" name="org" autocomplete="organization" />
-            </div>
-            <div class="field">
-              <label for="budget"><span class="en">Budget</span><span class="hu">Költségkeret</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></label>
-              <input id="budget" name="budget" placeholder="" />
-            </div>
+          <div class="field">
+            <label for="application"><span class="en">What to make</span><span class="hu">Mit gyártsunk</span></label>
+            <textarea id="application" name="application" required minlength="10"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="files"><span class="en">File</span><span class="hu">Fájl</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></label>
+            <input id="files" name="files" type="file" multiple accept=".stl,.3mf,.step,.stp,.iges,.igs,.obj,.dxf,.svg,.pdf,.png,.jpg,.jpeg,.zip" />
           </div>
 
           <div class="foot">
-            <button class="btn primary" type="submit"><span class="en">Send the brief</span><span class="hu">Elküldöm</span></button>
-            <span class="hint"><span class="en">We’ll send a quote for your approval.</span><span class="hu">Árajánlatot küldünk jóváhagyásra.</span></span>
+            <button class="btn primary" type="submit"><span class="en">Send</span><span class="hu">Elküldöm</span></button>
           </div>
           <p class="formmsg" id="formmsg" hidden></p>
         </form>
@@ -238,12 +183,6 @@ import Footer from '../components/Footer.astro';
     .field textarea{min-height:96px;resize:vertical}
     .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--accent)}
     .field .hint{font-size:.82rem;color:var(--muted);margin:0}
-    .pick{display:grid;gap:12px}
-    @media(min-width:760px){.pick{grid-template-columns:repeat(3,1fr)}}
-    .pick label{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:4px;padding:14px 16px;cursor:pointer;background:var(--card);font-weight:600;font-size:.95rem;transition:border-color .15s}
-    .pick label:hover{border-color:var(--accent)}
-    .pick label:has(input:checked){border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
-    .pick input{accent-color:var(--accent);margin:0}
     .foot{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
     .formmsg{margin:0;font-size:.95rem}
     .formmsg.good{color:var(--accent-2)}
@@ -266,8 +205,8 @@ import Footer from '../components/Footer.astro';
         sending: { en: 'Sending…', hu: 'Küldés…' },
         uploading: { en: 'Uploading…', hu: 'Feltöltés…' },
         sent: {
-          en: 'Sent. We answer within one working day, with a fixed price and a date.',
-          hu: 'Elküldve. Egy munkanapon belül válaszolunk, rögzített árral és határidővel.'
+          en: "Sent. We'll email you a price.",
+          hu: 'Elküldve. Árral írunk.'
         },
         tooMany: { en: 'Up to 6 files per request.', hu: 'Legfeljebb 6 fájl küldhető.' },
         tooBig: { en: 'A file is larger than 25 MB.', hu: 'Egy fájl nagyobb, mint 25 MB.' },
@@ -286,22 +225,9 @@ import Footer from '../components/Footer.astro';
         msg.hidden = false;
       };
 
-      // A select cannot carry .en/.hu spans, so the option text is swapped on
-      // the same language event the header buttons dispatch.
-      const swapOptions = () => {
-        const language = lang();
-        for (const option of document.getElementById('process').options) {
-          option.textContent = option.dataset[language] || option.textContent;
-        }
-      };
-      swapOptions();
-      document.addEventListener('bhw-lang-change', swapOptions);
-
-      const processSelect = document.getElementById('process');
+      const processField = document.getElementById('process');
       const applyProcess = (value) => {
-        if (!value || !processSelect) return;
-        const match = [...processSelect.options].find((o) => o.value === value);
-        if (match) processSelect.value = value;
+        if (processField && value) processField.value = value;
       };
       const params = new URLSearchParams(window.location.search);
       applyProcess(params.get('process'));
@@ -350,7 +276,7 @@ import Footer from '../components/Footer.astro';
           if (!response.ok || !data || !data.ok) throw new Error((data && data.error) || 'could not send');
           document.dispatchEvent(new CustomEvent('bhw:enquiry-accepted'));
           form.reset();
-          swapOptions();
+          applyProcess(params.get('process'));
           say(t('sent') + warning, false);
         } catch (error) {
           say(error.message + t('fallback'), true);

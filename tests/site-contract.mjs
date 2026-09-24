@@ -153,6 +153,16 @@ assert.match(services, /process-tiles|data-process/);
 assert.match(services, /price-table/);
 assert.match(services, /#request/);
 assert.match(services, /#prices/);
+assert.match(services, /name="name"/);
+assert.match(services, /name="email"/);
+assert.match(services, /name="application"/);
+assert.match(services, /name="files"/);
+assert.doesNotMatch(services, /name="budget"/);
+assert.doesNotMatch(services, /name="material"/);
+assert.doesNotMatch(services, /name="quantity"/);
+assert.doesNotMatch(services, /name="timeline"/);
+assert.doesNotMatch(services, /name="org"/);
+assert.doesNotMatch(services, /name="entry"/);
 
 assert.match(nav, /href="\/services\/#request"/);
 assert.match(nav, /Production|Gyártás/);
