@@ -1,5 +1,23 @@
 <section id="join"><div class="wrap contact-row">
-  <h2><span class="en">Join the association</span><span class="hu">Csatlakozz az egyesülethez</span></h2>
+  <div class="join-col">
+    <h2><span class="en">Join the association</span><span class="hu">Csatlakozz az egyesülethez</span></h2>
+    <div class="carousel" data-carousel>
+      <div class="carousel-frame">
+        <div class="carousel-track">
+          <img src="/images/join.webp" alt="Members working together on laptops and hardware" width="1600" height="974" decoding="async" />
+          <img src="/images/join-2.webp" alt="Members at another table working on laptops and hardware" width="1600" height="1067" decoding="async" />
+          <img src="/images/hackathon-cover.webp" alt="A group gathered around a table of hardware parts at the hackathon" width="1600" height="1067" decoding="async" />
+        </div>
+        <button class="carousel-btn carousel-prev" type="button" data-en="Previous photo" data-hu="Előző kép" aria-label="Previous photo">‹</button>
+        <button class="carousel-btn carousel-next" type="button" data-en="Next photo" data-hu="Következő kép" aria-label="Next photo">›</button>
+      </div>
+      <div class="carousel-dots">
+        <button type="button" data-en="Photo 1" data-hu="1. kép" aria-label="Photo 1" aria-current="true"></button>
+        <button type="button" data-en="Photo 2" data-hu="2. kép" aria-label="Photo 2"></button>
+        <button type="button" data-en="Photo 3" data-hu="3. kép" aria-label="Photo 3"></button>
+      </div>
+    </div>
+  </div>
   <div>
     <p class="what"><span class="en">Meetups, workshops, hackathons, and help on hardware projects.</span><span class="hu">Meetupok, workshopok, hackathonok, és segítség hardverprojektekben.</span></p>
     <ul class="benefits">
@@ -29,24 +47,6 @@
     <p class="consent"><span class="en">We'll email you. Questions: </span><span class="hu">Írunk neked. Kérdés: </span><a href="mailto:hello@bhw.hu">hello@bhw.hu</a></p>
   </div>
 </div>
-<div class="wrap">
-  <div class="carousel" data-carousel>
-    <div class="carousel-frame">
-      <div class="carousel-track">
-        <img src="/images/join.webp" alt="Members working together on laptops and hardware" width="1600" height="974" loading="lazy" decoding="async" />
-        <img src="/images/join-2.webp" alt="Members at another table working on laptops and hardware" width="1600" height="1067" loading="lazy" decoding="async" />
-        <img src="/images/hackathon-cover.webp" alt="A group gathered around a table of hardware parts at the hackathon" width="1600" height="1067" loading="lazy" decoding="async" />
-      </div>
-      <button class="carousel-btn carousel-prev" type="button" data-en="Previous photo" data-hu="Előző kép" aria-label="Previous photo">‹</button>
-      <button class="carousel-btn carousel-next" type="button" data-en="Next photo" data-hu="Következő kép" aria-label="Next photo">›</button>
-    </div>
-    <div class="carousel-dots">
-      <button type="button" data-en="Photo 1" data-hu="1. kép" aria-label="Photo 1" aria-current="true"></button>
-      <button type="button" data-en="Photo 2" data-hu="2. kép" aria-label="Photo 2"></button>
-      <button type="button" data-en="Photo 3" data-hu="3. kép" aria-label="Photo 3"></button>
-    </div>
-  </div>
-</div>
 </section>
 
 <style>
@@ -66,13 +66,14 @@
   .formmsg.good{color:var(--accent-2)}
   .formmsg.bad{color:#b42318}
   .consent{font-size:.82rem;color:var(--muted);margin:18px 0 0;max-width:60ch}
-  .carousel{margin:28px 0 0}
+  .join-col{display:grid;align-content:start;gap:18px}
+  .carousel{margin:0;max-width:260px}
   .carousel-frame{position:relative}
   .carousel-track{display:flex;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
   .carousel-track::-webkit-scrollbar{display:none}
   .carousel-track{background:var(--bg)}
   .carousel-track img{flex:0 0 100%;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;scroll-snap-align:start;scroll-snap-stop:always;display:block}
-  .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);font-size:26px;line-height:1;cursor:pointer}
+  .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:28px;height:28px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);font-size:18px;line-height:1;cursor:pointer}
   .carousel-prev{left:12px}
   .carousel-next{right:12px}
   .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
@@ -150,12 +151,25 @@
       const current = index();
       dots.forEach((dot, n) => dot.setAttribute('aria-current', n === current ? 'true' : 'false'));
     };
-    root.querySelector('.carousel-prev').addEventListener('click', () => go(index() - 1));
-    root.querySelector('.carousel-next').addEventListener('click', () => go(index() + 1));
-    dots.forEach((dot, n) => dot.addEventListener('click', () => go(n)));
+    const stop = () => clearInterval(timer);
+    let timer;
+    const start = () => {
+      stop();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      timer = setInterval(() => go(index() + 1), 4000);
+    };
+    root.querySelector('.carousel-prev').addEventListener('click', () => { go(index() - 1); start(); });
+    root.querySelector('.carousel-next').addEventListener('click', () => { go(index() + 1); start(); });
+    dots.forEach((dot, n) => dot.addEventListener('click', () => { go(n); start(); }));
     track.addEventListener('scroll', mark, { passive: true });
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    root.addEventListener('focusin', stop);
+    root.addEventListener('focusout', start);
+    document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
     document.addEventListener('bhw-lang-change', labels);
     labels();
     mark();
+    start();
   })();
 </script>
