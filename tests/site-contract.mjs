@@ -191,6 +191,8 @@ assert.match(footer, /href="\/#events"/);
 assert.match(footer, /href="\/news\/"/);
 assert.match(footer, /href="\/#jobs"/);
 assert.doesNotMatch(footer, /koamtachi/);
+assert.match(footer, /Want to be a partner\? Drop a message to/);
+assert.match(footer, /Partner szeretnél lenni\?/);
 
 const request = await readFile(new URL('../functions/api/request.js', import.meta.url), 'utf8');
 assert.match(request, /onRequestPost/);
