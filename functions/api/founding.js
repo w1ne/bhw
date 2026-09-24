@@ -1,24 +1,17 @@
-// POST /api/founding — association founding-member / dues LOI interest.
+// POST /api/founding — founding-member signup for the egyesület.
 //
 // Same JOIN KV namespace as /api/join, keyed founding:<email>. GET export is
 // token-gated with JOIN_TOKEN and returns only founding: keys as CSV.
+// Each signup emails the club inbox (see lib/mail.js), Reply-To the signer.
 //
-// Bindings: JOIN (KV). Secrets: JOIN_TOKEN.
+// Bindings: JOIN (KV), MAILER (service). Secrets: JOIN_TOKEN.
 //
 //   curl "https://bhw.hu/api/founding?token=$JOIN_TOKEN" -o founding.csv
 
 import { send, OPS } from "../../lib/mail.js";
 
 const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-const ROLES = new Set([
-  "Firmware",
-  "Electronics & PCB",
-  "Mechanical",
-  "Embedded software",
-  "Other",
-]);
 const DUES = new Set(["~5k HUF", "~10k HUF", "~15k+ HUF", "not sure"]);
-const HELP = new Set(["venue", "sponsor", "talks", "legal", "other"]);
 
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -61,36 +54,18 @@ export async function onRequestPost({ request, env, waitUntil }) {
   if (!EMAIL.test(email) || email.length > 254 || new TextEncoder().encode(email).length > 500) {
     return json({ ok: false, error: "a valid email is required" }, 400);
   }
-
-  const intentFounding = truthy(data.intent_founding);
-  const intentDues = truthy(data.intent_dues);
-  if (!intentFounding && !intentDues) {
-    return json({ ok: false, error: "pick at least one intent" }, 400);
-  }
-
   if (!truthy(data.consent)) {
     return json({ ok: false, error: "consent is required" }, 400);
   }
 
-  const roleRaw = String(data.role || "").trim();
-  const role = ROLES.has(roleRaw) ? roleRaw : "";
-
   const duesRaw = String(data.dues || "").trim();
   const dues = DUES.has(duesRaw) ? duesRaw : "";
-
-  let helpList = Array.isArray(data.help) ? data.help : data.help ? [data.help] : [];
-  helpList = [...new Set(helpList.map((h) => String(h).trim()).filter((h) => HELP.has(h)))];
-
   const notes = String(data.notes || "").trim().replace(/[\r\n]+/g, " ").slice(0, 1000);
 
   const record = {
     name,
     email,
-    role,
-    intent_founding: intentFounding,
-    intent_dues: intentDues,
     dues,
-    help: helpList,
     notes,
     consent: true,
     submittedAt: new Date().toISOString(),
@@ -148,22 +123,11 @@ export async function onRequestGet({ request, env }) {
     return `"${s.replace(/"/g, '""')}"`;
   };
   const csv = [
-    "submitted_at,name,email,role,intent_founding,intent_dues,dues,help,notes,country",
+    "submitted_at,name,email,dues,notes,country",
     ...rows
       .sort((a, b) => a.submittedAt.localeCompare(b.submittedAt))
       .map((r) =>
-        [
-          r.submittedAt,
-          r.name,
-          r.email,
-          r.role || "",
-          r.intent_founding ? "yes" : "no",
-          r.intent_dues ? "yes" : "no",
-          r.dues || "",
-          Array.isArray(r.help) ? r.help.join(";") : "",
-          r.notes || "",
-          r.ip_country,
-        ]
+        [r.submittedAt, r.name, r.email, r.dues || "", r.notes || "", r.ip_country]
           .map(cell)
           .join(",")
       ),
@@ -180,19 +144,12 @@ export async function onRequestGet({ request, env }) {
 }
 
 function bodyFor(record, key) {
-  const intents = [
-    record.intent_founding ? "founding member" : null,
-    record.intent_dues ? "dues LOI" : null,
-  ].filter(Boolean).join(", ");
   return [
     `${record.name} <${record.email}>`,
     "",
     `Founding interest on bhw.hu on ${record.submittedAt}`,
-    `Intents: ${intents}`,
-    record.role ? `Role: ${record.role}` : null,
-    record.dues ? `Dues band: ${record.dues}` : null,
-    record.help && record.help.length ? `Help: ${record.help.join(", ")}` : null,
-    record.notes ? `Notes: ${record.notes}` : null,
+    record.dues ? `Dues they could pay: ${record.dues}` : null,
+    record.notes ? `Note: ${record.notes}` : null,
     record.ip_country ? `Country: ${record.ip_country}` : null,
     "",
     "--",

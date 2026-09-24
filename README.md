@@ -104,7 +104,7 @@ Export the list:
 curl "https://bhw.hu/api/join?token=$JOIN_TOKEN" -o join.csv
 ```
 
-Founding-member / dues LOI signups use the same `JOIN` KV and `JOIN_TOKEN`, keyed `founding:<email>`; export with `curl "https://bhw.hu/api/founding?token=$JOIN_TOKEN" -o founding.csv`.
+Founding-member signups (name, email, optional dues band and note) use the same `JOIN` KV and `JOIN_TOKEN`, keyed `founding:<email>`. Each one emails the club inbox. Export with `curl "https://bhw.hu/api/founding?token=$JOIN_TOKEN" -o founding.csv`.
 
 Without the token the endpoint returns 404. The HTTP export returns 503 once
 the list exceeds 900 signups (KV caps a Worker invocation at 1,000

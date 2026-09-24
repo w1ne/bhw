@@ -11,46 +11,12 @@ import Footer from '../components/Footer.astro';
     <section class="hero">
       <div class="wrap">
         <h1><span class="en">Found the association</span><span class="hu">Egyesület alapítása</span></h1>
-        <p class="lead"><span class="en">Budapest Hardware Club is forming a Hungarian egyesület (association) so we can lease a shared clubhouse: desks, power, lockers and PCB / parcel pickup — not a FabLab. We need about 10 founding members and non-binding dues letters of intent before signing a lease.</span><span class="hu">A Budapest Hardware Club magyar egyesületet alapít, hogy közös klubhelyiséget bérelhessünk: asztalok, áram, szekrények és PCB / csomagátvétel — nem FabLab. Körülbelül 10 alapító tagra és nem kötelező érvényű tagdíj-szándéknyilatkozatra van szükségünk a bérlés előtt.</span></p>
-      </div>
-    </section>
-
-    <section id="benefits">
-      <div class="wrap">
-        <div class="sec-head">
-          <h2><span class="en">What founding members get</span><span class="hu">Mit kapnak az alapító tagok</span></h2>
-        </div>
-        <ul class="benefits">
-          <li><span class="en">Vote on bylaws and early decisions</span><span class="hu">Szavazás az alapszabályról és a korai döntésekről</span></li>
-          <li><span class="en">Early claim on a locker and parcel pickup</span><span class="hu">Korai szekrény- és csomagátvételi hely</span></li>
-          <li><span class="en">Access to the member channel</span><span class="hu">Hozzáférés a tagcsatornához</span></li>
-          <li><span class="en">Say in Bench Night and the jobs board</span><span class="hu">Szólásjoga a Bench Night és az állásboard ügyében</span></li>
-          <li><span class="en">Later member pricing on club production</span><span class="hu">Későbbi tagi árak a klub gyártásán</span></li>
-          <li><span class="en">CV and sponsor credibility as a founding member</span><span class="hu">Önéletrajz- és szponzor-megbízhatóság alapítóként</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="not">
-      <div class="wrap">
-        <div class="sec-head">
-          <h2><span class="en">What this is not</span><span class="hu">Mi ez nem</span></h2>
-        </div>
-        <ul class="benefits not-list">
-          <li><span class="en">No payment yet — this is a letter of intent only</span><span class="hu">Még nincs fizetés — ez csak szándéknyilatkozat</span></li>
-          <li><span class="en">Not a company registered address</span><span class="hu">Nem céges székhely</span></li>
-          <li><span class="en">Not a FabLab or walk-in workshop</span><span class="hu">Nem FabLab és nem önkiszolgáló műhely</span></li>
-        </ul>
+        <p class="lead"><span class="en">We are forming a Hungarian association so the club can lease a shared room: desks, power, lockers, and PCB pickup. We need about 10 founding members. No payment on this form.</span><span class="hu">Magyar egyesületet alapítunk, hogy a klub bérelhessen egy közös helyet: asztalok, áram, szekrények, PCB-átvétel. Körülbelül 10 alapító tag kell. Ezen az űrlapon nincs fizetés.</span></p>
       </div>
     </section>
 
     <section id="form">
       <div class="wrap">
-        <div class="sec-head">
-          <h2><span class="en">Register interest</span><span class="hu">Érdeklődés regisztrálása</span></h2>
-          <p><span class="en">Tell us how you want to take part. Non-binding.</span><span class="hu">Mondd el, hogyan szeretnél részt venni. Nem kötelező érvényű.</span></p>
-        </div>
-
         <form class="form" id="foundingform" method="post" action="/api/founding">
           <div class="pair">
             <div class="field">
@@ -64,32 +30,7 @@ import Footer from '../components/Footer.astro';
           </div>
 
           <div class="field">
-            <label for="founding-role"><span class="en">Role</span><span class="hu">Szerepkör</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></label>
-            <select id="founding-role" name="role">
-              <option value="" data-en="—" data-hu="—">—</option>
-              <option value="Firmware" data-en="Firmware" data-hu="Firmware">Firmware</option>
-              <option value="Electronics & PCB" data-en="Electronics &amp; PCB" data-hu="Elektronika &amp; PCB">Electronics &amp; PCB</option>
-              <option value="Mechanical" data-en="Mechanical" data-hu="Mechanika">Mechanical</option>
-              <option value="Embedded software" data-en="Embedded software" data-hu="Beágyazott szoftver">Embedded software</option>
-              <option value="Other" data-en="Other" data-hu="Egyéb">Other</option>
-            </select>
-          </div>
-
-          <fieldset class="field checks">
-            <legend><span class="en">I want to</span><span class="hu">Szeretnék</span> <span class="req">*</span></legend>
-            <label class="check">
-              <input type="checkbox" name="intent_founding" value="1" />
-              <span><span class="en">Be a founding member (willing to sign when we form the egyesület)</span><span class="hu">Alapító tag lenni (aláírom, amikor megalakul az egyesület)</span></span>
-            </label>
-            <label class="check">
-              <input type="checkbox" name="intent_dues" value="1" />
-              <span><span class="en">Signal a non-binding dues letter of intent</span><span class="hu">Nem kötelező érvényű tagdíj-szándéknyilatkozatot jelezni</span></span>
-            </label>
-            <p class="hint"><span class="en">Pick at least one.</span><span class="hu">Legalább egyet válassz.</span></p>
-          </fieldset>
-
-          <div class="field">
-            <label for="founding-dues"><span class="en">Monthly dues band</span><span class="hu">Havi tagdíjsáv</span> <span class="opt"><span class="en">optional, non-binding</span><span class="hu">nem kötelező, nem kötelez</span></span></label>
+            <label for="founding-dues"><span class="en">Dues you could pay</span><span class="hu">Vállalható tagdíj</span> <span class="opt"><span class="en">optional, per month</span><span class="hu">nem kötelező, havonta</span></span></label>
             <select id="founding-dues" name="dues">
               <option value="" data-en="—" data-hu="—">—</option>
               <option value="~5k HUF" data-en="~5 000 HUF" data-hu="~5 000 Ft">~5 000 HUF</option>
@@ -99,49 +40,25 @@ import Footer from '../components/Footer.astro';
             </select>
           </div>
 
-          <fieldset class="field checks">
-            <legend><span class="en">I can help with</span><span class="hu">Tudok segíteni</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></legend>
-            <label class="check">
-              <input type="checkbox" name="help" value="venue" />
-              <span><span class="en">Venue / lease</span><span class="hu">Helyszín / bérlés</span></span>
-            </label>
-            <label class="check">
-              <input type="checkbox" name="help" value="sponsor" />
-              <span><span class="en">Sponsors</span><span class="hu">Szponzorok</span></span>
-            </label>
-            <label class="check">
-              <input type="checkbox" name="help" value="talks" />
-              <span><span class="en">Talks / events</span><span class="hu">Előadások / események</span></span>
-            </label>
-            <label class="check">
-              <input type="checkbox" name="help" value="legal" />
-              <span><span class="en">Legal / bylaws</span><span class="hu">Jogi / alapszabály</span></span>
-            </label>
-            <label class="check">
-              <input type="checkbox" name="help" value="other" />
-              <span><span class="en">Other</span><span class="hu">Egyéb</span></span>
-            </label>
-          </fieldset>
-
           <div class="field">
-            <label for="founding-notes"><span class="en">Notes</span><span class="hu">Megjegyzés</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></label>
+            <label for="founding-notes"><span class="en">Note</span><span class="hu">Megjegyzés</span> <span class="opt"><span class="en">optional</span><span class="hu">nem kötelező</span></span></label>
             <textarea id="founding-notes" name="notes" rows="3"></textarea>
           </div>
 
           <input class="hp" type="text" name="bhw_hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-          <label class="check consent-check">
+          <label class="check">
             <input type="checkbox" name="consent" value="1" required />
-            <span><span class="en">I agree that BHW may contact me about forming the egyesület. No payment is taken here.</span><span class="hu">Hozzájárulok, hogy a BHW felvegye velem a kapcsolatot az egyesület alapításáról. Itt nem történik fizetés.</span></span>
+            <span><span class="en">BHW may email me about the association. No payment here.</span><span class="hu">A BHW írhat az egyesületről. Itt nincs fizetés.</span></span>
           </label>
 
           <div class="foot">
-            <button class="btn primary" type="submit"><span class="en">Submit</span><span class="hu">Elküldöm</span></button>
+            <button class="btn primary" type="submit"><span class="en">Send</span><span class="hu">Elküldöm</span></button>
           </div>
           <p class="formmsg" id="foundingmsg" role="status" aria-live="polite" hidden></p>
         </form>
 
-        <p class="consent"><span class="en">We only use this for association formation. Questions: </span><span class="hu">Csak az egyesület alapításához használjuk. Kérdés: </span><a href="mailto:hello@bhw.hu">hello@bhw.hu</a></p>
+        <p class="consent"><span class="en">Questions: </span><span class="hu">Kérdés: </span><a href="mailto:hello@bhw.hu">hello@bhw.hu</a></p>
       </div>
     </section>
 
@@ -151,26 +68,18 @@ import Footer from '../components/Footer.astro';
   <style>
     .hero .wrap{text-align:left;max-width:var(--maxw)}
     .hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;margin:.35em 0 .1em;letter-spacing:-.02em}
-    .hero p.lead{margin:14px 0 0;max-width:68ch}
-    .sec-head p{max-width:640px}
-    .benefits{margin:0;padding-left:22px;max-width:68ch}
-    .benefits li{margin:10px 0;line-height:1.45}
-    .not-list{color:var(--muted)}
-    .form{display:grid;gap:20px;max-width:680px;margin:22px 0 0}
+    .hero p.lead{margin:14px 0 0;max-width:62ch}
+    .form{display:grid;gap:20px;max-width:680px;margin:0}
     .pair{display:grid;gap:20px}
     @media(min-width:640px){.pair{grid-template-columns:1fr 1fr}}
-    .field{display:grid;gap:7px;min-width:0;border:0;padding:0;margin:0}
-    .field label,.field legend{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .field{display:grid;gap:7px;min-width:0}
+    .field label{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
     .field .opt{letter-spacing:.02em;text-transform:none;font-size:.72rem;color:#9fb0c0}
-    .field .req{color:var(--accent);letter-spacing:0;text-transform:none}
     .field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);font-family:var(--sans);font-size:1rem;padding:11px 13px;transition:border-color .15s}
     .field textarea{min-height:80px;resize:vertical}
     .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--accent)}
-    .field .hint{font-size:.82rem;color:var(--muted);margin:0}
-    .checks{gap:10px}
-    .check{display:flex;align-items:flex-start;gap:10px;font-family:var(--sans);font-size:.95rem;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:500;cursor:pointer}
+    .check{display:flex;align-items:flex-start;gap:10px;font-size:.95rem;color:var(--ink);font-weight:500;cursor:pointer;max-width:62ch}
     .check input{margin-top:3px;accent-color:var(--accent);flex-shrink:0}
-    .consent-check{max-width:68ch}
     .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
     .foot{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
     .formmsg{margin:0;font-size:.95rem}
@@ -189,8 +98,7 @@ import Footer from '../components/Footer.astro';
 
       const T = {
         sending: { en: 'Sending…', hu: 'Küldés…' },
-        done: { en: 'Thanks — we recorded your interest.', hu: 'Köszönjük — rögzítettük az érdeklődésedet.' },
-        intent: { en: 'Pick at least one intent.', hu: 'Legalább egy szándékot válassz.' },
+        done: { en: 'Thanks — you are on the founding list.', hu: 'Köszönjük — rajta vagy az alapítói listán.' },
         bad: { en: 'Something went wrong — write to hello@bhw.hu.', hu: 'Valami hiba történt — írj a hello@bhw.hu címre.' }
       };
       const lang = () => (document.documentElement.getAttribute('data-lang') === 'hu' ? 'hu' : 'en');
@@ -204,12 +112,10 @@ import Footer from '../components/Footer.astro';
 
       const swapOptions = () => {
         const language = lang();
-        for (const id of ['founding-role', 'founding-dues']) {
-          const select = document.getElementById(id);
-          if (!select) continue;
-          for (const option of select.options) {
-            option.textContent = option.dataset[language] || option.textContent;
-          }
+        const select = document.getElementById('founding-dues');
+        if (!select) return;
+        for (const option of select.options) {
+          option.textContent = option.dataset[language] || option.textContent;
         }
       };
       swapOptions();
@@ -218,24 +124,14 @@ import Footer from '../components/Footer.astro';
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
         msg.hidden = true;
-
-        const founding = form.querySelector('[name=intent_founding]')?.checked;
-        const dues = form.querySelector('[name=intent_dues]')?.checked;
-        if (!founding && !dues) return say(t('intent'), true);
-
         button.disabled = true;
         button.textContent = t('sending');
 
         try {
-          const fd = new FormData(form);
-          const body = Object.fromEntries(fd.entries());
-          body.help = fd.getAll('help');
-          body.intent_founding = founding ? '1' : '';
-          body.intent_dues = dues ? '1' : '';
           const response = await fetch('/api/founding', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(body)
+            body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
           });
           const data = await response.json().catch(() => null);
           if (!response.ok || !data || !data.ok) throw new Error();
