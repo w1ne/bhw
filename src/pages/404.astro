@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Page not found - Budapest Hardware Club" noindex>
+  <Navigation />
+  <main id="top">
+    <section>
+      <div class="wrap">
+        <h1><span class="en">Page not found</span><span class="hu">Az oldal nem található</span></h1>
+        <p><a class="text-link" href="/"><span class="en">← Back to the homepage</span><span class="hu">← Vissza a főoldalra</span></a></p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
