@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/brand.css';
+
+const colours = [
+  { en: 'Rust', hu: 'Rozsda', hex: '#b73722', useEn: 'Accents and links', useHu: 'Kiemelések és hivatkozások' },
+  { en: 'Ink', hu: 'Tinta', hex: '#20241f', useEn: 'Text and primary buttons', useHu: 'Szöveg és elsődleges gombok' },
+  { en: 'Paper', hu: 'Papír', hex: '#faf9f6', useEn: 'Page background', useHu: 'Oldalháttér' },
+  { en: 'Soft paper', hu: 'Halvány papír', hex: '#eeede7', useEn: 'Secondary surfaces', useHu: 'Másodlagos felületek' },
+  { en: 'Muted', hu: 'Visszafogott', hex: '#62675f', useEn: 'Supporting text', useHu: 'Kiegészítő szöveg' },
+  { en: 'Line', hu: 'Vonal', hex: '#d9d8d0', useEn: 'Borders and dividers', useHu: 'Szegélyek és elválasztók' },
+];
+const description = 'Download the Budapest Hardware Club logo and brand kit. Colours, typography and usage guidance for posts, presentations and partner pages.';
+---
+
+<BaseLayout title="Brand assets — Budapest Hardware Club" description={description} ogTitle="BHW brand assets" ogDescription={description} image="https://bhw.hu/brand/bhw-logo.png">
+  <Navigation />
+  <main class="brand-page">
+    <section class="brand-hero">
+      <div class="wrap brand-hero-grid">
+        <div>
+          <p class="eyebrow"><span class="en">Budapest Hardware Club / Brand</span><span class="hu">Budapest Hardware Club / Arculat</span></p>
+          <h1><span class="en">BHW brand assets</span><span class="hu">BHW arculati elemek</span><span class="title-dot" aria-hidden="true">.</span></h1>
+          <p class="brand-lead"><span class="en">Putting the club in a post, a presentation or a partner page? Start here.</span><span class="hu">Posztban, prezentációban vagy partneroldalon mutatnád be a klubot? Itt mindent megtalálsz.</span></p>
+          <div class="btns">
+            <a class="btn primary" href="/brand/bhw-brand-assets.zip" download><span class="en">Download brand kit</span><span class="hu">Arculati csomag letöltése</span><span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="mailto:hello@bhw.hu?subject=BHW%20brand%20assets"><span class="en">Ask about usage</span><span class="hu">Kérdés az arculat használatáról</span></a>
+          </div>
+          <p class="brand-note"><span class="en">Logo files, colour values and usage notes in one ZIP.</span><span class="hu">Logófájlok, színkódok és használati útmutató egy ZIP-ben.</span></p>
+        </div>
+        <div class="brand-signature" aria-label="Budapest Hardware Club">
+          <img src="/brand/bhw-logo.png" width="200" height="200" alt="Budapest Hardware Club bridge and circuit logo" />
+          <span>Budapest<br />Hardware Club</span>
+          <span class="brand-signature-domain">bhw.hu</span>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="brand-logo-title">
+      <div class="wrap brand-logo-grid">
+        <figure class="brand-logo-preview">
+          <img src="/brand/bhw-logo.png" width="200" height="200" alt="Budapest Hardware Club logo" loading="lazy" />
+          <figcaption><span class="en">The club’s original mark</span><span class="hu">A klub eredeti logója</span></figcaption>
+        </figure>
+        <div class="brand-copy">
+          <p class="eyebrow">01 / <span class="en">Logo</span><span class="hu">Logó</span></p>
+          <h2 id="brand-logo-title"><span class="en">A bridge between builders.</span><span class="hu">Híd az alkotók között.</span></h2>
+          <p><span class="en">Our bridge-and-circuit mark connects Budapest with the things we build. Use the original colour logo on a light background, with space around it.</span><span class="hu">A hidat és áramkört ábrázoló logónk Budapestet köti össze azzal, amit építünk. Világos háttéren használd az eredeti színes logót, és hagyj körülötte helyet.</span></p>
+          <div class="brand-file-links">
+            <a class="btn ghost" href="/brand/bhw-logo.png" download>PNG · 200 × 200 <span aria-hidden="true">↓</span></a>
+            <a class="btn ghost" href="/brand/bhw-logo.jpg" download>JPG · 200 × 200 <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="brand-note"><span class="en">These files have a white background and preserve the original 200px artwork. For large prints or vector artwork, <a href="mailto:hello@bhw.hu?subject=BHW%20high-resolution%20logo">contact us</a>.</span><span class="hu">A fájlok fehér hátterűek, és megőrzik az eredeti, 200 pixeles grafikát. Nagyméretű nyomtatáshoz vagy vektoros változatért <a href="mailto:hello@bhw.hu?subject=BHW%20high-resolution%20logo">írj nekünk</a>.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="brand-soft" aria-labelledby="brand-colours-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">02 / <span class="en">Colour</span><span class="hu">Színek</span></p>
+          <h2 id="brand-colours-title"><span class="en">Warm paper. Clear contrast.</span><span class="hu">Meleg papír. Tiszta kontraszt.</span></h2>
+          <p><span class="en">The website palette: warm neutrals, dark text and a rust accent. Select a swatch to copy its hex value.</span><span class="hu">A weboldal palettája: meleg, semleges árnyalatok, sötét szöveg és rozsdaszínű kiemelések. Kattints egy színmintára a hex kód másolásához.</span></p>
+        </div>
+        <div class="brand-colours">
+          {colours.map(colour => (
+            <button class="brand-swatch" type="button" data-hex={colour.hex}>
+              <span class="brand-colour-chip" style={{ backgroundColor: colour.hex }} aria-hidden="true"></span>
+              <span class="brand-colour-name"><span class="en">{colour.en}</span><span class="hu">{colour.hu}</span></span>
+              <code>{colour.hex}</code>
+              <span class="brand-colour-use"><span class="en">{colour.useEn}</span><span class="hu">{colour.useHu}</span></span>
+              <span class="brand-copy-hint"><span class="en">Copy hex</span><span class="hu">Hex másolása</span><span aria-hidden="true">↗</span></span>
+            </button>
+          ))}
+        </div>
+        <p class="brand-copy-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      </div>
+    </section>
+
+    <section aria-labelledby="brand-type-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">03 / <span class="en">Typography</span><span class="hu">Tipográfia</span></p>
+          <h2 id="brand-type-title"><span class="en">Simple, readable type.</span><span class="hu">Egyszerű, olvasható betűk.</span></h2>
+          <p><span class="en">We use familiar system fonts. Arial and Helvetica for everyday copy; monospace for code, dimensions and technical details.</span><span class="hu">Ismert rendszerbetűket használunk. Arial és Helvetica a szövegekhez; monospace a kódhoz, méretekhez és műszaki részletekhez.</span></p>
+        </div>
+        <div class="brand-type-grid">
+          <div class="brand-type-specimen">
+            <p class="eyebrow">Arial / Helvetica / sans-serif</p>
+            <p class="brand-type-large"><span class="en">Build something<br />worth sharing.</span><span class="hu">Építs valamit,<br />amit megmutatnál.</span></p>
+            <p class="brand-alphabet">Aa Bb Cc · Áá Éé Öö Őő Üü Űű<br />0123456789</p>
+          </div>
+          <div class="brand-type-specimen brand-mono-specimen">
+            <p class="eyebrow">ui-monospace / monospace</p>
+            <p class="brand-type-large">BHW<br />47.4979° N<br />19.0402° E</p>
+            <p class="brand-alphabet">hardware · firmware · robotics<br />{ '{ build; share; repeat; }' }</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="brand-soft" aria-labelledby="brand-usage-title">
+      <div class="wrap brand-usage-grid">
+        <div>
+          <p class="eyebrow">04 / <span class="en">Usage</span><span class="hu">Használat</span></p>
+          <h2 id="brand-usage-title"><span class="en">Keep it recognisable.</span><span class="hu">Maradjon felismerhető.</span></h2>
+          <p class="brand-lead"><span class="en">Use these assets when referring to Budapest Hardware Club.</span><span class="hu">Ezekkel az arculati elemekkel hivatkozz a Budapest Hardware Clubra.</span></p>
+        </div>
+        <div class="brand-copy">
+          <ul class="brand-guidelines">
+            <li><span class="en">Use “Budapest Hardware Club” on first mention. “BHW” works after that.</span><span class="hu">Első említéskor a „Budapest Hardware Club” nevet használd. Utána elég a „BHW”.</span></li>
+            <li><span class="en">Keep the logo square and leave clear space around it—at least a quarter of its width.</span><span class="hu">Tartsd meg a logó négyzetes arányát, és hagyj körülötte legalább a szélessége negyedének megfelelő üres helyet.</span></li>
+            <li><span class="en">Keep the original colours. Place the logo on a clean, light surface.</span><span class="hu">Őrizd meg az eredeti színeket. A logót tiszta, világos felületre helyezd.</span></li>
+            <li><span class="en">Link to <a href="https://bhw.hu">bhw.hu</a> so people can find the club.</span><span class="hu">Hivatkozz a <a href="https://bhw.hu">bhw.hu</a> oldalra, hogy mások is megtalálják a klubot.</span></li>
+          </ul>
+          <p><span class="en">Planning merchandise, a co-branded event or a partnership? <a href="mailto:hello@bhw.hu?subject=BHW%20brand%20usage">Talk to us</a> before production.</span><span class="hu">Ajándéktárgyat, közös rendezvényt vagy partnerséget tervezel? Gyártás előtt <a href="mailto:hello@bhw.hu?subject=BHW%20brand%20usage">egyeztess velünk</a>.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  const status = document.querySelector<HTMLElement>('.brand-copy-status');
+  let lastCopy: { hex: string; ok: boolean } | undefined;
+  function showStatus() {
+    if (!status || !lastCopy) return;
+    const { hex, ok } = lastCopy;
+    const hu = document.documentElement.getAttribute('data-lang') === 'hu';
+    status.textContent = ok
+      ? (hu ? `Másolva: ${hex}` : `Copied ${hex}`)
+      : (hu ? `Jelöld ki és másold a kódot: ${hex}` : `Select and copy the code: ${hex}`);
+  }
+  function fallbackCopy(text: string) {
+    const previousFocus = document.activeElement;
+    const input = document.createElement('textarea');
+    input.value = text;
+    input.setAttribute('readonly', '');
+    input.style.cssText = 'position:fixed;left:-9999px;top:0';
+    document.body.appendChild(input);
+    input.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch { /* Manual copy feedback below. */ }
+    input.remove();
+    if (previousFocus instanceof HTMLElement) previousFocus.focus({ preventScroll: true });
+    return ok;
+  }
+  document.querySelectorAll<HTMLButtonElement>('.brand-swatch').forEach(button => {
+    button.addEventListener('click', async () => {
+      const hex = button.dataset.hex;
+      if (!hex) return;
+      let ok = false;
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(hex);
+          ok = true;
+        } else {
+          ok = fallbackCopy(hex);
+        }
+      } catch {
+        ok = fallbackCopy(hex);
+      }
+      lastCopy = { hex, ok };
+      showStatus();
+    });
+  });
+  document.addEventListener('bhw-lang-change', showStatus);
+</script>

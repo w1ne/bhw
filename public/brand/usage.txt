@@ -1,0 +1,48 @@
+BUDAPEST HARDWARE CLUB — BRAND ASSETS / ARCULATI ELEMEK
+https://bhw.hu/brand/
+Contact / Kapcsolat: hello@bhw.hu
+
+ENGLISH
+Use these assets when referring to Budapest Hardware Club in posts,
+presentations, articles and partner pages.
+
+Use “Budapest Hardware Club” on first mention, then “BHW”. Link to bhw.hu.
+Keep the logo square and leave clear space of at least a quarter of its width.
+Keep the original colours and use a clean, light background.
+Contact hello@bhw.hu before producing merchandise, co-branded events or
+partnership materials.
+
+bhw-logo.jpg is the unchanged original artwork (200 × 200 pixels).
+bhw-logo.png is the same artwork encoded as PNG at its native size.
+Both files have a white background. They are not vector artwork.
+For large prints or vector artwork, contact hello@bhw.hu.
+
+MAGYAR
+Ezekkel az arculati elemekkel hivatkozz a Budapest Hardware Clubra posztokban,
+prezentációkban, cikkekben és partneroldalakon.
+
+Első említéskor a „Budapest Hardware Club” nevet használd, utána elég a „BHW”.
+Hivatkozz a bhw.hu oldalra. Tartsd meg a logó négyzetes arányát, és hagyj körülötte
+legalább a szélessége negyedének megfelelő üres helyet.
+Őrizd meg az eredeti színeket, és helyezd a logót tiszta, világos háttérre.
+Ajándéktárgyak, közös rendezvények vagy partnerségi anyagok készítése előtt
+egyeztess velünk a hello@bhw.hu címen.
+
+A bhw-logo.jpg az eredeti, változatlan grafika (200 × 200 pixel).
+A bhw-logo.png ugyanaz a grafika, PNG formátumban, eredeti méretben.
+Mindkét fájl fehér hátterű. A csomag nem tartalmaz vektoros grafikát.
+Nagyméretű nyomtatáshoz vagy vektoros változatért írj a hello@bhw.hu címre.
+
+WEBSITE COLOURS / A WEBOLDAL SZÍNEI
+Rust / Rozsda:             #b73722
+Ink / Tinta:              #20241f
+Paper / Papír:            #faf9f6
+Soft paper / Halvány papír: #eeede7
+Muted / Visszafogott:      #62675f
+Line / Vonal:             #d9d8d0
+
+TYPOGRAPHY / TIPOGRÁFIA
+Body and headings / Szöveg és címsorok: Arial, Helvetica, sans-serif
+Technical details / Műszaki részletek: ui-monospace, monospace
+Use locally available system fonts. Font files are not included.
+Használj helyben elérhető rendszerbetűket. A csomag nem tartalmaz betűfájlokat.

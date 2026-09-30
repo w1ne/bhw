@@ -177,6 +177,19 @@ npx wrangler r2 object get bhw-uploads/<key> --remote --pipe
 - Publish a privacy notice covering the form and the uploads, and decide which
   entity quotes and invoices.
 
+## Brand assets
+
+`/brand/` provides the club logo, website colours, typography and usage guidance
+in English and Hungarian. The shared footer links to it. The downloadable kit is
+`public/brand/bhw-brand-assets.zip` and contains both logo files and `usage.txt`.
+
+The original `public/images/logo.png` is JPEG-encoded artwork at 200 × 200 pixels.
+`public/brand/bhw-logo.jpg` preserves those exact bytes; `bhw-logo.png` is a true
+PNG encoding of the same pixels at their original size. Both have a white
+background. If the source artwork changes, update both downloads, the usage
+notes, and the ZIP together. The brand page lists the current CSS colours and
+system font stacks; keep these aligned with `src/styles/global.css`.
+
 ## Credits
 
 Meetup #1 photography: Csaba Gábor.

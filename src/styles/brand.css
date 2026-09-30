@@ -1,0 +1,39 @@
+.brand-page h1{font-size:clamp(2.8rem,5.5vw,4.6rem);line-height:1.03;margin:22px 0;max-width:10ch}
+.brand-hero{padding:76px 0 64px}
+.brand-hero-grid{display:grid;grid-template-columns:1.4fr 1fr;align-items:center;gap:72px}
+.brand-lead{font-size:19px;color:var(--muted);max-width:45ch}
+.brand-note{font-size:13px;color:var(--muted);margin:18px 0 0}
+.brand-note a,.brand-copy p a,.brand-guidelines a{text-decoration:underline;text-underline-offset:3px}
+.brand-page .btn{gap:14px}
+.brand-signature{display:flex;flex-direction:column;align-items:center;text-align:center;padding:44px 24px;background:#fff;border:1px solid var(--line)}
+.brand-signature img{width:108px;height:108px;margin-bottom:22px}
+.brand-signature>span{font-size:25px;font-weight:600;line-height:1.15;letter-spacing:-.035em}
+.brand-signature .brand-signature-domain{font-family:var(--mono);font-size:12px;font-weight:400;letter-spacing:0;margin-top:22px;color:var(--muted)}
+.brand-logo-grid{display:grid;grid-template-columns:1fr 1.4fr;align-items:center;gap:72px}
+.brand-logo-preview{background:#fff;border:1px solid var(--line);margin:0;padding:42px 20px;text-align:center}
+.brand-logo-preview img{margin:auto}
+.brand-logo-preview figcaption{font-size:12px;color:var(--muted);margin-top:24px}
+.brand-copy>p:not(.eyebrow){color:var(--muted)}
+.brand-file-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.brand-soft{background:var(--bg-soft)}
+.brand-colours{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.brand-swatch{display:flex;flex-direction:column;align-items:flex-start;text-align:left;background:var(--bg);border:1px solid var(--line);padding:0 0 18px;color:var(--ink);cursor:pointer;min-width:0}
+.brand-swatch:hover{border-color:var(--ink)}
+.brand-colour-chip{height:112px;width:100%;border-bottom:1px solid var(--line);margin-bottom:18px}
+.brand-colour-name,.brand-swatch code,.brand-colour-use,.brand-copy-hint{margin:0 20px}
+.brand-colour-name{font-size:17px;font-weight:600}
+.brand-swatch code{font-family:var(--mono);font-size:14px;margin-top:4px}
+.brand-colour-use{font-size:12px;color:var(--muted);margin-top:12px}
+.brand-copy-hint{display:flex;align-items:center;justify-content:space-between;align-self:stretch;font-size:12px;margin-top:20px;color:var(--accent-2)}
+.brand-copy-status{min-height:26px;margin:16px 0 0;font-size:14px;color:var(--ink)}
+.brand-type-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.brand-type-specimen{border-top:1px solid var(--line);padding-top:24px;min-width:0}
+.brand-type-large{font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.16;letter-spacing:-.035em;font-weight:600;margin:28px 0}
+.brand-alphabet{font-size:14px;line-height:1.8;color:var(--muted)}
+.brand-mono-specimen .brand-type-large,.brand-mono-specimen .brand-alphabet{font-family:var(--mono)}
+.brand-mono-specimen .brand-type-large{font-weight:400;letter-spacing:-.04em}
+.brand-usage-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:72px}
+.brand-guidelines{padding:0 0 0 20px;margin:0 0 28px}
+.brand-guidelines li{padding-left:4px;margin-bottom:18px}
+@media(max-width:960px){.brand-hero-grid,.brand-logo-grid,.brand-usage-grid{gap:36px}.brand-type-grid{gap:28px}}
+@media(max-width:640px){.brand-hero{padding:42px 0}.brand-hero-grid,.brand-logo-grid,.brand-type-grid,.brand-usage-grid{grid-template-columns:1fr;gap:32px}.brand-page h1{font-size:clamp(2.5rem,12vw,3.5rem);max-width:12ch}.brand-lead{font-size:17px}.brand-signature{padding:32px 20px}.brand-signature img{width:88px;height:88px;margin-bottom:16px}.brand-signature>span{font-size:22px}.brand-logo-preview{padding:32px 20px}.brand-colours{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.brand-colour-chip{height:88px}.brand-colour-name,.brand-swatch code,.brand-colour-use,.brand-copy-hint{margin-left:14px;margin-right:14px}.brand-colour-use{min-height:38px}.brand-file-links .btn{font-size:13px}}
