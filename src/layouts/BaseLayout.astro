@@ -3,7 +3,14 @@ import '../styles/global.css';
 import '../styles/news.css';
 import Analytics from '../components/Analytics.astro';
 
-const { title = 'BHW - Budapest Hardware Club', image = 'https://bhw.hu/images/hero.webp', noindex = false } = Astro.props;
+const {
+  title = 'BHW - Budapest Hardware Club',
+  description = 'Budapest Hardware Club - for people building physical products in Budapest. Talks, demos and knowledge sharing on firmware, embedded systems and hardware.',
+  ogTitle = 'Budapest Hardware Club',
+  ogDescription = 'Meetups in Budapest about hardware, firmware and robotics.',
+  image = 'https://bhw.hu/images/hero.webp',
+  noindex = false,
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
@@ -13,9 +20,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <meta name="description" content="Budapest Hardware Club - for people building physical products in Budapest. Talks, demos and knowledge sharing on firmware, embedded systems and hardware." />
-    <meta property="og:title" content="Budapest Hardware Club" />
-    <meta property="og:description" content="Meetups in Budapest about hardware, firmware and robotics." />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={image} />
