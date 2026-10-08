@@ -9,13 +9,13 @@ const structured = {
   '@context': 'https://schema.org', '@type': 'VideoObject',
   name: 'Why parked trucks still burn diesel | Steven Antalics, EkoHaul',
   description,
-  thumbnailUrl: 'https://bhw.hu/images/conversations/steven-antalics.png',
+  thumbnailUrl: 'https://bhw.hu/images/conversations/steven-and-andrii-prague.jpg',
   uploadDate: '2026-10-08T12:00:00+02:00', duration: 'PT5M50S',
   contentUrl: media + 'highlights-1080p.mp4',
   publisher: { '@type': 'Organization', name: 'Budapest Hardware Club', url: 'https://bhw.hu/' },
 };
 ---
-<BaseLayout title="Steven Antalics: a sunny roof and a twenty-year-old idea · BHW Conversations" description={description} ogTitle="Steven Antalics · BHW Conversations" ogDescription={description} image="https://bhw.hu/images/conversations/steven-antalics.png">
+<BaseLayout title="Steven Antalics: a sunny roof and a twenty-year-old idea · BHW Conversations" description={description} ogTitle="Steven Antalics · BHW Conversations" ogDescription={description} image="https://bhw.hu/images/conversations/steven-and-andrii-prague.jpg">
   <Navigation />
   <main class="conversation-page">
     <section><div class="wrap conversation-wrap">
@@ -26,7 +26,7 @@ const structured = {
         <p class="conversation-meta"><span class="en">Andrii Shylenko with Steven Antalics · Prague · Recorded 7 October 2026</span><span class="hu">Andrii Shylenko és Steven Antalics · Prága · Felvétel: 2026. október 7.</span></p>
       </header>
       <figure class="conversation-video">
-        <video controls playsinline preload="none" poster="/images/conversations/steven-antalics.png" aria-label="Steven Antalics interview highlights in English">
+        <video controls playsinline preload="none" poster="/images/conversations/steven-and-andrii-prague.jpg" aria-label="Steven Antalics interview highlights in English">
           <source src={media + 'highlights-1080p.mp4'} type="video/mp4" />
           <a href={media + 'highlights-1080p.mp4'}>Watch the interview highlights</a>
         </video>
@@ -62,7 +62,7 @@ const structured = {
       <details class="full-conversation">
         <summary><span class="en">Watch the full conversation · 20:37</span><span class="hu">A teljes beszélgetés · 20:37</span></summary>
         <p><span class="en">Photography, Hungarian roots, solar cars and the practical work of building EkoHaul.</span><span class="hu">Fotózás, magyar gyökerek, napelemes autók és az EkoHaul építésének gyakorlati kérdései.</span></p>
-        <video controls playsinline preload="none" poster="/images/conversations/steven-antalics.png" aria-label="Full Steven Antalics interview in English"><source src={media + 'full-interview-web-720p.mp4'} type="video/mp4" /><a href={media + 'full-interview-web-720p.mp4'}>Watch the full conversation</a></video>
+        <video controls playsinline preload="none" poster="/images/conversations/steven-and-andrii-prague.jpg" aria-label="Full Steven Antalics interview in English"><source src={media + 'full-interview-web-720p.mp4'} type="video/mp4" /><a href={media + 'full-interview-web-720p.mp4'}>Watch the full conversation</a></video>
       </details>
       <p class="conversation-end"><span class="en">Building something of your own? </span><span class="hu">Te is építesz valamit? </span><a href="/#join"><span class="en">Meet the BHW community →</span><span class="hu">Csatlakozz a BHW közösségéhez →</span></a></p>
     </div></section>
