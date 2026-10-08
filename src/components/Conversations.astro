@@ -5,9 +5,8 @@ import '../styles/conversations.css';
   <div class="section-heading"><h2><span class="en">BHW Conversations</span><span class="hu">BHW beszélgetések</span></h2><a class="text-link" href="/conversations/"><span class="en">Explore the series →</span><span class="hu">A sorozat →</span></a></div>
   <p class="conversation-intro"><span class="en">Meet the people behind the hardware. Ideas, detours and what it takes to make them work.</span><span class="hu">Ismerd meg a hardver mögött álló embereket: ötletek, kitérők és a megvalósítás kihívásai.</span></p>
   <article class="conversation-feature">
-    <div class="conversation-cover" data-conversation-player>
-      <a href="/conversations/steven-antalics/"><img src="/images/conversations/steven-and-andrii-prague-bright.jpg" width="1920" height="1080" alt="EkoHaul founder Steven Antalics smiling during his conversation with Andrii Shylenko in Prague" loading="lazy" /></a>
-      <button type="button" class="conversation-play" data-play-conversation aria-label="Play the full Steven Antalics interview"><span aria-hidden="true">▶</span><span class="en">Play interview · 20:37</span><span class="hu">Lejátszás · 20:37</span></button>
+    <div class="conversation-cover">
+      <iframe src="https://www.youtube-nocookie.com/embed/1BYTsZtyBic" title="Steven Antalics full interview · Budapest Hardware Club" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div><p class="eyebrow"><span class="en">Episode 01 · Steven Antalics · EkoHaul</span><span class="hu">01. epizód · Steven Antalics · EkoHaul</span></p>
       <h3><a href="/conversations/steven-antalics/"><span class="en">A sunny roof and a twenty-year-old idea</span><span class="hu">Egy napsütötte tető és egy húszéves ötlet</span></a></h3>
@@ -16,19 +15,3 @@ import '../styles/conversations.css';
     </div>
   </article>
 </div></section>
-<script>
-  document.querySelectorAll<HTMLButtonElement>('[data-play-conversation]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const player = button.closest('[data-conversation-player]');
-      if (!player) return;
-      const iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube-nocookie.com/embed/1BYTsZtyBic?autoplay=1&playsinline=1';
-      iframe.title = 'Steven Antalics full interview · Budapest Hardware Club';
-      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';
-      iframe.allowFullscreen = true;
-      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-      player.replaceChildren(iframe);
-      iframe.focus();
-    }, { once: true });
-  });
-</script>
