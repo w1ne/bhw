@@ -193,3 +193,16 @@ system font stacks; keep these aligned with `src/styles/global.css`.
 ## Credits
 
 Meetup #1 photography: Csaba Gábor.
+
+## Conversations
+
+`/conversations/` introduces the founder and builder interview series. Its first
+article is `/conversations/steven-antalics/`, with English and Hungarian copy.
+The homepage feature and shared footer link make the series discoverable.
+
+Video files are public assets in the separate R2 bucket `bhw-media`, served at
+`https://media.bhw.hu/conversations/steven-antalics/`. The service-request upload
+bucket stays private. Keep video files out of Git and Pages static uploads.
+The highlights and full interview use H.264/AAC MP4 with Fast Start; the player
+loads only when a reader chooses to watch. Draft automatic captions are not
+included in the public player.

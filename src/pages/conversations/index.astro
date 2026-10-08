@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Conversations from '../../components/Conversations.astro';
+---
+<BaseLayout title="BHW Conversations · People behind the hardware" description="Candid conversations with hardware founders and builders: their ideas, the detours and the work behind them." ogTitle="BHW Conversations" ogDescription="Meet the people behind the hardware." image="https://bhw.hu/images/conversations/steven-antalics.png">
+  <Navigation />
+  <main class="conversation-index"><div class="wrap"><h1><span class="en">People behind the hardware.</span><span class="hu">Emberek a hardver mögött.</span></h1></div><Conversations /></main>
+  <Footer />
+</BaseLayout>
