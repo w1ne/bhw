@@ -44,6 +44,7 @@ Publish as Budapest Hardware Club, using the article preview or a clear intervie
 
 - Site contract and build pass; exact main commit deployment succeeds.
 - Read back public article, homepage asset, share image, video ID/duration, and source links.
+- Homepage: provide a one-click article link, an inline play button for the full interview, and a direct YouTube link. Test actual playback after the first click.
 - Check desktop and phone layout, image loading, language switching, and signed-out video playback.
 - Confirm YouTube channel identity, public visibility, custom thumbnail, chapters, and available HD resolution.
 - Confirm the LinkedIn post appears under the BHW company Page and save its permalink.
