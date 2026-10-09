@@ -196,9 +196,10 @@ Meetup #1 photography: Csaba Gábor.
 
 ## Conversations
 
-`/conversations/` introduces the founder and builder interview series. Its first
-article is `/conversations/steven-antalics/`, with English and Hungarian copy.
-The homepage feature and shared footer link make the series discoverable.
+`/conversations/` introduces the founder and builder interview series. Episodes:
+`/conversations/steven-antalics/` (01) and `/conversations/yannic-metz/` (02),
+each with English and Hungarian copy. The homepage feature plays the latest
+episode and lists earlier ones below it; the shared footer links the series.
 
 Video files are public assets in the separate R2 bucket `bhw-media`, served at
 `https://media.bhw.hu/conversations/steven-antalics/`. The service-request upload
