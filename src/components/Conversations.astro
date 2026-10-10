@@ -5,7 +5,7 @@ const { limit } = Astro.props;
 // Newest first. Every episode renders with the same card.
 const episodes = [
   {
-    slug: 'yannic-metz', youtube: 'l8qllTq2aAk', name: 'Yannic Metz',
+    slug: 'yannic-metz', youtube: 'l8qllTq2aAk', thumb: '/images/conversations/yannic-and-andrii-creative-dock.jpg', name: 'Yannic Metz',
     eyebrow: { en: 'Episode 02 · Yannic Metz · Creative Dock', hu: '02. epizód · Yannic Metz · Creative Dock' },
     title: { en: "Two founders don't need culture", hu: 'Két alapítónak nem kell kultúra' },
     blurb: {
@@ -14,7 +14,7 @@ const episodes = [
     },
   },
   {
-    slug: 'steven-antalics', youtube: '1BYTsZtyBic', name: 'Steven Antalics',
+    slug: 'steven-antalics', youtube: '1BYTsZtyBic', thumb: '/images/conversations/steven-and-andrii-prague-bright.jpg', name: 'Steven Antalics',
     eyebrow: { en: 'Episode 01 · Steven Antalics · EkoHaul', hu: '01. epizód · Steven Antalics · EkoHaul' },
     title: { en: 'A sunny roof and a twenty-year-old idea', hu: 'Egy napsütötte tető és egy húszéves ötlet' },
     blurb: {
@@ -41,4 +41,15 @@ const episodes = [
       </article>
     ))}
   </div>
+  {limit && episodes.length > limit && (
+    <ul class="conversation-strip">
+      {episodes.slice(limit).map((ep) => (
+        <li><a href={`/conversations/${ep.slug}/`}>
+          <img src={ep.thumb} alt="" width="1920" height="1080" loading="lazy" decoding="async" />
+          <span class="eyebrow"><span class="en">{ep.eyebrow.en}</span><span class="hu">{ep.eyebrow.hu}</span></span>
+          <strong><span class="en">{ep.title.en}</span><span class="hu">{ep.title.hu}</span></strong>
+        </a></li>
+      ))}
+    </ul>
+  )}
 </div></section>
