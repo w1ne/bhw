@@ -1,5 +1,6 @@
 ---
 import '../styles/conversations.css';
+const { limit } = Astro.props;
 
 // Newest first. Every episode renders with the same card.
 const episodes = [
@@ -27,7 +28,7 @@ const episodes = [
   <div class="section-heading"><h2><span class="en">BHW Conversations</span><span class="hu">BHW beszélgetések</span></h2><a class="text-link" href="/conversations/"><span class="en">Explore the series →</span><span class="hu">A sorozat →</span></a></div>
   <p class="conversation-intro"><span class="en">Meet the people behind the hardware. Ideas, detours and what it takes to make them work.</span><span class="hu">Ismerd meg a hardver mögött álló embereket: ötletek, kitérők és a megvalósítás kihívásai.</span></p>
   <div class="conversation-gallery">
-    {episodes.map((ep) => (
+    {(limit ? episodes.slice(0, limit) : episodes).map((ep) => (
       <article class="conversation-feature">
         <div class="conversation-cover">
           <iframe src={`https://www.youtube-nocookie.com/embed/${ep.youtube}`} title={`${ep.name} full interview · Budapest Hardware Club`} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
