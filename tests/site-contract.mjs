@@ -256,3 +256,53 @@ const joinMail = await readFile(new URL('../functions/api/join.js', import.meta.
 assert.match(joinMail, /Wants to join the association/);
 
 console.log('site contract passed');
+
+// Pitch section: homepage card after Events, /pitch/ page, /api/pitch intake.
+assert.match(page, /<Events \/><Pitch \/>/);
+const pitchCard = await readFile(new URL('../src/components/Pitch.astro', import.meta.url), 'utf8');
+assert.match(pitchCard, /href="\/pitch\/#founder"/);
+assert.match(pitchCard, /href="\/pitch\/#investor"/);
+assert.match(pitchCard, /Every month we pick 2–3 teams/);
+assert.match(pitchCard, /Havonta 2–3 csapatot/);
+const pitchPage = await readFile(new URL('../src/pages/pitch.astro', import.meta.url), 'utf8');
+for (const id of ['founder', 'investor', 'founderform', 'investorform']) assert.match(pitchPage, new RegExp(`id="${id}"`));
+assert.equal((pitchPage.match(/class="step"/g) || []).length, 8);
+assert.equal((pitchPage.match(/action="\/api\/pitch"/g) || []).length, 2);
+assert.equal((pitchPage.match(/name="bhw_hp"/g) || []).length, 2);
+for (const t of ['&lt;€25k', '€25–100k', '€100–500k', '€500k+']) assert.ok(pitchPage.includes(t.replace('&lt;', '<')));
+assert.match(pitchPage, /name="judge"/);
+assert.match(pitchPage, /BHW is a community, not an investor or broker/);
+assert.match(pitchPage, /We only make introductions/);
+for (const word of [/investment opportunit/i, /\breturns\b/i, /\bROI\b/, /guaranteed/i, /we fund/i, /syndicate/i, /co-invest/i, /befektetési lehetőség/i, /hozam/i, /garantált/i]) {
+  assert.doesNotMatch(pitchPage + pitchCard, word);
+}
+const pitchFn = await readFile(new URL('../functions/api/pitch.js', import.meta.url), 'utf8');
+assert.match(pitchFn, /env\.JOIN\.put/);
+assert.match(pitchFn, /`pitch:\$\{kind\}:/);
+assert.match(pitchFn, /send\(env, OPS/);
+assert.match(pitchFn, /bhw_hp/);
+assert.match(pitchFn, /status: 303/);
+
+// Behaviour: run the function against a fake KV.
+{
+  // lib/mail.js needs cloudflare:sockets, so stub send() and load the source as a data: module.
+  const src = pitchFn.replace(/^import .*mail\.js";$/m, 'const OPS = "ops@test"; const send = async () => {};');
+  const { onRequestPost } = await import('data:text/javascript,' + encodeURIComponent(src));
+  const store = new Map();
+  const env = { JOIN: { put: async (k, v) => store.set(k, v) } };
+  const call = (body) => onRequestPost({ env, waitUntil: () => {}, request: new Request('https://bhw.hu/api/pitch', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }) });
+  let r = await call({ kind: 'founder', name: 'A', email: 'a@b.co', what: 'A robot', consent: 'on', needs: ['investment', 'feedback'] });
+  assert.equal(r.status, 200);
+  assert.deepEqual(JSON.parse(store.get('pitch:founder:a@b.co')).needs, ['investment', 'feedback']);
+  assert.equal((await call({ kind: 'founder', name: 'A', email: 'a@b.co', what: 'x' })).status, 400);
+  assert.equal((await call({ kind: 'investor', name: 'A', email: 'bad', consent: 'on' })).status, 400);
+  assert.equal((await call({ kind: 'nope', name: 'A', email: 'a@b.co' })).status, 400);
+  const before = store.size;
+  assert.equal((await call({ kind: 'investor', bhw_hp: 'x', name: 'A', email: 'a@b.co', consent: 'on' })).status, 200);
+  assert.equal(store.size, before);
+  const fd = new FormData(); fd.set('kind', 'investor'); fd.set('name', 'I'); fd.set('email', 'i@v.c'); fd.set('consent', 'on');
+  r = await onRequestPost({ env, waitUntil: () => {}, request: new Request('https://bhw.hu/api/pitch', { method: 'POST', body: fd }) });
+  assert.equal(r.status, 303);
+  assert.equal(r.headers.get('location'), '/pitch/?sent=investor#sent');
+  assert.ok(store.has('pitch:investor:i@v.c'));
+}

@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+const opt = (en, hu, value = en) => ({ en, hu, value });
+const stages = [opt('Idea', 'Ötlet', 'idea'), opt('Prototype', 'Prototípus', 'prototype'), opt('Pilot / first customers', 'Pilot / első ügyfelek', 'pilot'), opt('Shipping', 'Szállít', 'shipping')];
+const needs = [opt('Investment', 'Befektetés', 'investment'), opt('Pitch feedback', 'Visszajelzés a pitchre', 'feedback'), opt('Co-founder', 'Társalapító', 'cofounder'), opt('Manufacturing partner', 'Gyártópartner', 'manufacturing'), opt('Customers', 'Ügyfelek', 'customers')];
+const raises = ['<€100k', '€100–500k', '€500k–2M', '€2M+'];
+const tickets = ['<€25k', '€25–100k', '€100–500k', '€500k+'];
+const sectors = [opt('Robotics', 'Robotika', 'robotics'), opt('Embedded / IoT', 'Beágyazott / IoT', 'embedded'), opt('Semiconductors', 'Félvezetők', 'semis'), opt('Energy', 'Energia', 'energy'), opt('Medtech', 'Medtech', 'medtech'), opt('Defence / dual-use', 'Védelem / kettős felhasználás', 'defence'), opt('Other', 'Egyéb', 'other')];
+---
+
+<BaseLayout title="Pitch - Budapest Hardware Club" description="Hardware teams pitch at the Budapest Hardware Club meetup. We introduce the strongest ones to investors we know.">
+  <Navigation />
+  <main id="top">
+    <section><div class="wrap">
+      <h1><span class="en">Pitch night</span><span class="hu">Pitch est</span></h1>
+      <p><span class="en">Hardware, firmware and robotics teams pitch to the community and to invited investors. 5 minutes of pitch, 5 minutes of questions.</span><span class="hu">Hardveres, firmware-es és robotikai csapatok pitchelnek a közösségnek és meghívott befektetőknek. 5 perc pitch, 5 perc kérdések.</span></p>
+      <p class="note ok" id="sent"><span class="en">Thanks, we got it. We'll reply by email.</span><span class="hu">Köszönjük, megkaptuk. E-mailben válaszolunk.</span></p>
+      <p class="note bad" id="failed"><span class="en">Something went wrong. Write to </span><span class="hu">Valami hiba történt. Írj a </span><a href="mailto:hello@bhw.hu">hello@bhw.hu</a><span class="hu"> címre</span>.</p>
+      <h2><span class="en">How it works</span><span class="hu">Hogyan működik</span></h2>
+      <ol class="steps-list">
+        <li><span class="en">Submit the form below. It takes about 5 minutes.</span><span class="hu">Töltsd ki az alábbi űrlapot, nagyjából 5 perc.</span></li>
+        <li><span class="en">We review submissions once a month.</span><span class="hu">A jelentkezéseket havonta egyszer nézzük át.</span></li>
+        <li><span class="en">2–3 teams pitch at the next meetup. Everyone else gets a short reply.</span><span class="hu">2–3 csapat pitchel a következő meetupon. Mindenki más rövid visszajelzést kap.</span></li>
+        <li><span class="en">If an investor is interested, we introduce you by email, with both sides' consent. After that, you deal with each other directly.</span><span class="hu">Ha egy befektetőt érdekel a projekted, mindkét fél beleegyezésével e-mailben bemutatunk egymásnak. Onnantól közvetlenül egyeztettek.</span></li>
+      </ol>
+    </div></section>
+
+    <section id="founder"><div class="wrap">
+      <h2><span class="en">Pitch your project</span><span class="hu">Jelentkezz pitchre</span></h2>
+      <form class="pform" id="founderform" method="post" action="/api/pitch" data-steps>
+        <input type="hidden" name="kind" value="founder" />
+        <input class="hp" type="text" name="bhw_hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <p class="progress" aria-live="polite"></p>
+        <fieldset class="step">
+          <legend><span class="en">1. Who are you?</span><span class="hu">1. Ki vagy?</span></legend>
+          <label><span class="en">Name</span><span class="hu">Név</span><input name="name" autocomplete="name" required /></label>
+          <label><span class="en">Email</span><span class="hu">E-mail</span><input name="email" type="email" autocomplete="email" required /></label>
+        </fieldset>
+        <fieldset class="step">
+          <legend><span class="en">2. Project</span><span class="hu">2. Projekt</span></legend>
+          <label><span class="en">Project or company name</span><span class="hu">Projekt vagy cég neve</span><input name="project" maxlength="200" /></label>
+          <label><span class="en">Website or repo</span><span class="hu">Weboldal vagy repó</span><input name="link" type="url" placeholder="https://" /></label>
+        </fieldset>
+        <fieldset class="step">
+          <legend><span class="en">3. What are you building? One sentence.</span><span class="hu">3. Mit építesz? Egy mondatban.</span></legend>
+          <label><span class="en">Max 200 characters</span><span class="hu">Max. 200 karakter</span><textarea name="what" maxlength="200" rows="3" required></textarea></label>
+        </fieldset>
+        <fieldset class="step">
+          <legend><span class="en">4. Stage</span><span class="hu">4. Fázis</span></legend>
+          {stages.map((s) => <label class="choice"><input type="radio" name="stage" value={s.value} /><span class="en">{s.en}</span><span class="hu">{s.hu}</span></label>)}
+        </fieldset>
+        <fieldset class="step">
+          <legend><span class="en">5. What do you need?</span><span class="hu">5. Mire van szükséged?</span></legend>
+          {needs.map((s) => <label class="choice"><input type="checkbox" name="needs" value={s.value} /><span class="en">{s.en}</span><span class="hu">{s.hu}</span></label>)}
+        </fieldset>
+        <fieldset class="step">
+          <legend><span class="en">6. If raising</span><span class="hu">6. Ha forrást gyűjtesz</span></legend>
+          <label><span class="en">Target amount</span><span class="hu">Célösszeg</span>
+            <select name="raise"><option value="">–</option>{raises.map((r) => <option>{r}</option>)}</select></label>
+          <label><span class="en">What it pays for</span><span class="hu">Mire fordítod</span><input name="raise_for" maxlength="300" /></label>
+        </fieldset>
+        <fieldset class="step">
+          <legend><span class="en">7. Deck or demo video</span><span class="hu">7. Pitch deck vagy demóvideó</span></legend>
+          <label><span class="en">Link (no uploads)</span><span class="hu">Link (feltöltés nélkül)</span><input name="deck" type="url" placeholder="https://" /></label>
+        </fieldset>
+        <fieldset class="step">
+          <legend><span class="en">8. Last step</span><span class="hu">8. Utolsó lépés</span></legend>
+          <p class="sub"><span class="en">Can you pitch at the meetup in Budapest?</span><span class="hu">Tudsz pitchelni a budapesti meetupon?</span></p>
+          <label class="choice"><input type="radio" name="attend" value="yes" /><span class="en">Yes</span><span class="hu">Igen</span></label>
+          <label class="choice"><input type="radio" name="attend" value="remote" /><span class="en">Remote only</span><span class="hu">Csak online</span></label>
+          <label class="choice"><input type="radio" name="attend" value="no" /><span class="en">No</span><span class="hu">Nem</span></label>
+          <label class="choice"><input type="checkbox" name="consent" required /><span class="en">I agree BHW stores this and may share it with investors it introduces me to.</span><span class="hu">Hozzájárulok, hogy a BHW tárolja ezt, és megossza azokkal a befektetőkkel, akiknek bemutat.</span></label>
+        </fieldset>
+        <div class="nav">
+          <button class="btn ghost" type="button" data-back hidden><span class="en">Back</span><span class="hu">Vissza</span></button>
+          <button class="btn primary" type="button" data-next hidden><span class="en">Next</span><span class="hu">Tovább</span></button>
+          <button class="btn primary" type="submit"><span class="en">Send</span><span class="hu">Küldés</span></button>
+        </div>
+      </form>
+    </div></section>
+
+    <section id="investor"><div class="wrap">
+      <h2><span class="en">For investors</span><span class="hu">Befektetőknek</span></h2>
+      <p><span class="en">If you invest in hardware, robotics or deep tech, tell us what you look for. We'll invite you to pitch nights and send you relevant teams. No fees and no commitments.</span><span class="hu">Ha hardverbe, robotikába vagy deep techbe fektetsz, írd meg, mit keresel. Meghívunk a pitch estekre, és küldünk releváns csapatokat. Díj és kötelezettség nélkül.</span></p>
+      <form class="pform" id="investorform" method="post" action="/api/pitch">
+        <input type="hidden" name="kind" value="investor" />
+        <input class="hp" type="text" name="bhw_hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <div class="pair">
+          <label><span class="en">Name</span><span class="hu">Név</span><input name="name" autocomplete="name" required /></label>
+          <label><span class="en">Email</span><span class="hu">E-mail</span><input name="email" type="email" autocomplete="email" required /></label>
+          <label><span class="en">Fund, or "angel"</span><span class="hu">Alap, vagy „angyal”</span><input name="fund" maxlength="200" /></label>
+          <label>LinkedIn<input name="linkedin" type="url" placeholder="https://" /></label>
+          <label><span class="en">Typical ticket</span><span class="hu">Jellemző jegyméret</span>
+            <select name="ticket"><option value="">–</option>{tickets.map((t) => <option>{t}</option>)}</select></label>
+          <label><span class="en">Stage</span><span class="hu">Fázis</span>
+            <select name="stage"><option value="">–</option><option value="pre-seed">Pre-seed</option><option value="seed">Seed</option><option value="series-a">Series A+</option></select></label>
+        </div>
+        <fieldset>
+          <legend><span class="en">Sectors</span><span class="hu">Területek</span></legend>
+          <div class="chips">{sectors.map((s) => <label class="choice"><input type="checkbox" name="sectors" value={s.value} /><span class="en">{s.en}</span><span class="hu">{s.hu}</span></label>)}</div>
+        </fieldset>
+        <label class="choice"><input type="checkbox" name="judge" value="yes" /><span class="en">Invite me to judge a pitch night</span><span class="hu">Hívjatok meg zsűrizni egy pitch estre</span></label>
+        <label class="choice"><input type="checkbox" name="consent" required /><span class="en">I agree BHW stores this and may email me about teams and pitch nights.</span><span class="hu">Hozzájárulok, hogy a BHW tárolja ezt, és e-mailt küldjön csapatokról és pitch estekről.</span></label>
+        <div class="nav"><button class="btn primary" type="submit"><span class="en">Send</span><span class="hu">Küldés</span></button></div>
+      </form>
+    </div></section>
+
+    <section class="legal"><div class="wrap">
+      <p><strong><span class="en">BHW is a community, not an investor or broker. We do not raise, hold or manage money, give investment advice, or take fees or equity. We only make introductions.</span><span class="hu">A BHW közösség, nem befektető és nem közvetítő. Nem gyűjtünk, kezelünk vagy fektetünk be pénzt, nem adunk befektetési tanácsot, és nem kérünk díjat vagy részesedést. Csak bemutatunk embereket egymásnak.</span></strong></p>
+      <p><span class="en">Privacy: we use what you send only to review pitches and make introductions you agree to. We keep it for 12 months. To see or delete your data, write to </span><span class="hu">Adatvédelem: az adataidat csak a pitchek átnézésére és az általad jóváhagyott bemutatásokra használjuk, 12 hónapig őrizzük. Betekintéshez vagy törléshez írj a </span><a href="mailto:hello@bhw.hu">hello@bhw.hu</a><span class="hu"> címre</span>.</p>
+    </div></section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .pform{display:grid;gap:18px;max-width:680px;margin-top:22px}
+  .pform fieldset{border:0;padding:0;margin:0;display:grid;gap:12px;min-width:0}
+  .pform legend{font-size:1.15rem;font-weight:600;margin-bottom:12px}
+  .pform label{display:grid;gap:7px;font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .pform label.choice{display:flex;align-items:flex-start;gap:10px;font-family:var(--sans);font-size:1rem;letter-spacing:0;text-transform:none;color:var(--ink);cursor:pointer}
+  .pform input:not([type=radio]):not([type=checkbox]),.pform textarea,.pform select{width:100%;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);font-family:var(--sans);font-size:1rem;letter-spacing:0;text-transform:none;padding:11px 13px}
+  .pform input:focus,.pform textarea:focus,.pform select:focus{outline:none;border-color:var(--accent)}
+  .pform .choice input{margin-top:5px;accent-color:var(--accent)}
+  .pair{display:grid;gap:18px}
+  @media(min-width:640px){.pair{grid-template-columns:1fr 1fr}}
+  .chips{display:flex;flex-wrap:wrap;gap:10px 22px}
+  .nav{display:flex;gap:14px;flex-wrap:wrap}
+  .nav [hidden]{display:none}
+  h1{font-size:clamp(2rem,4vw,3rem)}
+  .sub{margin:0}
+  .progress{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--muted);margin:0}
+  .progress:empty{display:none}
+  .stepped .step{display:none}
+  .stepped .step.on{display:grid}
+  .steps-list{padding-left:20px;max-width:70ch}
+  .steps-list li{margin:6px 0}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .note{display:none;padding:12px 14px;border:1px solid currentColor;border-radius:4px}
+  .note:target{display:block}
+  .note.ok{color:var(--accent-2)}
+  .note.bad{color:#b42318}
+  .legal p{font-size:.9rem;color:var(--muted)}
+</style>
+
+<script>
+  // One question per screen. Without JS every step shows and the form posts normally.
+  (() => {
+    const form = document.querySelector('[data-steps]');
+    if (!form) return;
+    const steps = [...form.querySelectorAll('.step')];
+    const back = form.querySelector('[data-back]');
+    const next = form.querySelector('[data-next]');
+    const submit = form.querySelector('[type=submit]');
+    const progress = form.querySelector('.progress');
+    let i = 0;
+    const show = (n) => {
+      i = Math.max(0, Math.min(n, steps.length - 1));
+      steps.forEach((s, k) => s.classList.toggle('on', k === i));
+      back.hidden = i === 0;
+      next.hidden = i === steps.length - 1;
+      submit.hidden = i !== steps.length - 1;
+      progress.textContent = `${i + 1} / ${steps.length}`;
+    };
+    const valid = () => [...steps[i].querySelectorAll('input,textarea,select')].every((el) => el.reportValidity());
+    form.classList.add('stepped');
+    back.addEventListener('click', () => show(i - 1));
+    next.addEventListener('click', () => { if (valid()) { show(i + 1); steps[i].querySelector('input,textarea,select')?.focus(); } });
+    form.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.target.tagName === 'INPUT' && i < steps.length - 1) { e.preventDefault(); next.click(); }
+    });
+    form.addEventListener('submit', (e) => { if (!valid()) e.preventDefault(); });
+    const start = Number(new URLSearchParams(location.search).get('step')) || 1;
+    show(start - 1);
+  })();
+</script>
