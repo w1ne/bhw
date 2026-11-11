@@ -11,3 +11,14 @@
 .readmore{font-size:14px;font-weight:600}
 
 .news-article li a{text-decoration:underline;text-underline-offset:3px}
+
+/* Preserve the complete event card, including its date and signup address. */
+.event-photo img.event-graphic{object-fit:contain;background:var(--bg)}
+.news-card-image{display:block;margin-bottom:22px}
+.news-card-image img{width:100%;height:auto}
+.news-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:28px 0}
+.news-facts>div{padding:20px;background:var(--bg)}
+.news-facts dt{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.news-facts dd{margin:6px 0 0;font-size:19px;font-weight:600;line-height:1.35}
+.news-article a.news-signup{text-decoration:none}
+@media(max-width:480px){.news-facts>div{padding:14px}.news-facts dd{font-size:16px}}

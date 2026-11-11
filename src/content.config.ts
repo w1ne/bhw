@@ -10,6 +10,8 @@ const news = defineCollection({
     date: z.date(),
     badge: z.string(),
     badgeHu: z.string(),
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
   }),
 });
 
