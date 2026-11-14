@@ -1,0 +1,45 @@
+[
+  {
+    "slug": "lcd-ultra-pro",
+    "name": "LCD Ultra Pro",
+    "creator": "Zsolt Sziklai",
+    "published": true,
+    "site": "https://lcdultrapro.com/",
+    "videos": "https://www.youtube.com/@LCD-UltraPro",
+    "image": "/images/projects/lcd-ultra-pro-editor.webp",
+    "imageAlt": "LCD Ultra Pro visual editor, showing widgets and an ESP32 display interface",
+    "secondaryImage": "/images/projects/lcd-ultra-pro-usb-live.webp",
+    "secondaryImageAlt": "LCD Ultra Pro USB Live preview with a Smart Thermostat display",
+    "tags": ["ESP32", "LVGL 8.4", "Arduino", "Developer tools"],
+    "category": {
+      "en": "Embedded software",
+      "hu": "Beágyazott szoftver"
+    },
+    "summary": {
+      "en": "Design and test ESP32 display interfaces in the browser. Export an Arduino project or preview the screen on supported hardware over USB.",
+      "hu": "ESP32-kijelzőfelületek tervezése és tesztelése böngészőből. Arduino-projekt exportálása, illetve élő előnézet támogatott kijelzőkön USB-n keresztül."
+    },
+    "description": {
+      "en": "LCD Ultra Pro is a visual editor for ESP32 LCD and TFT interfaces. It runs LVGL 8.4 in the browser, lets builders add screens and interactions without writing the interface code by hand, and exports a project for Arduino IDE. USB Live can mirror changes to selected physical displays without recompiling.",
+      "hu": "Az LCD Ultra Pro vizuális szerkesztő ESP32-alapú LCD- és TFT-felületekhez. A böngészőben LVGL 8.4-et használ. Képernyők és interakciók készíthetők a felület kézi programozása nélkül, majd a teljes projekt exportálható Arduino IDE-hez. A támogatott kijelzőkön a USB Live újrafordítás nélkül jeleníti meg a változásokat."
+    },
+    "features": [
+      {
+        "title": { "en": "Visual editor", "hu": "Vizuális szerkesztő" },
+        "body": { "en": "Arrange widgets and displays with drag and drop.", "hu": "Widgetek és kijelzőelemek elrendezése fogd és vidd módszerrel." }
+      },
+      {
+        "title": { "en": "Live LVGL simulation", "hu": "Élő LVGL-szimuláció" },
+        "body": { "en": "Test screens and interactions with LVGL 8.4 in the browser.", "hu": "Képernyők és interakciók tesztelése a böngészőben futó LVGL 8.4 segítségével." }
+      },
+      {
+        "title": { "en": "Arduino project export", "hu": "Arduino-projekt exportálása" },
+        "body": { "en": "Download UI code, display drivers and project setup notes.", "hu": "Felületkód, kijelzőmeghajtók és projektbeállítások letöltése." }
+      },
+      {
+        "title": { "en": "USB Live preview", "hu": "USB Live előnézet" },
+        "body": { "en": "Show edits on selected physical displays without reflashing.", "hu": "A módosítások megjelenítése egyes valódi kijelzőkön újraflashelés nélkül." }
+      }
+    ]
+  }
+]

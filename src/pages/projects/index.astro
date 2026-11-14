@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import projects from '../../data/memberProjects.json';
+const published = projects.filter((project) => project.published);
+---
+<BaseLayout
+  title="Member projects · Budapest Hardware Club"
+  description="Explore hardware, embedded software and robotics projects shared with the Budapest Hardware Club community."
+  ogTitle="Member projects · Budapest Hardware Club"
+  ogDescription="A growing exhibition of hardware projects and the people building them."
+  image="https://bhw.hu/images/projects/lcd-ultra-pro-editor.webp"
+>
+  <Navigation />
+  <main>
+    <section class="projects-intro">
+      <div class="wrap">
+        <p class="eyebrow"><span class="en">Budapest Hardware Club / Community showcase</span><span class="hu">Budapest Hardware Club / Közösségi bemutató</span></p>
+        <h1><span class="en">Things we're building<span class="title-dot">.</span></span><span class="hu">Amit építünk<span class="title-dot">.</span></span></h1>
+        <p class="projects-lead en">Meet the makers and explore the projects shared with our hardware community. From embedded tools to real machines.</p>
+        <p class="projects-lead hu">Ismerd meg az alkotókat és a hardveres közösségünkkel megosztott projekteket. Beágyazott fejlesztőeszközöktől a valódi gépekig.</p>
+        <div class="projects-count">
+          <span class="projects-count-value">{String(published.length).padStart(2, '0')}</span>
+          <span class="en">Project{published.length === 1 ? '' : 's'} on display<br />More to come</span>
+          <span class="hu">Bemutatott projekt<br />Hamarosan újabbak</span>
+        </div>
+      </div>
+    </section>
+    <section class="projects-showcase" aria-labelledby="projects-gallery-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <h2 id="projects-gallery-title"><span class="en">On display</span><span class="hu">Kiállított projektek</span></h2>
+          <span class="project-gallery-note"><span class="en">Created by independent builders</span><span class="hu">Független alkotók munkái</span></span>
+        </div>
+        <div class="project-grid">
+          {published.map((project) => (
+            <article class="project-gallery-card">
+              <a class="project-gallery-image" href={'/projects/' + project.slug + '/'} aria-label={'Open ' + project.name}>
+                <img src={project.image} alt={project.imageAlt} loading="lazy" decoding="async" width="1200" height="587" />
+              </a>
+              <div class="project-gallery-info">
+                <p class="eyebrow"><span class="en">{project.category.en}</span><span class="hu">{project.category.hu}</span></p>
+                <h3><a href={'/projects/' + project.slug + '/'}>{project.name}</a></h3>
+                <p class="project-maker"><span class="en">By </span><span class="hu">Készítette: </span>{project.creator}</p>
+                <p class="en">{project.summary.en}</p><p class="hu">{project.summary.hu}</p>
+                <ul class="project-tags" aria-label="Technologies">{project.tags.map((tag) => <li>{tag}</li>)}</ul>
+                <a class="text-link" href={'/projects/' + project.slug + '/'}><span class="en">Explore project →</span><span class="hu">Projekt megtekintése →</span></a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <aside class="project-submit">
+          <div>
+            <p class="eyebrow"><span class="en">Open call</span><span class="hu">Nyílt felhívás</span></p>
+            <h2><span class="en">Building something?</span><span class="hu">Te is építesz valamit?</span></h2>
+            <p class="en">Have a hardware, firmware or robotics project? Share a short description, a project link and a photo. We'll review it for the gallery. You can also present at a future meetup.</p>
+            <p class="hu">Van hardveres, firmware-es vagy robotikai projekted? Küldj rövid leírást, projektlinket és egy fotót. Átnézzük a galériába való bekerüléshez. Egy későbbi meetupon be is mutathatod.</p>
+          </div>
+          <a class="btn primary" href="mailto:hello@bhw.hu?subject=BHW%20member%20project&body=Project%20name%3A%0ACreator%20name%3A%0AProject%20link%3A%0AShort%20description%3A%0AImage%20link%3A%0A">
+            <span class="en">Submit your project →</span><span class="hu">Projekt beküldése →</span>
+          </a>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
