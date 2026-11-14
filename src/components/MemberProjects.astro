@@ -1,0 +1,32 @@
+---
+import projects from '../data/memberProjects.json';
+const featured = projects.find((project) => project.published);
+---
+{featured && (
+  <section class="member-projects-home" id="member-projects" aria-labelledby="member-projects-heading">
+    <div class="wrap">
+      <div class="section-heading">
+        <h2 id="member-projects-heading"><span class="en">Member projects</span><span class="hu">Tagjaink projektjei</span></h2>
+        <a class="text-link" href="/projects/"><span class="en">Explore the gallery →</span><span class="hu">Projektek megtekintése →</span></a>
+      </div>
+      <article class="project-spotlight">
+        <a class="project-spotlight-media" href={'/projects/' + featured.slug + '/'} aria-label={'Explore ' + featured.name}>
+          <img src={featured.image} alt={featured.imageAlt} loading="lazy" decoding="async" width="1200" height="587" />
+        </a>
+        <div class="project-spotlight-body">
+          <p class="eyebrow"><span class="en">Featured project · {featured.category.en}</span><span class="hu">Kiemelt projekt · {featured.category.hu}</span></p>
+          <h3><a href={'/projects/' + featured.slug + '/'}>{featured.name}</a></h3>
+          <p class="project-maker"><span class="en">By </span><span class="hu">Készítette: </span>{featured.creator}</p>
+          <p class="project-summary en">{featured.summary.en}</p>
+          <p class="project-summary hu">{featured.summary.hu}</p>
+          <ul class="project-tags" aria-label="Technologies">
+            {featured.tags.slice(0, 3).map((tag) => <li>{tag}</li>)}
+          </ul>
+          <a class="text-link project-explore" href={'/projects/' + featured.slug + '/'}>
+            <span class="en">See the project →</span><span class="hu">Projekt megtekintése →</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+)}

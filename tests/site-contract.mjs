@@ -306,3 +306,32 @@ assert.match(pitchFn, /status: 303/);
   assert.equal(r.headers.get('location'), '/pitch/?sent=investor#sent');
   assert.ok(store.has('pitch:investor:i@v.c'));
 }
+
+// Public member-project gallery uses reviewed data and bilingual, first-party images.
+const projectsData = JSON.parse(await readFile(new URL('../src/data/memberProjects.json', import.meta.url), 'utf8'));
+assert.ok(Array.isArray(projectsData) && projectsData.length >= 1);
+const slugs = new Set();
+for (const project of projectsData) {
+  assert.ok(!slugs.has(project.slug), 'project slugs must be unique');
+  slugs.add(project.slug);
+  assert.match(project.site, /^https:\/\//);
+  assert.ok(project.name && project.creator && project.published);
+  assert.ok(project.summary?.en && project.summary?.hu);
+  assert.ok(project.description?.en && project.description?.hu);
+  assert.ok(project.features?.length >= 2);
+  assert.match(project.image, /^\/images\/projects\//);
+  assert.match(project.secondaryImage, /^\/images\/projects\//);
+  await access(new URL('../public' + project.image, import.meta.url));
+  await access(new URL('../public' + project.secondaryImage, import.meta.url));
+}
+const memberProjects = await readFile(new URL('../src/components/MemberProjects.astro', import.meta.url), 'utf8');
+assert.match(memberProjects, /member-projects/);
+assert.match(page, /<MemberProjects/);
+const projectsPage = await readFile(new URL('../src/pages/projects/index.astro', import.meta.url), 'utf8');
+assert.match(projectsPage, /memberProjects.json/);
+assert.match(projectsPage, /project-submit/);
+const projectDetail = await readFile(new URL('../src/pages/projects/[slug].astro', import.meta.url), 'utf8');
+assert.match(projectDetail, /getStaticPaths/);
+assert.match(projectDetail, /project.features.map/);
+assert.match(nav, /href="\/projects\/"/);
+assert.match(footer, /href="\/projects\/"/);
