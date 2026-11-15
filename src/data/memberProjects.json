@@ -10,7 +10,12 @@
     "imageAlt": "LCD Ultra Pro visual editor, showing widgets and an ESP32 display interface",
     "secondaryImage": "/images/projects/lcd-ultra-pro-usb-live.webp",
     "secondaryImageAlt": "LCD Ultra Pro USB Live preview with a Smart Thermostat display",
-    "tags": ["ESP32", "LVGL 8.4", "Arduino", "Developer tools"],
+    "tags": [
+      "ESP32",
+      "LVGL 8.4",
+      "Arduino",
+      "Developer tools"
+    ],
     "category": {
       "en": "Embedded software",
       "hu": "Beágyazott szoftver"
@@ -25,21 +30,267 @@
     },
     "features": [
       {
-        "title": { "en": "Visual editor", "hu": "Vizuális szerkesztő" },
-        "body": { "en": "Arrange widgets and displays with drag and drop.", "hu": "Widgetek és kijelzőelemek elrendezése fogd és vidd módszerrel." }
+        "title": {
+          "en": "Visual editor",
+          "hu": "Vizuális szerkesztő"
+        },
+        "body": {
+          "en": "Arrange widgets and displays with drag and drop.",
+          "hu": "Widgetek és kijelzőelemek elrendezése fogd és vidd módszerrel."
+        }
       },
       {
-        "title": { "en": "Live LVGL simulation", "hu": "Élő LVGL-szimuláció" },
-        "body": { "en": "Test screens and interactions with LVGL 8.4 in the browser.", "hu": "Képernyők és interakciók tesztelése a böngészőben futó LVGL 8.4 segítségével." }
+        "title": {
+          "en": "Live LVGL simulation",
+          "hu": "Élő LVGL-szimuláció"
+        },
+        "body": {
+          "en": "Test screens and interactions with LVGL 8.4 in the browser.",
+          "hu": "Képernyők és interakciók tesztelése a böngészőben futó LVGL 8.4 segítségével."
+        }
       },
       {
-        "title": { "en": "Arduino project export", "hu": "Arduino-projekt exportálása" },
-        "body": { "en": "Download UI code, display drivers and project setup notes.", "hu": "Felületkód, kijelzőmeghajtók és projektbeállítások letöltése." }
+        "title": {
+          "en": "Arduino project export",
+          "hu": "Arduino-projekt exportálása"
+        },
+        "body": {
+          "en": "Download UI code, display drivers and project setup notes.",
+          "hu": "Felületkód, kijelzőmeghajtók és projektbeállítások letöltése."
+        }
       },
       {
-        "title": { "en": "USB Live preview", "hu": "USB Live előnézet" },
-        "body": { "en": "Show edits on selected physical displays without reflashing.", "hu": "A módosítások megjelenítése egyes valódi kijelzőkön újraflashelés nélkül." }
+        "title": {
+          "en": "USB Live preview",
+          "hu": "USB Live előnézet"
+        },
+        "body": {
+          "en": "Show edits on selected physical displays without reflashing.",
+          "hu": "A módosítások megjelenítése egyes valódi kijelzőkön újraflashelés nélkül."
+        }
       }
-    ]
+    ],
+    "imageCaption": {
+      "en": "Project image from the maker's website.",
+      "hu": "Projektkép az alkotó weboldaláról."
+    },
+    "secondary": {
+      "eyebrow": {
+        "en": "From browser to board",
+        "hu": "A böngészőtől a hardverig"
+      },
+      "title": {
+        "en": "See the interface on real hardware.",
+        "hu": "Nézd meg a felületet valódi hardveren."
+      },
+      "body": {
+        "en": "USB Live can mirror the editor to supported ESP32 displays. For a finished project, export the Arduino source and board drivers.",
+        "hu": "A USB Live támogatott ESP32-kijelzőkre tükrözi a szerkesztőt. A kész projekthez exportálható az Arduino-forráskód és a meghajtók."
+      },
+      "caption": {
+        "en": "USB Live demo preview. Available only on supported displays.",
+        "hu": "USB Live bemutató. Csak támogatott kijelzőkön használható."
+      }
+    }
+  },
+  {
+    "slug": "agentplaybooks",
+    "name": "AgentPlaybooks",
+    "creator": "Máté Benyovszky",
+    "published": true,
+    "site": "https://agentplaybooks.ai/",
+    "secondaryLink": {
+      "url": "https://github.com/matebenyovszky/agentplaybooks",
+      "label": {
+        "en": "View open-source code",
+        "hu": "Nyílt forráskód"
+      }
+    },
+    "image": "/images/projects/agentplaybooks-cover.webp",
+    "imageAlt": "AgentPlaybooks branding and product illustration from the project website",
+    "imageCaption": {
+      "en": "Project visual from the AgentPlaybooks website.",
+      "hu": "Projektkép az AgentPlaybooks weboldaláról."
+    },
+    "secondaryImage": "/images/projects/agentplaybooks-site.webp",
+    "secondaryImageAlt": "Screenshot of the AgentPlaybooks website showing its portable AI agent configuration",
+    "tags": [
+      "AI agents",
+      "MCP",
+      "Agent Skills",
+      "Open source"
+    ],
+    "category": {
+      "en": "AI agent tooling",
+      "hu": "AI-ügynökök fejlesztőeszközei"
+    },
+    "summary": {
+      "en": "Keep agent instructions, skills, MCP connections and memory in a portable playbook. Open-source tooling for today's assistants, with robotics as a future direction.",
+      "hu": "Ügynökutasítások, készségek, MCP-kapcsolatok és memória egy hordozható playbookban. Nyílt forráskódú eszköz, későbbi robotikai alkalmazásokkal."
+    },
+    "description": {
+      "en": "AgentPlaybooks provides a vendor-neutral home for AI-agent configuration. A playbook can contain instructions, skills, MCP tool connections and persistent memory. The project supports workflows across several coding assistants and is open source and self-hostable. Its creator also explores how portable skills could work for physical robots.",
+      "hu": "Az AgentPlaybooks szolgáltatófüggetlen megoldás az AI-ügynökök beállításainak kezelésére. Egy playbook utasításokat, készségeket, MCP-eszközkapcsolatokat és tartós memóriát tartalmazhat. A nyílt forráskódú, saját szerveren is futtatható projekt több kódolóasszisztens munkafolyamatait támogatja. Az alkotó a hordozható készségek robotikai alkalmazását is vizsgálja."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Portable playbooks",
+          "hu": "Hordozható playbookok"
+        },
+        "body": {
+          "en": "Manage an agent's instructions and configuration independently of one vendor.",
+          "hu": "Az ügynök utasításainak és beállításainak kezelése szolgáltatófüggetlenül."
+        }
+      },
+      {
+        "title": {
+          "en": "Skills and MCP tools",
+          "hu": "Készségek és MCP-eszközök"
+        },
+        "body": {
+          "en": "Keep reusable skills and tool connections together.",
+          "hu": "Újrahasználható készségek és eszközkapcsolatok egy helyen."
+        }
+      },
+      {
+        "title": {
+          "en": "Persistent memory",
+          "hu": "Tartós memória"
+        },
+        "body": {
+          "en": "Store agent context across sessions and supported platforms.",
+          "hu": "Ügynökkontextus megőrzése munkameneteken és támogatott platformokon át."
+        }
+      },
+      {
+        "title": {
+          "en": "Open and self-hostable",
+          "hu": "Nyílt és saját szerveren futtatható"
+        },
+        "body": {
+          "en": "Inspect the source code and host the system on your own infrastructure.",
+          "hu": "A forráskód ellenőrizhető, a rendszer saját infrastruktúrán is futtatható."
+        }
+      }
+    ],
+    "secondary": {
+      "eyebrow": {
+        "en": "Agent configuration",
+        "hu": "Ügynökbeállítások"
+      },
+      "title": {
+        "en": "One source of truth for AI tools.",
+        "hu": "Közös kiindulópont az AI-eszközöknek."
+      },
+      "body": {
+        "en": "Define a playbook once and use it with supported assistants. The project describes robotics as a future application, not a deployed robot product.",
+        "hu": "Egy playbook több támogatott asszisztenssel is használható. A projekt a robotikát jövőbeli alkalmazási területként mutatja be, nem kész robottermékként."
+      },
+      "caption": {
+        "en": "Screenshot of the public AgentPlaybooks website.",
+        "hu": "Képernyőkép az AgentPlaybooks nyilvános weboldaláról."
+      }
+    }
+  },
+  {
+    "slug": "labwired",
+    "name": "LabWired",
+    "creator": "Andrii Shylenko",
+    "published": true,
+    "site": "https://labwired.com/",
+    "secondaryLink": {
+      "url": "https://docs.labwired.com/",
+      "label": {
+        "en": "Read documentation",
+        "hu": "Dokumentáció"
+      }
+    },
+    "image": "/images/projects/labwired-cover.webp",
+    "imageAlt": "LabWired circuit and firmware Playground preview with a simulated development board",
+    "imageCaption": {
+      "en": "Project visual from the LabWired website.",
+      "hu": "Projektkép a LabWired weboldaláról."
+    },
+    "secondaryImage": "/images/projects/labwired-site.webp",
+    "secondaryImageAlt": "Screenshot of LabWired homepage showing circuit simulation and firmware workflows",
+    "tags": [
+      "Firmware",
+      "MCU simulation",
+      "PCB",
+      "MCP"
+    ],
+    "category": {
+      "en": "Hardware development",
+      "hu": "Hardverfejlesztés"
+    },
+    "summary": {
+      "en": "Design circuits and PCBs, run real MCU firmware in simulated hardware, and check results in Playground or CI with AI-agent integrations.",
+      "hu": "Áramkörök és NYÁK-ok tervezése, valódi MCU-firmware futtatása szimulált hardveren, valamint eredmények ellenőrzése Playgroundban vagy CI-ben, AI-ügynökökkel."
+    },
+    "description": {
+      "en": "LabWired is a browser-based environment for embedded hardware development. Engineers can describe circuits, run MCU firmware against simulated boards and peripherals, inspect displays and bus traffic, and repeat selected checks in CI. Its Playground also connects circuit, PCB and 3D CAD work, with MCP access for coding agents. Simulation checks do not replace physical hardware validation.",
+      "hu": "A LabWired böngészős környezet beágyazott hardver fejlesztéséhez. A mérnökök áramköröket írhatnak le, MCU-firmware-t futtathatnak szimulált paneleken és perifériákon, megfigyelhetik a kijelzőket és a buszforgalmat, majd kiválasztott ellenőrzéseket CI-ben is megismételhetnek. A Playground áramkör-, NYÁK- és 3D CAD-munkafolyamatokat kapcsol össze, MCP-hozzáféréssel a kódolóügynökök számára. A szimuláció nem helyettesíti a fizikai hardver ellenőrzését."
+    },
+    "features": [
+      {
+        "title": {
+          "en": "Run real firmware",
+          "hu": "Valódi firmware futtatása"
+        },
+        "body": {
+          "en": "Execute selected MCU firmware workflows without a physical board.",
+          "hu": "Kiválasztott MCU-firmware-feladatok futtatása fizikai panel nélkül."
+        }
+      },
+      {
+        "title": {
+          "en": "Inspect hardware behavior",
+          "hu": "Hardverviselkedés vizsgálata"
+        },
+        "body": {
+          "en": "Observe simulated displays, UART and industrial buses in Playground.",
+          "hu": "Szimulált kijelzők, UART és ipari buszok megfigyelése a Playgroundban."
+        }
+      },
+      {
+        "title": {
+          "en": "Design artifacts",
+          "hu": "Tervezési elemek"
+        },
+        "body": {
+          "en": "Work with circuits, PCB layouts and 3D CAD models in one project workflow.",
+          "hu": "Áramkörök, NYÁK-tervek és 3D CAD-modellek kezelése egy projektfolyamatban."
+        }
+      },
+      {
+        "title": {
+          "en": "Repeatable checks",
+          "hu": "Megismételhető ellenőrzések"
+        },
+        "body": {
+          "en": "Connect coding agents through MCP and rerun selected checks in CI.",
+          "hu": "Kódolóügynökök kapcsolása MCP-n keresztül és ellenőrzések ismétlése CI-ben."
+        }
+      }
+    ],
+    "secondary": {
+      "eyebrow": {
+        "en": "From design to checks",
+        "hu": "A tervezéstől az ellenőrzésig"
+      },
+      "title": {
+        "en": "Test firmware before the board arrives.",
+        "hu": "Firmware tesztelése a panel érkezése előtt."
+      },
+      "body": {
+        "en": "Run a virtual device, inspect its outputs and repeat selected tests. The results describe the simulation model; physical hardware still needs separate validation.",
+        "hu": "Virtuális eszköz futtatása, kimenetek vizsgálata és kiválasztott tesztek ismétlése. Az eredmények a szimulációs modellt igazolják; a fizikai hardvert külön kell ellenőrizni."
+      },
+      "caption": {
+        "en": "Screenshot of the public LabWired website.",
+        "hu": "Képernyőkép a LabWired nyilvános weboldaláról."
+      }
+    }
   }
 ]
