@@ -1,0 +1,32 @@
+<section id="support" aria-labelledby="support-heading">
+  <div class="wrap support-intro">
+    <div>
+      <p class="eyebrow"><span class="en">Builder sponsorships</span><span class="hu">Alkotói támogatások</span></p>
+      <h2 id="support-heading"><span class="en">We back people who build.</span><span class="hu">Támogatjuk az alkotókat.</span></h2>
+      <p class="en">A conference ticket, travel to show your prototype, parts for a build, or help running an event. Sometimes a small expense is what moves a good project forward.</p>
+      <p class="hu">Konferenciajegy, utazás egy prototípus bemutatásához, alkatrészek vagy rendezvénytámogatás. Néha egy kisebb kiadás fedezése elég ahhoz, hogy egy jó projekt előrelépjen.</p>
+      <div class="btns">
+        <a class="btn primary" href="/support/#apply"><span class="en">Ask for support</span><span class="hu">Támogatást kérek</span></a>
+        <a class="text-link" href="/support/"><span class="en">What we can help with →</span><span class="hu">Miben segíthetünk? →</span></a>
+      </div>
+    </div>
+    <aside class="support-proof">
+      <p class="eyebrow"><span class="en">Already in practice</span><span class="hu">Már megtörtént</span></p>
+      <p class="en">A club member bought conference tickets for a fellow builder. BHW also supported <a href="/news/haven-budapest-2026/">Haven Budapest</a>, a student-run game jam.</p>
+      <p class="hu">Egy klubtag már vásárolt konferenciajegyeket egy másik alkotónak. A BHW a diákok által szervezett <a href="/news/haven-budapest-2026/">Haven Budapest</a> játékfejlesztő eseményt is támogatta.</p>
+      <p class="support-fine"><span class="en">Requests are reviewed individually. Support is not guaranteed.</span><span class="hu">Minden kérést egyedileg bírálunk el. A támogatás nem garantált.</span></p>
+    </aside>
+  </div>
+</section>
+
+<style>
+  #support{background:var(--bg-soft)}
+  .support-intro{display:grid;grid-template-columns:1.3fr 1fr;gap:72px;align-items:center}
+  .support-intro h2{max-width:16ch}
+  .support-intro p:not(.eyebrow):not(.support-fine){font-size:1rem;max-width:56ch}
+  .support-proof{border-left:2px solid var(--ink);padding:4px 0 4px 24px}
+  .support-proof p{margin-bottom:12px}
+  .support-proof a{text-decoration:underline;text-underline-offset:3px}
+  .support-fine{color:var(--muted);font-size:.82rem;margin:20px 0 0}
+  @media(max-width:700px){.support-intro{grid-template-columns:1fr;gap:28px}}
+</style>

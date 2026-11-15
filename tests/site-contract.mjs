@@ -343,3 +343,61 @@ assert.match(projectDetail, /getStaticPaths/);
 assert.match(projectDetail, /project.features.map/);
 assert.match(nav, /href="\/projects\/"/);
 assert.match(footer, /href="\/projects\/"/);
+
+// Practical sponsorship is separate from investment introductions and has a
+// functioning request form (not a promise of an open funding program).
+const supportHome = await readFile(new URL('../src/components/Support.astro', import.meta.url), 'utf8');
+const supportPage = await readFile(new URL('../src/pages/support.astro', import.meta.url), 'utf8');
+const supportFn = await readFile(new URL('../functions/api/support.js', import.meta.url), 'utf8');
+assert.match(page, /<Pitch \/><Support \/>/);
+assert.match(nav, /href="\/support\/"/);
+assert.match(footer, /href="\/support\/"/);
+for (const pageText of [supportHome, supportPage]) {
+  assert.match(pageText, /class="en"/);
+  assert.match(pageText, /class="hu"/);
+  assert.match(pageText, /Haven Budapest/);
+  assert.match(pageText, /conference ticket/i);
+}
+assert.match(supportPage, /action="\/api\/support"/);
+assert.match(supportPage, /method="post"/);
+assert.match(supportPage, /href="\/pitch\/#founder"/);
+assert.match(supportPage, /name="consent" required/);
+assert.match(supportPage, /Support is not guaranteed|guaranteed stipend|cannot promise support/);
+assert.match(supportFn, /env\.JOIN\.put/);
+assert.match(supportFn, /expirationTtl/);
+assert.match(supportFn, /send\(env, OPS/);
+assert.doesNotMatch(supportFn, /onRequestGet/);
+{
+  const src = supportFn.replace(/^import .*mail\.js";$/m, 'const OPS = "ops@test"; const send = async () => {};');
+  const { onRequestPost } = await import('data:text/javascript,' + encodeURIComponent(src));
+  const records = new Map();
+  const env = { JOIN: { put: async (key, value, options) => records.set(key, { record: JSON.parse(value), options }) } };
+  const valid = {
+    name: 'Maker', email: 'builder@example.com', project: 'A small robot',
+    category: 'tickets', help: 'A conference pass to demo the robot', consent: 'on'
+  };
+  const call = (body) => onRequestPost({
+    env, waitUntil: () => {},
+    request: new Request('https://bhw.hu/api/support', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }),
+  });
+  let res = await call(valid);
+  assert.equal(res.status, 200);
+  assert.equal((await res.json()).ok, true);
+  assert.equal(records.size, 1);
+  const [{ record, options }] = [...records.values()];
+  assert.equal(record.email, valid.email);
+  assert.equal(record.category, 'tickets');
+  assert.equal(options.expirationTtl, 365 * 24 * 60 * 60);
+  assert.equal((await call({ ...valid, consent: '' })).status, 400);
+  assert.equal((await call({ ...valid, category: 'loan' })).status, 400);
+  assert.equal((await call({ ...valid, link: 'javascript:bad()' })).status, 400);
+  assert.equal((await call({ ...valid, email: 'invalid' })).status, 400);
+  assert.equal((await call({ ...valid, bhw_hp: 'bot' })).status, 200);
+  assert.equal(records.size, 1);
+  const form = new FormData();
+  for (const [key, value] of Object.entries({ ...valid, email: 'second@example.com' })) form.set(key, value);
+  res = await onRequestPost({ env, waitUntil: () => {}, request: new Request('https://bhw.hu/api/support', { method: 'POST', body: form }) });
+  assert.equal(res.status, 303);
+  assert.equal(res.headers.get('location'), '/support/?sent=1#sent');
+  assert.equal(records.size, 2);
+}

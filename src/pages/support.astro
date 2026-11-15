@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout
+  title="Support for builders · Budapest Hardware Club"
+  description="Budapest Hardware Club sometimes sponsors conference tickets, travel, prototype expenses and community events. Tell us what you're building."
+>
+  <Navigation />
+  <main>
+    <section class="support-hero"><div class="wrap">
+      <p class="eyebrow"><span class="en">BHW / Sponsorships and builder grants</span><span class="hu">BHW / Szponzoráció és alkotói támogatás</span></p>
+      <h1><span class="en">Make the next step possible<span class="title-dot">.</span></span><span class="hu">Segítünk a következő lépésben<span class="title-dot">.</span></span></h1>
+      <p class="support-lead en">If you're building a useful project, organising an event, or need to get somewhere to show your work, tell us. We sometimes cover a specific expense or help in kind.</p>
+      <p class="support-lead hu">Ha hasznos projekten dolgozol, eseményt szervezel, vagy szeretnéd valahol bemutatni a munkádat, írj nekünk. Alkalmanként átvállalunk egy konkrét költséget, vagy természetbeni segítséget adunk.</p>
+      <a class="btn primary" href="#apply"><span class="en">Request support</span><span class="hu">Támogatás kérése</span></a>
+    </div></section>
+    <section class="support-types"><div class="wrap">
+      <h2><span class="en">What support can look like</span><span class="hu">Hogyan segíthetünk?</span></h2>
+      <div class="cards">
+        <div class="card"><h3><span class="en">Tickets and travel</span><span class="hu">Belépők és utazás</span></h3><p><span class="en">A conference pass, a hackathon ticket, or travel to demonstrate your project.</span><span class="hu">Konferencia- vagy hackathon-belépő, illetve utazás a projekted bemutatásához.</span></p></div>
+        <div class="card"><h3><span class="en">Community events</span><span class="hu">Közösségi események</span></h3><p><span class="en">Practical help for a workshop, hackathon or student-led event.</span><span class="hu">Gyakorlati segítség workshophoz, hackathonhoz vagy diákok által szervezett eseményhez.</span></p></div>
+        <div class="card"><h3><span class="en">Building a prototype</span><span class="hu">Prototípus építése</span></h3><p><span class="en">Parts, fabrication access, a small one-off grant, or a useful introduction.</span><span class="hu">Alkatrészek, gyártási lehetőség, kisebb egyszeri támogatás vagy hasznos kapcsolat.</span></p></div>
+      </div>
+      <div class="support-example">
+        <div>
+          <p class="eyebrow"><span class="en">Real examples</span><span class="hu">Valós példák</span></p>
+          <p class="en">A club member has paid for another builder's conference tickets. Budapest Hardware Club supported <a href="/news/haven-budapest-2026/">Haven Budapest</a>, a free, student-run game jam.</p>
+          <p class="hu">Egy klubtag már fizetett konferenciajegyet egy másik alkotónak. A Budapest Hardware Club támogatta a <a href="/news/haven-budapest-2026/">Haven Budapest</a> ingyenes, diákok által szervezett játékfejlesztő eseményt.</p>
+        </div>
+        <p class="support-notice"><span class="en">No fixed grant size, open funding round or guaranteed stipend. We decide case by case, depending on the request and available resources. We may pay a cost directly instead of making a cash grant.</span><span class="hu">Nincs rögzített támogatási összeg, állandó pályázati keret vagy garantált ösztöndíj. Egyedileg döntünk a kérés és az elérhető erőforrások alapján. Pénzbeli támogatás helyett közvetlenül is kifizethetünk egy költséget.</span></p>
+      </div>
+    </div></section>
+    <section id="apply"><div class="wrap support-apply">
+      <div>
+        <p class="eyebrow"><span class="en">Open to requests</span><span class="hu">Várjuk a jelentkezéseket</span></p>
+        <h2><span class="en">Tell us what you're building</span><span class="hu">Mutasd meg, min dolgozol</span></h2>
+        <p class="en">Keep it short. What are you making? What would our support make possible? A link to a demo, repo or event helps, but is not required.</p>
+        <p class="hu">Írd le röviden, min dolgozol, és miben segítene a támogatás. Demo-, repó- vagy eseménylink hasznos, de nem kötelező.</p>
+        <p class="en">You do not need a registered company. We review each request, but cannot promise support or a response date.</p>
+        <p class="hu">Nem kell bejegyzett céggel rendelkezned. Minden kérést átnézünk, de sem a támogatást, sem a válasz időpontját nem tudjuk garantálni.</p>
+        <p class="support-investment en">Looking for a larger investment? <a href="/pitch/#founder">Pitch your project</a> to meet potential investors. That is separate from sponsorship.</p>
+        <p class="support-investment hu">Nagyobb befektetést keresel? <a href="/pitch/#founder">Mutasd be a projektedet</a> lehetséges befektetőknek. Ez külön folyamat a szponzorációtól.</p>
+      </div>
+      <div>
+        <p id="sent" class="support-feedback success" role="status"><span class="en">Request received. We'll review it and contact you by email if we can help.</span><span class="hu">Megkaptuk a kérésedet. Átnézzük, és e-mailben jelentkezünk, ha segíteni tudunk.</span></p>
+        <p id="failed" class="support-feedback fail" role="alert"><span class="en">Could not submit. Check the form or email </span><span class="hu">A küldés sikertelen. Ellenőrizd az űrlapot, vagy írj a </span><a href="mailto:hello@bhw.hu">hello@bhw.hu</a><span class="hu"> címre.</span></p>
+        <form class="support-form" method="post" action="/api/support">
+          <input class="hp" type="text" name="bhw_hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <div class="support-pair">
+            <label><span class="en">Your name</span><span class="hu">Neved</span><input name="name" autocomplete="name" maxlength="120" required /></label>
+            <label><span class="en">Email</span><span class="hu">E-mail</span><input name="email" type="email" autocomplete="email" maxlength="254" required /></label>
+          </div>
+          <label><span class="en">Project or event</span><span class="hu">Projekt vagy esemény</span><textarea name="project" minlength="5" maxlength="500" rows="3" required ></textarea></label>
+          <label><span class="en">Project link (optional)</span><span class="hu">Projektlink (nem kötelező)</span><input name="link" type="url" maxlength="300" placeholder="https://" /></label>
+          <label><span class="en">What support would help?</span><span class="hu">Milyen segítségre van szükséged?</span>
+            <select name="category" required>
+              <option value="">Choose / Válassz</option>
+              <option value="tickets">Tickets / Belépők</option>
+              <option value="travel">Travel / Utazás</option>
+              <option value="event">Event / Rendezvény</option>
+              <option value="prototype">Prototype / Prototípus</option>
+              <option value="other">Other / Egyéb</option>
+            </select>
+          </label>
+          <label><span class="en">What would this make possible?</span><span class="hu">Mit tenne lehetővé a támogatás?</span><textarea name="help" minlength="10" maxlength="1000" rows="4" required></textarea></label>
+          <div class="support-pair">
+            <label><span class="en">Estimated cost (optional)</span><span class="hu">Becsült költség (nem kötelező)</span><input name="cost" maxlength="100" placeholder="€80" /></label>
+            <label><span class="en">When is it needed? (optional)</span><span class="hu">Mikor lenne rá szükség? (nem kötelező)</span><input name="when" maxlength="100" placeholder="2027-03" /></label>
+          </div>
+          <label class="support-consent"><input type="checkbox" name="consent" required /><span class="en">I agree that BHW stores this request to review it and contact me. BHW will not share my details without permission.</span><span class="hu">Hozzájárulok, hogy a BHW a kérésem elbírálása és a kapcsolatfelvétel céljából tárolja az adataimat. Az adataimat engedélyem nélkül nem adja tovább.</span></label>
+          <button class="btn primary" type="submit"><span class="en">Send request</span><span class="hu">Kérés elküldése</span></button>
+          <p class="support-privacy"><span class="en">We keep requests in our review system for up to 12 months and email a copy to our organisers. Ask to see or delete your request at </span><span class="hu">A kéréseket legfeljebb 12 hónapig tároljuk a nyilvántartásunkban, és egy példányt e-mailben elküldünk a szervezőknek. Betekintést vagy törlést a </span><a href="mailto:hello@bhw.hu">hello@bhw.hu</a><span class="hu"> címen kérhetsz.</span></p>
+        </form>
+      </div>
+    </div></section>
+  </main>
+  <Footer />
+</BaseLayout>
+<style>
+  .support-hero{background:var(--bg-soft)}
+  .support-hero h1{font-size:clamp(2.3rem,5vw,3.8rem);max-width:18ch;margin:16px 0 20px}
+  .support-lead{font-size:1.15rem;color:var(--muted);max-width:62ch}
+  .support-hero .btn{margin-top:12px}
+  .support-example{display:grid;grid-template-columns:1fr 1fr;gap:48px;border-top:1px solid var(--line);padding-top:28px;margin-top:18px;align-items:start}
+  .support-example a,.support-investment a{text-decoration:underline;text-underline-offset:3px}
+  .support-notice{font-size:.88rem;color:var(--muted)}
+  .support-apply{display:grid;grid-template-columns:.92fr 1.08fr;gap:60px;align-items:start}
+  .support-investment{border-top:1px solid var(--line);padding-top:22px;margin-top:30px}
+  .support-form{display:grid;gap:20px}
+  .support-form label{display:grid;gap:7px;font-family:var(--mono);font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+  .support-form input:not([type=checkbox]),.support-form textarea,.support-form select{width:100%;min-width:0;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);font-family:var(--sans);font-size:1rem;letter-spacing:0;text-transform:none;padding:11px 13px}
+  .support-form textarea{resize:vertical}
+  .support-form .support-consent{display:flex;align-items:flex-start;gap:10px;font-family:var(--sans);font-size:.88rem;letter-spacing:0;line-height:1.5;text-transform:none;color:var(--ink)}
+  .support-consent input{accent-color:var(--accent);margin-top:4px}
+  .support-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .support-privacy{font-size:.8rem;color:var(--muted);margin:0}
+  .support-privacy a{text-decoration:underline}
+  .support-feedback{display:none;padding:14px;border:1px solid var(--line);margin-bottom:18px}
+  .support-feedback:target{display:block}
+  .support-feedback.success{border-color:var(--accent-2)}
+  .support-feedback.fail{border-color:#b42318}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  @media(max-width:760px){.support-apply,.support-example{grid-template-columns:1fr;gap:24px}}
+  @media(max-width:460px){.support-pair{grid-template-columns:1fr}}
+</style>
