@@ -319,6 +319,11 @@ for (const project of projectsData) {
   assert.ok(project.summary?.en && project.summary?.hu);
   assert.ok(project.description?.en && project.description?.hu);
   assert.ok(project.features?.length >= 2);
+  assert.ok(project.imageCaption?.en && project.imageCaption?.hu, 'project image caption must be bilingual');
+  assert.ok(project.secondary?.title?.en && project.secondary?.title?.hu, 'project secondary heading must be bilingual');
+  assert.ok(project.secondary?.body?.en && project.secondary?.body?.hu, 'project secondary body must be bilingual');
+  assert.ok(project.secondary?.caption?.en && project.secondary?.caption?.hu, 'project screenshot caption must be bilingual');
+  if (project.secondaryLink) assert.ok(project.secondaryLink.url.startsWith('https://'));
   assert.match(project.image, /^\/images\/projects\//);
   assert.match(project.secondaryImage, /^\/images\/projects\//);
   await access(new URL('../public' + project.image, import.meta.url));
@@ -326,6 +331,9 @@ for (const project of projectsData) {
 }
 const memberProjects = await readFile(new URL('../src/components/MemberProjects.astro', import.meta.url), 'utf8');
 assert.match(memberProjects, /member-projects/);
+assert.match(memberProjects, /others.map/, 'homepage should show more than the first published project');
+assert.ok(projectsData.some((project) => project.slug === 'agentplaybooks'), 'AgentPlaybooks in gallery');
+assert.ok(projectsData.some((project) => project.slug === 'labwired'), 'LabWired in gallery');
 assert.match(page, /<MemberProjects/);
 const projectsPage = await readFile(new URL('../src/pages/projects/index.astro', import.meta.url), 'utf8');
 assert.match(projectsPage, /memberProjects.json/);

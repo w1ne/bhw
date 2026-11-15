@@ -13,6 +13,17 @@
 .project-tags { display: flex; flex-wrap: wrap; list-style: none; padding: 0; margin: 0; gap: 8px; }
 .project-tags li { font-size: 12px; font-family: var(--mono); color: #3c4942; background: #edf0e8; border: 1px solid #d7dbd1; border-radius: 3px; padding: 5px 9px; line-height: 1.5; }
 .project-explore { margin-top: 28px; color: var(--accent-2); }
+/* Secondary homepage cards keep all published makers visible without replacing the featured project. */
+.project-spotlight-more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 24px; }
+.project-spotlight-mini { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); min-width: 0; border: 1px solid var(--line); background: #fff; overflow: hidden; }
+.project-spotlight-mini-media { display: flex; align-items: center; justify-content: center; background: #131c25; min-height: 220px; padding: 16px; overflow: hidden; }
+.project-spotlight-mini-media img { display: block; width: 100%; height: 210px; object-fit: contain; border-radius: 4px; }
+.project-spotlight-mini-body { padding: 26px; display: flex; flex-direction: column; align-items: flex-start; }
+.project-spotlight-mini-body h3 { font-size: clamp(24px,2.5vw,32px); margin: 6px 0; overflow-wrap: anywhere; }
+.project-spotlight-mini-body p:not(.eyebrow):not(.project-maker) { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 14px 0; }
+.project-spotlight-mini-body .text-link { margin-top: auto; padding-top: 10px; color: var(--accent-2); }
+@media (max-width: 1120px) { .project-spotlight-more { grid-template-columns: 1fr; } }
+@media (max-width: 730px) { .project-spotlight-mini { grid-template-columns: 1fr; } .project-spotlight-mini-media { min-height: 190px; } .project-spotlight-mini-body { padding: 24px; } }
 .project-gallery-note { font-size: 13px; color: var(--muted); }
 .projects-intro { padding: 80px 0 64px; background: #eaece6; }
 .projects-intro .eyebrow { margin-bottom: 20px; }
