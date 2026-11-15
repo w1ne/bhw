@@ -207,3 +207,21 @@ bucket stays private. Keep video files out of Git and Pages static uploads.
 The highlights and full interview use H.264/AAC MP4 with Fast Start; the player
 loads only when a reader chooses to watch. Draft automatic captions are not
 included in the public player.
+
+## Builder support
+
+`/support/` is a separate, discretionary sponsorship request channel. Unlike
+`/pitch/` (introductions to investors), it covers practical expenses such as
+conference tickets, travel, prototype parts and community events. It does not
+promise a grant, stipend or investment. The page cites past support of Haven
+Budapest and individual club members buying conference tickets for builders.
+
+The no-JavaScript HTML form posts to `/api/support`. Submissions use the **same
+JOIN KV binding** under `support:<timestamp>:<random>`, expire after 365 days,
+and notify the existing club inbox through `MAILER` / `lib/mail.js`. There is no
+public GET endpoint and no new Cloudflare resource. The recipient can reply
+directly to the requester's email from the notification. To inspect records:
+
+```bash
+npx wrangler kv key list --namespace-id <JOIN namespace id> --remote --prefix 'support:'
+```
